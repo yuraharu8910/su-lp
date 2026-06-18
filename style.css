@@ -1,0 +1,1328 @@
+/* =================================================================
+   素 -SU- ランディングページ ｜ style.css
+   都会的ミニマル。色とフォントは下の :root で一括管理しています。
+   ================================================================= */
+
+/* -----------------------------------------------------------------
+   1. デザイントークン（色・フォント・余白の「元の値」）
+   ここを変えるとサイト全体に反映されます
+----------------------------------------------------------------- */
+:root {
+  /* ブランドカラー */
+  --color-ink:        #211C17;  /* 濃いウォームチャコール（背景・文字） */
+  --color-offwhite:   #FAF7F1;  /* オフホワイト（明るい文字・ボタン） */
+  --color-greige:     #C2A98C;  /* グレージュ（アクセント） */
+  --color-smoke:      #6E665C;  /* 補助テキスト */
+
+  /* フォント */
+  --font-serif: "Noto Serif JP", serif;             /* 見出し用（上質な明朝） */
+  --font-sans:  "Noto Sans JP", system-ui, sans-serif; /* 本文・UI用 */
+
+  /* レイアウト */
+  --maxw-text: 640px;   /* テキストの最大幅 */
+  --pad-x: 80px;        /* PCの左右余白 */
+}
+
+/* -----------------------------------------------------------------
+   2. リセット（ブラウザごとの初期スタイル差をならす）
+----------------------------------------------------------------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;   /* アンカーリンクを滑らかにスクロール */
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-offwhite);
+  background: var(--color-ink);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;  /* 文字をなめらかに表示 */
+}
+
+img, video { display: block; max-width: 100%; }
+ul { list-style: none; }
+a  { text-decoration: none; color: inherit; }
+
+/* キーボード操作時に「いまどこを選択中か」を分かりやすく（アクセシビリティ） */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--color-greige);
+  outline-offset: 3px;
+}
+
+
+/* -----------------------------------------------------------------
+   3. ヘッダー（画面上部に追従）
+----------------------------------------------------------------- */
+.site-header {
+  position: fixed;           /* スクロールしても上部に固定 */
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px var(--pad-x);
+  transition: background 0.3s, backdrop-filter 0.3s, padding 0.3s;
+}
+/* 少しスクロールしたら、うっすら背景をつける（script.js がクラスを付け外し） */
+.site-header.is-scrolled {
+  background: rgba(33, 28, 23, 0.8);
+  backdrop-filter: blur(8px);
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.logo {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  color: var(--color-offwhite);
+}
+
+.header-cta {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  padding: 8px 18px;
+  border: 1px solid rgba(250, 247, 241, 0.5);  /* 細い枠線のゴーストボタン */
+  border-radius: 6px;
+  transition: background 0.25s, color 0.25s;
+}
+.header-cta:hover {
+  background: var(--color-offwhite);
+  color: var(--color-ink);
+}
+
+
+/* -----------------------------------------------------------------
+   4. ヒーロー（ファーストビュー）
+   3層構造：背景動画 → 暗いオーバーレイ → テキスト
+----------------------------------------------------------------- */
+.hero {
+  position: relative;             /* 中の絶対配置の基準になる */
+  min-height: 100svh;             /* 画面の高さいっぱい（svh＝スマホのバーを考慮） */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;        /* 縦中央 */
+  padding: 0 var(--pad-x);
+  overflow: hidden;
+}
+
+/* 背景動画：ヒーロー全体を覆う（object-fit: cover で切れても全面に敷く） */
+.hero__video {
+  position: absolute;
+  inset: 0;                        /* top:0 right:0 bottom:0 left:0 の短縮 */
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* 暗いグラデーション層：左下を濃くして文字を読みやすく */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(105deg,
+      rgba(20, 17, 14, 0.72) 0%,
+      rgba(20, 17, 14, 0.45) 45%,
+      rgba(20, 17, 14, 0.20) 100%);
+}
+
+/* ヒーローの中身（テキスト）は最前面に */
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--maxw-text);
+}
+
+/* アイブロウ（小さな上の一言） */
+.hero__eyebrow {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--color-greige);
+  margin-bottom: 14px;
+}
+
+/* メイン見出し（明朝体・大きく・上質に）
+   clamp(最小, 可変, 最大) で画面幅に応じて自動でサイズ調整 */
+.hero__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(32px, 5.2vw, 46px);
+  line-height: 1.25;
+  color: var(--color-offwhite);
+  margin-bottom: 16px;
+}
+
+/* サブコピー */
+.hero__subtitle {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(250, 247, 241, 0.85);
+  margin-bottom: 24px;
+  max-width: 520px;
+}
+
+/* CTAのまとまり（ボタン＋返金保証を横並び） */
+.hero__cta-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero__guarantee {
+  font-size: 12.5px;
+  color: rgba(250, 247, 241, 0.7);
+}
+
+/* 安心バッジ */
+.hero__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 22px;
+  font-size: 12px;
+  color: rgba(250, 247, 241, 0.72);
+}
+.hero__badges li::before {
+  content: "✓";              /* 各項目の頭にチェックマーク */
+  margin-right: 5px;
+  color: var(--color-greige);
+}
+
+
+/* -----------------------------------------------------------------
+   5. ボタン（共通パーツ）
+----------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 15px;
+  padding: 13px 26px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s;
+}
+
+/* メインのボタン：オフホワイト塗り＋濃い文字 */
+.btn--primary {
+  background: var(--color-offwhite);
+  color: var(--color-ink);
+}
+.btn--primary:hover {
+  transform: translateY(-2px);                 /* 少し浮く */
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.btn__arrow { transition: transform 0.2s; }
+.btn--primary:hover .btn__arrow { transform: translateX(3px); }  /* 矢印が少し進む */
+
+.btn--block { width: 100%; justify-content: center; }  /* 横幅いっぱい（スマホ用） */
+
+
+/* -----------------------------------------------------------------
+   6. スクロール誘導（下中央）
+----------------------------------------------------------------- */
+.hero__scroll {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: rgba(250, 247, 241, 0.6);
+}
+/* 縦線が上下に伸び縮みするアニメーション */
+.hero__scroll-line {
+  width: 1px;
+  height: 36px;
+  background: rgba(250, 247, 241, 0.5);
+  animation: scrollPulse 1.8s ease-in-out infinite;
+  transform-origin: top;
+}
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(0.4); opacity: 0.4; }
+  50%      { transform: scaleY(1);   opacity: 1; }
+}
+
+
+/* -----------------------------------------------------------------
+   7. スクロール表示の土台（.reveal）
+   最初は透明＆少し下にずらしておき、画面に入ったら .is-visible で表示。
+   .is-visible は script.js（IntersectionObserver）が付けます。
+   この仕組みは今後どのセクションでも使い回せます（class="reveal" を足すだけ）。
+----------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* -----------------------------------------------------------------
+   8. ② 共感・問題提起（Problem）
+   ヒーロー（暗）から一転、明るい余白でエディトリアルに。
+   ページ全体に「明暗のリズム」をつけて、読ませる流れをつくります。
+----------------------------------------------------------------- */
+.problem {
+  background: var(--color-offwhite);   /* 明るい背景に反転 */
+  color: var(--color-ink);             /* 文字は濃いインクに */
+  padding: clamp(80px, 14vw, 140px) var(--pad-x);
+}
+.problem__inner {
+  max-width: var(--maxw-text);
+  margin: 0 auto;                      /* 中央寄せ */
+}
+
+/* アイブロウ（小見出しの上の一言） */
+.problem__eyebrow {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--color-greige);
+  margin-bottom: 16px;
+}
+
+/* 見出し（h2＝セクション見出し。明朝で静かに） */
+.problem__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(26px, 4.4vw, 40px);
+  line-height: 1.35;
+  margin-bottom: 28px;
+}
+/* 共感セクションの reveal は、少し遅らせて順に出す（段階的な"間"） */
+.problem__title    { transition-delay: 0.05s; }
+.problem__lead     { transition-delay: 0.10s; }
+
+/* リード文（本文） */
+.problem__lead {
+  font-size: 16px;
+  line-height: 2;
+  color: var(--color-smoke);
+  margin-bottom: 44px;
+}
+
+/* 自己診断グリッド（参考②）：見出し＋カードの並び */
+.problem__check-lead {
+  font-family: var(--font-serif);
+  font-size: clamp(18px, 2.6vw, 22px);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.problem__checks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);   /* 2列。スマホで1列に */
+  gap: 12px;
+  margin-bottom: 56px;
+}
+.problem__check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  background: #fff;
+  border: 1px solid rgba(33, 28, 23, 0.12);
+  border-radius: 10px;
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+/* 左のチェックボックス風の四角（グレージュの枠＋中にチェック） */
+.problem__check-box {
+  flex: none;
+  width: 20px; height: 20px;
+  border: 1.5px solid var(--color-greige);
+  border-radius: 5px;
+  position: relative;
+}
+.problem__check-box::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--color-greige);
+}
+/* カードを少しずつ時間差で出す（参考②の“次々目に入る”感じ） */
+.problem__check:nth-child(2) { transition-delay: 0.06s; }
+.problem__check:nth-child(3) { transition-delay: 0.12s; }
+.problem__check:nth-child(4) { transition-delay: 0.18s; }
+.problem__check:nth-child(5) { transition-delay: 0.24s; }
+.problem__check:nth-child(6) { transition-delay: 0.30s; }
+
+/* 二択ループの図解（参考①） */
+.loop {
+  margin: 0 auto 52px;
+  max-width: 440px;
+  text-align: center;
+}
+.loop__cap {
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--color-smoke);
+  margin-bottom: 14px;
+}
+.loop__svg {
+  width: 100%;
+  height: auto;
+}
+/* SVG内の文字（ノード名・中央ラベル）の見た目 */
+.loop__node {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  fill: var(--color-ink);          /* SVGの文字色は fill で指定 */
+}
+.loop__center {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 600;
+  fill: var(--color-greige);
+}
+
+/* 次セクションへの“つなぎ”の一文（明朝で問いかける） */
+.problem__pivot {
+  font-family: var(--font-serif);
+  font-size: clamp(19px, 3vw, 26px);
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+
+
+/* -----------------------------------------------------------------
+   9. ③ 第三の選択（Concept）
+   このLPの中心メッセージ。暗い背景に戻して“見せ場”をつくります。
+   隠す／染める を控えめに退け、「活かす」だけを強調＝ここが主役。
+----------------------------------------------------------------- */
+.concept {
+  background: var(--color-ink);        /* 暗い背景に再反転（明→暗のリズム） */
+  color: var(--color-offwhite);
+  padding: clamp(90px, 15vw, 150px) var(--pad-x);
+}
+.concept__inner {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;                  /* このセクションは中央ぞろえで象徴的に */
+}
+
+/* アイブロウ */
+.concept__eyebrow {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--color-greige);
+  margin-bottom: 40px;
+}
+
+/* 3つの道を横並びに（スマホでは縦積みに切り替え） */
+.concept__paths {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 14px;
+  margin-bottom: 56px;
+}
+/* 各選択肢のカード（枠は細く、ミニマルに） */
+.concept__path {
+  flex: 1 1 0;                         /* 3つを等幅に */
+  max-width: 220px;
+  padding: 26px 18px;
+  border: 1px solid rgba(250, 247, 241, 0.14);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* 選択肢の名前（隠す／染める／活かす） */
+.concept__path-name {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 600;
+}
+/* 選択肢の説明（小さく補足） */
+.concept__path-desc {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: rgba(250, 247, 241, 0.6);
+}
+
+/* 退けた選択（隠す／染める）：薄く、名前に取り消し線 */
+.concept__path--muted {
+  opacity: 0.45;                       /* 全体を控えめに */
+}
+.concept__path--muted .concept__path-name {
+  text-decoration: line-through;       /* 「もう選ばない」を視覚で表現 */
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(250, 247, 241, 0.5);
+}
+
+/* 選んだ道（活かす）：グレージュで強調＝主役 */
+.concept__path--active {
+  border-color: var(--color-greige);
+  background: rgba(194, 169, 140, 0.08);  /* グレージュをごく薄く敷く */
+}
+.concept__path--active .concept__path-name {
+  color: var(--color-greige);
+}
+.concept__path--active .concept__path-desc {
+  color: rgba(250, 247, 241, 0.85);
+}
+
+/* 中心メッセージ（明朝で大きく） */
+.concept__statement {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(26px, 4.8vw, 44px);
+  line-height: 1.5;
+  margin-bottom: 28px;
+}
+/* 「整えて、活かす。」だけグレージュにして印象づける */
+.concept__statement-em {
+  color: var(--color-greige);
+}
+
+/* コンセプトの説明文（本文） */
+.concept__lead {
+  font-size: 15.5px;
+  line-height: 2;
+  color: rgba(250, 247, 241, 0.78);
+  max-width: 600px;
+  margin: 0 auto;                      /* 中央の本文ブロックとして配置 */
+}
+/* concept の reveal は、上から順にわずかな時間差で */
+.concept__paths     { transition-delay: 0.05s; }
+.concept__statement { transition-delay: 0.15s; }
+.concept__lead      { transition-delay: 0.25s; }
+
+
+/* -----------------------------------------------------------------
+   10. スマホ用：画面下に追従するCTAバー（初期は非表示）
+----------------------------------------------------------------- */
+.sticky-cta {
+  display: none;             /* PCでは非表示。下のメディアクエリでスマホだけ表示 */
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 20;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));  /* iPhoneのホームバー対策 */
+  background: rgba(33, 28, 23, 0.92);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(250, 247, 241, 0.12);
+}
+
+
+/* -----------------------------------------------------------------
+   11. ページ読み込み時のふわっと表示（演出）
+   .hero__inner の中の各要素を、少し遅らせて順に出す
+----------------------------------------------------------------- */
+.hero__eyebrow,
+.hero__title,
+.hero__subtitle,
+.hero__cta-group,
+.hero__badges {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 0.9s ease forwards;
+}
+.hero__title      { animation-delay: 0.15s; }
+.hero__subtitle   { animation-delay: 0.30s; }
+.hero__cta-group  { animation-delay: 0.45s; }
+.hero__badges     { animation-delay: 0.60s; }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* -----------------------------------------------------------------
+   12. レスポンシブ（スマホ・タブレット）
+   画面幅 768px 以下で適用
+----------------------------------------------------------------- */
+@media (max-width: 768px) {
+  :root { --pad-x: 24px; }       /* 左右余白を狭く */
+
+  .header-cta { display: none; } /* スマホでは下の追従CTAに任せる */
+
+  .hero { padding-bottom: 90px; }          /* 追従CTAと重ならないよう下に余白 */
+  .hero__subtitle { font-size: 15px; }
+  .hero__scroll   { display: none; }       /* スマホでは控えめに */
+
+  .sticky-cta { display: block; }          /* スマホでだけ追従CTAを表示 */
+
+  /* 03 第三の選択：3つの道を横並び→縦積みに（指で読みやすく） */
+  .concept__paths { flex-direction: column; align-items: center; }
+  .concept__path  { max-width: 360px; width: 100%; }
+}
+
+
+/* -----------------------------------------------------------------
+   13. 「動きを減らす」設定の人への配慮（アクセシビリティ）
+   OSで視差効果オフにしている人には、アニメーションを止める
+----------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  /* アニメーションを止めると opacity:0 のままになるので、表示に戻す */
+  .hero__eyebrow, .hero__title, .hero__subtitle,
+  .hero__cta-group, .hero__badges,
+  .reveal {
+    opacity: 1; transform: none;
+  }
+}
+
+
+/* =================================================================
+   ▼▼▼ ここから 04〜13 セクション（LP後半）のスタイル ▼▼▼
+   共通の「セクション枠」を用意し、各セクションで使い回します。
+   ================================================================= */
+
+/* -----------------------------------------------------------------
+   14. セクション共通パーツ（枠・見出し・明暗）
+----------------------------------------------------------------- */
+/* どのセクションも共通の縦余白。clamp(最小,可変,最大)で画面幅に追従 */
+.section {
+  padding: clamp(80px, 13vw, 140px) var(--pad-x);
+}
+/* テキスト主体のセクションの内側（中央寄せの読みやすい幅） */
+.section__inner {
+  max-width: var(--maxw-text);
+  margin: 0 auto;
+}
+/* 明るいセクション（オフホワイト背景＋濃い文字） */
+.section--light {
+  background: var(--color-offwhite);
+  color: var(--color-ink);
+}
+/* 暗いセクション（インク背景＋明るい文字） */
+.section--dark {
+  background: var(--color-ink);
+  color: var(--color-offwhite);
+}
+
+/* 共通：アイブロウ（小見出しの上の一言） */
+.eyebrow {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--color-greige);
+  margin-bottom: 16px;
+}
+/* 共通：セクション見出し（h2・明朝） */
+.section__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(26px, 4.4vw, 40px);
+  line-height: 1.4;
+  margin-bottom: 28px;
+}
+/* 共通：リード文（本文） */
+.section__lead {
+  font-size: 16px;
+  line-height: 2;
+  margin-bottom: 48px;
+}
+/* 明セクションのリードは補助色、暗セクションは少し透過した白 */
+.section--light .section__lead { color: var(--color-smoke); }
+.section--dark  .section__lead { color: rgba(250, 247, 241, 0.78); }
+
+/* 共通：次への“つなぎ”の一文（明朝で印象づけ） */
+.section__bridge {
+  font-family: var(--font-serif);
+  font-size: clamp(19px, 3vw, 26px);
+  line-height: 1.7;
+  margin-top: 8px;
+}
+.section__bridge strong { color: var(--color-greige); font-weight: 600; }
+
+
+/* -----------------------------------------------------------------
+   15. ④ 科学で語る
+----------------------------------------------------------------- */
+/* 解説動画スロット（参考②）：16:9の枠でレスポンシブに */
+.science__video {
+  margin: 0 0 52px;
+}
+.science__video-el {
+  width: 100%;
+  aspect-ratio: 16 / 9;          /* 16:9の比率を保つ */
+  object-fit: cover;
+  background: #000;
+  border-radius: 12px;
+  display: block;
+}
+.science__video-cap {
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--color-smoke);
+  text-align: center;
+}
+
+/* 3つの変化（横並び→スマホで縦積み。下のレスポンシブで切替） */
+.science__points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 52px;
+}
+.science__point {
+  padding-top: 18px;
+  border-top: 1px solid rgba(33, 28, 23, 0.15);  /* 上に細い罫線 */
+}
+.science__point-num {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--color-greige);
+}
+.science__point-name {
+  font-size: 17px;
+  font-weight: 500;
+  margin: 10px 0 8px;
+}
+.science__point-desc {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--color-smoke);
+}
+
+
+/* -----------------------------------------------------------------
+   16. ⑤ 商品特長（3つの価値）｜暗いセクション
+----------------------------------------------------------------- */
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.features__item {
+  padding: 32px 24px;
+  border: 1px solid rgba(250, 247, 241, 0.14);
+  border-radius: 12px;
+}
+.features__num {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  color: var(--color-greige);
+}
+.features__name {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 600;
+  margin: 12px 0 12px;
+}
+.features__desc {
+  font-size: 14px;
+  line-height: 1.9;
+  color: rgba(250, 247, 241, 0.72);
+}
+
+
+/* -----------------------------------------------------------------
+   17. ⑥ 成分・処方へのこだわり｜明るいセクション
+----------------------------------------------------------------- */
+.ingredients__cols {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);    /* 2列。スマホで1列に */
+  gap: 28px 36px;
+  margin-bottom: 44px;
+}
+.ingredients__col-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-ink);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--color-greige);  /* 見出し下にアクセント線 */
+  display: inline-block;
+}
+.ingredients__col-desc {
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--color-smoke);
+}
+/* 5つのフリー（タグ風に横並び） */
+.ingredients__free {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.ingredients__free li {
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  padding: 7px 14px;
+  border: 1px solid rgba(33, 28, 23, 0.2);
+  border-radius: 999px;                      /* 丸いピル形 */
+  color: var(--color-ink);
+}
+.ingredients__note {
+  font-size: 13px;
+  color: var(--color-smoke);
+}
+
+
+/* -----------------------------------------------------------------
+   18. ⑦ 使い方（3ステップ）｜暗いセクション
+----------------------------------------------------------------- */
+.howto__steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 44px;
+  list-style: none;                          /* ol の既定番号「1. 2. 3.」を消す */
+}
+.howto__step {
+  text-align: center;
+  padding: 8px;
+}
+.howto__step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  border: 1px solid var(--color-greige);
+  color: var(--color-greige);
+  font-family: var(--font-serif);
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+.howto__step-name {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.howto__step-desc {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(250, 247, 241, 0.72);
+}
+
+
+/* -----------------------------------------------------------------
+   19. ⑧ ラインナップ（3商品）｜明るいセクション
+----------------------------------------------------------------- */
+/* このセクションは商品カードが横に並ぶので、内側を少し広げます */
+.lineup .section__inner { max-width: 980px; }
+
+.lineup__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 44px;
+  text-align: center;
+}
+.lineup__card {
+  padding: 22px;
+  border: 1px solid rgba(33, 28, 23, 0.14);
+  border-radius: 14px;
+  background: #fff;
+}
+/* ヒーロー商品は枠と影で少し強調 */
+.lineup__card--hero {
+  border-color: var(--color-greige);
+  box-shadow: 0 12px 30px rgba(33, 28, 23, 0.08);
+}
+/* 商品画像の差し替え用プレースホルダー（正方形の枠） */
+.lineup__media {
+  aspect-ratio: 1 / 1;                        /* 正方形を保つ */
+  background: var(--color-offwhite);
+  border: 1px dashed rgba(33, 28, 23, 0.22);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.lineup__media span {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: rgba(33, 28, 23, 0.4);
+}
+.lineup__tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+  color: var(--color-offwhite);
+  background: var(--color-greige);
+  padding: 3px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.lineup__tag--plus {
+  color: var(--color-smoke);
+  background: transparent;
+  border: 1px solid rgba(33, 28, 23, 0.25);
+}
+.lineup__name {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.lineup__role {
+  font-size: 12.5px;
+  color: var(--color-smoke);
+  margin-bottom: 14px;
+}
+.lineup__price {
+  font-size: 22px;
+  font-weight: 500;
+}
+.lineup__price-sub {
+  display: block;
+  font-size: 11.5px;
+  color: var(--color-smoke);
+  margin-top: 4px;
+}
+.lineup__cta { text-align: center; }
+
+
+/* -----------------------------------------------------------------
+   20. ⑨ 開発ストーリー｜暗いセクション
+----------------------------------------------------------------- */
+.brandstory .section__inner { text-align: center; }
+.brandstory__quote {
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 3.2vw, 30px);
+  line-height: 1.9;
+  margin-bottom: 24px;
+}
+.brandstory__sign {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--color-greige);
+  margin-bottom: 36px;
+}
+.brandstory__body {
+  font-size: 15px;
+  line-height: 2;
+  color: rgba(250, 247, 241, 0.75);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+
+/* -----------------------------------------------------------------
+   21. ⑩ お客様の声｜明るいセクション
+----------------------------------------------------------------- */
+.voices .section__inner { max-width: 980px; }
+.voices__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 28px;
+}
+.voices__card {
+  padding: 28px 24px;
+  background: #fff;
+  border: 1px solid rgba(33, 28, 23, 0.1);
+  border-radius: 12px;
+}
+.voices__text {
+  font-size: 14.5px;
+  line-height: 1.9;
+  color: var(--color-ink);
+  margin-bottom: 16px;
+}
+/* 引用の頭に、グレージュの引用符を飾りで */
+.voices__text::before {
+  content: "“";
+  font-family: var(--font-serif);
+  font-size: 32px;
+  color: var(--color-greige);
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.voices__by {
+  font-size: 12.5px;
+  color: var(--color-smoke);
+}
+.voices__disclaimer {
+  font-size: 12px;
+  color: var(--color-smoke);
+  text-align: center;
+}
+
+
+/* -----------------------------------------------------------------
+   22. ⑪ FAQ（開閉式 <details>）｜明るいセクション
+----------------------------------------------------------------- */
+.faq__list {
+  border-top: 1px solid rgba(33, 28, 23, 0.14);
+}
+.faq__item {
+  border-bottom: 1px solid rgba(33, 28, 23, 0.14);
+}
+/* 質問（クリックで開閉する見出し部分） */
+.faq__q {
+  position: relative;
+  list-style: none;                 /* デフォルトの三角マークを消す */
+  cursor: pointer;
+  padding: 22px 44px 22px 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+.faq__q::-webkit-details-marker { display: none; }  /* Safari用：三角を消す */
+/* 右端の「＋」マーク（開くと「×」風に回転） */
+.faq__q::after {
+  content: "+";
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  color: var(--color-greige);
+  transition: transform 0.25s ease;
+}
+.faq__item[open] .faq__q::after {
+  transform: translateY(-50%) rotate(45deg);   /* ＋ → × に */
+}
+/* 回答（開いたときに表示される本文） */
+.faq__a {
+  padding: 0 44px 24px 0;
+  font-size: 14.5px;
+  line-height: 1.9;
+  color: var(--color-smoke);
+}
+
+
+/* -----------------------------------------------------------------
+   23. ⑫ 最終CTA（クロージング）｜暗いセクション
+----------------------------------------------------------------- */
+.closing { text-align: center; }
+.closing__inner {
+  max-width: 620px;
+  margin: 0 auto;
+}
+.closing__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(28px, 5vw, 46px);
+  line-height: 1.45;
+  margin-bottom: 22px;
+}
+.closing__lead {
+  font-size: 16px;
+  line-height: 1.9;
+  color: rgba(250, 247, 241, 0.8);
+  margin-bottom: 40px;
+}
+/* 価格表示 */
+.closing__price {
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--color-offwhite);
+  margin-bottom: 24px;
+}
+.closing__price-label {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--color-greige);
+  margin-bottom: 6px;
+}
+.closing__price-strike {
+  font-size: 14px;
+  color: rgba(250, 247, 241, 0.5);
+  text-decoration: line-through;   /* 通常価格に取り消し線 */
+  margin-left: 8px;
+}
+/* 大きめのボタン（最終CTA用） */
+.btn--lg {
+  font-size: 16px;
+  padding: 16px 38px;
+}
+/* 安心材料（返金・しばりなし・送料無料） */
+.closing__assure {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+  margin-top: 22px;
+  font-size: 12.5px;
+  color: rgba(250, 247, 241, 0.72);
+}
+.closing__assure li::before {
+  content: "✓";
+  margin-right: 5px;
+  color: var(--color-greige);
+}
+
+
+/* -----------------------------------------------------------------
+   24. ⑬ フッター
+----------------------------------------------------------------- */
+.site-footer {
+  background: #18140F;                 /* 最下部だけ少し濃いインク */
+  color: rgba(250, 247, 241, 0.7);
+  padding: 64px var(--pad-x) 40px;
+  text-align: center;
+}
+.site-footer__inner { max-width: 720px; margin: 0 auto; }
+.site-footer__logo {
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  color: var(--color-offwhite);
+  margin-bottom: 8px;
+}
+.site-footer__tag {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: var(--color-greige);
+  margin-bottom: 28px;
+}
+.site-footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 24px;
+  margin-bottom: 28px;
+}
+.site-footer__nav a {
+  font-size: 13px;
+  color: rgba(250, 247, 241, 0.7);
+  transition: color 0.2s;
+}
+.site-footer__nav a:hover { color: var(--color-offwhite); }
+.site-footer__legal {
+  font-size: 11.5px;
+  line-height: 1.8;
+  color: rgba(250, 247, 241, 0.45);
+  margin-bottom: 16px;
+}
+.site-footer__copy {
+  font-size: 11.5px;
+  color: rgba(250, 247, 241, 0.4);
+}
+
+
+/* -----------------------------------------------------------------
+   25. 後半セクションのレスポンシブ（スマホで横並び→縦積み）
+   画面幅 768px 以下で、各グリッドを1列にして読みやすく。
+----------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .science__points,
+  .features__grid,
+  .howto__steps,
+  .lineup__grid,
+  .voices__grid,
+  .reasons {
+    grid-template-columns: 1fr;       /* 3列→1列 */
+  }
+  .ingredients__cols {
+    grid-template-columns: 1fr;       /* 2列→1列 */
+  }
+  .problem__checks {
+    grid-template-columns: 1fr;       /* 自己診断グリッドも1列に */
+  }
+}
+
+
+/* =================================================================
+   ▼▼▼ 追加：信頼の数字（02）＋ 開閉パーツ（06・07） ▼▼▼
+   ================================================================= */
+
+/* -----------------------------------------------------------------
+   26. 信頼の数字（02 共感）｜出典付きの統計を見せる枠
+----------------------------------------------------------------- */
+.problem__stat {
+  text-align: center;
+  max-width: 460px;
+  margin: 0 auto 56px;
+  padding: 30px 24px;
+  background: #fff;
+  border: 1px solid rgba(33, 28, 23, 0.1);
+  border-radius: 14px;
+}
+.problem__stat-lead {
+  font-size: 13.5px;
+  color: var(--color-smoke);
+  margin-bottom: 6px;
+}
+/* 大きな数字（明朝＋グレージュで目を引く） */
+.problem__stat-num {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(40px, 8vw, 56px);
+  line-height: 1.1;
+  color: var(--color-greige);
+}
+.problem__stat-num small {
+  font-size: 0.38em;
+  font-weight: 500;
+  color: var(--color-ink);
+  margin-left: 4px;
+}
+.problem__stat-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-ink);
+  margin-top: 10px;
+}
+.problem__stat-src {
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--color-smoke);
+  margin-top: 14px;
+}
+
+/* -----------------------------------------------------------------
+   27. 開閉パーツ（.disclose）｜06全成分・07コツで共用
+   currentColor を使い、明るい背景でも暗い背景でも同じ部品が使えます。
+   color-mix() ＝ 現在の文字色を薄めて罫線色をつくる関数。
+----------------------------------------------------------------- */
+.disclose {
+  margin: 4px auto 0;
+  max-width: var(--maxw-text);
+  border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+}
+.disclose__summary {
+  list-style: none;                 /* 既定の三角マークを消す */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 2px;
+  font-size: 14.5px;
+  font-weight: 500;
+}
+.disclose__summary::-webkit-details-marker { display: none; }  /* Safari用 */
+/* 右端の「＋」マーク（開くと45度回って「×」風に） */
+.disclose__summary::after {
+  content: "+";
+  flex: none;
+  font-size: 20px;
+  color: var(--color-greige);
+  transition: transform 0.25s ease;
+}
+.disclose[open] .disclose__summary::after { transform: rotate(45deg); }
+
+.disclose__body {
+  padding: 0 2px 20px;
+}
+/* 全成分のテキスト（読みやすく行間広め） */
+.disclose__ingredients {
+  font-size: 13px;
+  line-height: 2;
+  opacity: 0.85;
+}
+.disclose__note {
+  font-size: 11.5px;
+  line-height: 1.7;
+  opacity: 0.6;
+  margin-top: 12px;
+}
+/* 洗い方のコツ（箇条書き） */
+.disclose__tips li {
+  position: relative;
+  padding: 8px 0 8px 18px;
+  font-size: 14px;
+  line-height: 1.8;
+  opacity: 0.85;
+}
+.disclose__tips li::before {
+  content: "・";
+  position: absolute;
+  left: 0;
+  color: var(--color-greige);
+}
+
+
+/* -----------------------------------------------------------------
+   28. 市場データ（03 第三の選択）｜暗い背景用の数字ブロック
+   02の数字（白いカード）と役割を分け、こちらは主張の裏づけとして控えめに。
+----------------------------------------------------------------- */
+.concept__stat {
+  max-width: 460px;
+  margin: 44px auto 0;
+  padding-top: 32px;
+  border-top: 1px solid rgba(194, 169, 140, 0.4);  /* グレージュの細い区切り線 */
+}
+.concept__stat-num {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(44px, 9vw, 60px);
+  line-height: 1;
+  color: var(--color-greige);
+}
+.concept__stat-num span {
+  font-size: 0.45em;
+  margin-left: 2px;
+}
+.concept__stat-desc {
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: rgba(250, 247, 241, 0.85);
+  margin-top: 10px;
+}
+.concept__stat-src {
+  font-size: 11px;
+  color: rgba(250, 247, 241, 0.5);
+  margin-top: 12px;
+}
+
+
+/* -----------------------------------------------------------------
+   29. ⑥成分：3つの理由カード＋「中身」小見出し（明るい背景）
+----------------------------------------------------------------- */
+.reasons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);   /* 3列。スマホで1列に */
+  gap: 18px;
+  margin-bottom: 56px;
+}
+.reason {
+  padding: 26px 22px;
+  background: #fff;
+  border: 1px solid rgba(33, 28, 23, 0.1);
+  border-radius: 12px;
+}
+.reason__num {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--color-greige);
+}
+.reason__name {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 10px 0 12px;
+  line-height: 1.4;
+}
+.reason__desc {
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: var(--color-smoke);
+}
+/* 「その処方の、中身。」の小見出し */
+.ingredients__subhead {
+  font-family: var(--font-serif);
+  font-size: clamp(17px, 2.4vw, 20px);
+  font-weight: 600;
+  color: var(--color-ink);
+  margin-bottom: 22px;
+}

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<!-- lang="ja" ＝ このページは日本語、とブラウザに伝える設定です -->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <!-- スマホで正しい幅で表示するための必須設定（レスポンシブの土台） -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 検索結果やSNSシェア時に出るタイトル・説明文 -->
+  <title>素 -SU- ｜ 染めなくても、美しい。40代からの染めない白髪ケア</title>
+  <meta name="description" content="隠すか、染めるか。その二択は、もう終わり。白髪を生かして、ツヤと抜け感で“今のあなた”を一番きれいに見せる、毎日のミニマルケア。">
+
+  <!-- Google Fonts を読み込み（見出し＝Noto Serif JP / 本文＝Noto Sans JP） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+
+  <!-- 自分のCSSファイルを読み込み（見た目の設定はすべて style.css に書いてあります） -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ============================================================
+       ヘッダー：ロゴ ＋ 右上の小さなCTAリンク
+       position は CSS で「画面に追従（fixed）」させています
+  ============================================================ -->
+  <header class="site-header">
+    <a href="#" class="logo" aria-label="素 -SU- ホーム">素 -SU-</a>
+    <a href="#purchase" class="header-cta">試してみる</a>
+  </header>
+
+
+  <!-- ============================================================
+       ① ファーストビュー（ヒーロー）
+       背景動画 → 暗いオーバーレイ → テキスト、の3層構造です
+  ============================================================ -->
+  <section class="hero">
+
+    <!-- 背景動画。属性の意味：
+         autoplay  = 自動再生
+         muted     = 無音（これが無いとスマホで自動再生されません）
+         loop      = 繰り返し
+         playsinline = スマホで全画面化させず、その場で再生
+         poster    = 動画読み込み前に表示する静止画（images/ の画像）
+         ※ videos/hero.mp4 を本番の動画に差し替えるだけでOKです -->
+    <video class="hero__video" autoplay muted loop playsinline
+           poster="images/hero-poster.jpg">
+      <source src="videos/hero.mp4" type="video/mp4">
+    </video>
+
+    <!-- 文字を読みやすくするための暗いグラデーション層 -->
+    <div class="hero__overlay" aria-hidden="true"></div>
+
+    <!-- ヒーローの中身（文字・ボタン） -->
+    <div class="hero__inner">
+      <!-- アイブロウ（見出しの上の小さな一言） -->
+      <p class="hero__eyebrow">40代からの、染めない白髪ケア</p>
+
+      <!-- メイン見出し（h1＝ページで最も重要な見出し） -->
+      <h1 class="hero__title">染めなくても、美しい。</h1>
+
+      <!-- サブコピー -->
+      <p class="hero__subtitle">
+        隠すか、染めるか。その二択は、もう終わりにしていい。<br>
+        白髪を生かして、ツヤと抜け感で“今のあなた”を一番きれいに。
+      </p>
+
+      <!-- CTA（行動を促すボタン）＋ 安心材料（返金保証）を横に添える -->
+      <div class="hero__cta-group">
+        <a href="#purchase" class="btn btn--primary">
+          まずは2週間、試す
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+        <span class="hero__guarantee">30日間返金保証つき</span>
+      </div>
+
+      <!-- 安心バッジ（購入前の不安をその場でつぶす要素） -->
+      <ul class="hero__badges">
+        <li>5フリー処方</li>
+        <li>オールインワン1本</li>
+        <li>色移りゼロ</li>
+        <li>定期しばりなし</li>
+      </ul>
+    </div>
+
+    <!-- スクロール誘導（クリックで下のセクションへ。CSSで上下に揺れます） -->
+    <a href="#story" class="hero__scroll" aria-label="下へスクロール">
+      <span>scroll</span>
+      <span class="hero__scroll-line" aria-hidden="true"></span>
+    </a>
+  </section>
+
+
+  <!-- ============================================================
+       ② 共感・問題提起（Problem）
+       ペルソナの本音に寄り添い、「二択に疲れた」気持ちを言語化。
+       class="reveal" の要素は、スクロールで画面に入るとふわっと表示されます。
+  ============================================================ -->
+  <section id="story" class="problem">
+    <div class="problem__inner">
+      <p class="problem__eyebrow reveal">ある朝の、鏡の前で</p>
+      <h2 class="problem__title reveal">また、染めなきゃ。</h2>
+      <p class="problem__lead reveal">
+        鏡で白髪を見つけるたび、頭をよぎるのは“きれいになる楽しみ”より、
+        「また予約か」という小さなため息。いつのまにか、時間も気持ちもすり減っている。
+      </p>
+
+      <!-- 自己診断グリッド（参考②：こんなお悩みありませんか？）
+           具体的な悩みを並べ、読者に“自分のことだ”と感じてもらうパート。 -->
+      <p class="problem__check-lead reveal">こんなこと、ありませんか？</p>
+      <ul class="problem__checks">
+        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>鏡を見るたび、増えていく白髪に焦る</li>
+        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>また美容室の予約か…と、気が重い</li>
+        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>でも、まだ「染める」と決めたくない</li>
+        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>隠さなくても、きれいでいたい</li>
+      </ul>
+
+      <!-- 信頼の数字（参考①②）：実在の調査データで“悩みの事実”を裏づける。
+           ※架空商品なので自社実績は載せず、出典のある市場データを使用しています。 -->
+      <div class="problem__stat reveal">
+        <p class="problem__stat-lead">気にしているのは、あなただけではありません。</p>
+        <p class="problem__stat-num">約7割<small>（72.7%）</small></p>
+        <p class="problem__stat-desc">白髪のある30〜40代女性が、白髪の“見た目への影響”を気にしている。</p>
+        <p class="problem__stat-src">※ 株式会社ウィルミナ「おさぼり白髪の実態調査」（2026年）／白髪がある30〜40代女性 694名</p>
+      </div>
+
+      <!-- 二択ループの図解（参考①：悩みの“仕組み”を見せて納得を補強）
+           染める・隠す → また伸びる → すぐ元通り …が終わらない様子をSVGで可視化。
+           SVG＝図形を描くためのタグ。viewBox で描画範囲を決め、その中に円や線を置きます。 -->
+      <figure class="loop reveal">
+        <figcaption class="loop__cap">染める・隠すを、ただ繰り返す。</figcaption>
+        <svg class="loop__svg" viewBox="0 0 560 470" xmlns="http://www.w3.org/2000/svg"
+             role="img" aria-label="白髪がまた伸びる、染める・隠す、すぐ元通り、を繰り返す終わらないループの図">
+          <!-- defs：矢印の先端マークの定義（再利用できる部品） -->
+          <defs>
+            <marker id="loopArrow" viewBox="0 0 10 10" refX="7" refY="5"
+                    markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#C2A98C"/>
+            </marker>
+          </defs>
+
+          <!-- 円周にそった3本の矢印（時計回りにぐるぐる回る様子） -->
+          <path d="M 370 94 A 180 180 0 0 1 460 250" fill="none" stroke="#C2A98C" stroke-width="2" marker-end="url(#loopArrow)"/>
+          <path d="M 370 406 A 180 180 0 0 1 190 406" fill="none" stroke="#C2A98C" stroke-width="2" marker-end="url(#loopArrow)"/>
+          <path d="M 100 250 A 180 180 0 0 1 190 94"  fill="none" stroke="#C2A98C" stroke-width="2" marker-end="url(#loopArrow)"/>
+
+          <!-- 中央のラベル -->
+          <text x="280" y="236" text-anchor="middle" class="loop__center">終わらない</text>
+          <text x="280" y="264" text-anchor="middle" class="loop__center">二択のループ</text>
+
+          <!-- 3つのノード（円＋テキスト） -->
+          <g>
+            <circle cx="280" cy="70" r="62" fill="#FFFFFF" stroke="#C2A98C" stroke-width="1.5"/>
+            <text x="280" y="64" text-anchor="middle" class="loop__node">白髪が</text>
+            <text x="280" y="88" text-anchor="middle" class="loop__node">また伸びる</text>
+          </g>
+          <g>
+            <circle cx="436" cy="340" r="62" fill="#FFFFFF" stroke="#C2A98C" stroke-width="1.5"/>
+            <text x="436" y="334" text-anchor="middle" class="loop__node">染める・</text>
+            <text x="436" y="358" text-anchor="middle" class="loop__node">隠す</text>
+          </g>
+          <g>
+            <circle cx="124" cy="340" r="62" fill="#FFFFFF" stroke="#C2A98C" stroke-width="1.5"/>
+            <text x="124" y="334" text-anchor="middle" class="loop__node">パサつき</text>
+            <text x="124" y="358" text-anchor="middle" class="loop__node">・うねり</text>
+          </g>
+        </svg>
+      </figure>
+
+      <!-- 次セクション（第三の選択）へつなぐ、希望のひとこと -->
+      <p class="problem__pivot reveal">
+        でも——「隠すか、染めるか」。<br>
+        その二択しか、本当にないのでしょうか。
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ③ 第三の選択（Concept）
+       このLPの中心メッセージ。「隠す／染める」という二択を静かに退け、
+       「整えて、活かす」という三つめの道を提示します。
+       暗い背景に戻して“映画的な見せ場”をつくり、ページにリズムを出します。
+       薬機法メモ：効能は「うるおい・ツヤ・整える・見せる」の範囲に限定。
+                   「防ぐ・治す・育毛」など医薬品的な表現は使っていません。
+  ============================================================ -->
+  <section id="concept" class="concept">
+    <div class="concept__inner">
+
+      <!-- アイブロウ（このセクションの主題ラベル） -->
+      <p class="concept__eyebrow reveal">第三の選択</p>
+
+      <!-- 3つの道。隠す／染める は“退けた選択”として控えめに（取り消し線）、
+           活かす だけをブランドカラーで強調 ＝ ここがこのセクションの見せ場。
+           並列の3項目なので <ul><li> で組んでいます。 -->
+      <ul class="concept__paths reveal" aria-label="3つの選択肢">
+        <li class="concept__path concept__path--muted">
+          <span class="concept__path-name">隠す</span>
+          <span class="concept__path-desc">ウィッグや帽子で、覆う</span>
+        </li>
+        <li class="concept__path concept__path--muted">
+          <span class="concept__path-name">染める</span>
+          <span class="concept__path-desc">数週間ごとに、塗り重ねる</span>
+        </li>
+        <li class="concept__path concept__path--active">
+          <span class="concept__path-name">活かす</span>
+          <span class="concept__path-desc">ツヤと抜け感で、白髪ごと美しく</span>
+        </li>
+      </ul>
+
+      <!-- 中心メッセージ（明朝で大きく）。改行で“間”をつくります -->
+      <h2 class="concept__statement reveal">
+        隠すでも、染めるでもなく。<br>
+        <span class="concept__statement-em">整えて、活かす。</span>
+      </h2>
+
+      <!-- コンセプトの言語化。薬機法の範囲内で「整える／見せる」に留めています -->
+      <p class="concept__lead reveal">
+        白髪は、隠すものでも、無かったことにするものでもありません。
+        うるおいとツヤで髪を整えれば、白髪も“今のあなた”の一部として、ちゃんと美しい。
+        ──それが、素 -SU- が選んだ三つめの道です。
+      </p>
+
+      <!-- 市場データ（参考①②）：ブランドの主張＝「活かす＝美しい」を、出典付きの“好感度”で裏づけ。
+           ※02は“問題”の裏づけ、ここは“活かすは素敵だと多くが思っている”という主張の裏づけ。 -->
+      <div class="concept__stat reveal">
+        <p class="concept__stat-num">74.8<span>%</span></p>
+        <p class="concept__stat-desc">の人が「グレイヘアは素敵だと思う」と回答。</p>
+        <p class="concept__stat-src">※ ホーユー「グレイヘアに関する意識・実態調査」（2022年）</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ④ 科学で語る（信頼づくり）
+       「40代の髪に何が起きているか」を“知識の提供”として語り、信頼感を出す。
+       薬機法メモ：ここは教育パート。商品の約束は「整える・ツヤ・うるおい」に限定し、
+                   「防ぐ・治す」などの医薬品的表現は使いません。
+  ============================================================ -->
+  <section id="science" class="section section--light science">
+    <div class="section__inner">
+      <p class="eyebrow reveal">なぜ、整えるといいのか</p>
+      <h2 class="section__title reveal">40代の髪に、<br>何が起きているのでしょう。</h2>
+      <p class="section__lead reveal">
+        年齢を重ねると、頭皮や髪をとりまく環境は少しずつ変化します。これは誰にでも起こる自然なこと。
+        だからこそ、毎日のケアで“整える”ことが、髪の印象を大きく左右します。
+      </p>
+
+      <!-- 解説動画スロット（参考②：動画で見せる）
+           controls＝再生バーを表示（自分で再生）／poster＝再生前の静止画。
+           いまは仮で hero.mp4 を表示。本番では videos/science.mp4 などに差し替えてください。
+           （動画は figure＝図版、figcaption＝そのキャプション、で意味づけしています） -->
+      <figure class="science__video reveal">
+        <video class="science__video-el" controls playsinline muted
+               poster="images/hero-poster.jpg">
+          <source src="videos/hero.mp4" type="video/mp4">
+          お使いのブラウザは動画の表示に対応していません。
+        </video>
+        <figcaption class="science__video-cap">
+          ※ 解説動画（差し替え用）：40代の髪に起きる変化を、やさしく解説
+        </figcaption>
+      </figure>
+
+      <!-- 3つの変化（並列なので ul。数字は順番ではなく見出しのアクセント） -->
+      <ul class="science__points">
+        <li class="science__point reveal">
+          <span class="science__point-num" aria-hidden="true">01</span>
+          <h3 class="science__point-name">うねりが出やすく</h3>
+          <p class="science__point-desc">髪が素直に下りにくくなり、雨の日や午後に広がりやすくなります。</p>
+        </li>
+        <li class="science__point reveal">
+          <span class="science__point-num" aria-hidden="true">02</span>
+          <h3 class="science__point-name">パサつきやすく</h3>
+          <p class="science__point-desc">うるおいを抱えにくくなり、手触りやまとまりが変わってきます。</p>
+        </li>
+        <li class="science__point reveal">
+          <span class="science__point-num" aria-hidden="true">03</span>
+          <h3 class="science__point-name">ツヤが出にくく</h3>
+          <p class="science__point-desc">光をきれいに返しにくくなり、髪全体の印象が少し沈みがちに。</p>
+        </li>
+      </ul>
+
+      <p class="section__bridge reveal">
+        必要なのは、足すことより<strong>整える</strong>こと。<br>
+        素 -SU- は、その毎日の“整える”を引き受けます。
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ⑤ 商品特長（3つの価値）
+       素 -SU- が毎日もたらす価値を、3つに絞って提示。暗い背景で“主役”の見せ場に。
+  ============================================================ -->
+  <section id="features" class="section section--dark features">
+    <div class="section__inner">
+      <p class="eyebrow reveal">素 -SU- の、3つの価値</p>
+      <h2 class="section__title reveal">毎日を、シンプルに美しく。</h2>
+
+      <ul class="features__grid">
+        <li class="features__item reveal">
+          <span class="features__num" aria-hidden="true">01</span>
+          <h3 class="features__name">オールインワン1本</h3>
+          <p class="features__desc">洗う・うるおす・整えるを1本で。バスルームも毎日の手間も、ミニマルに。</p>
+        </li>
+        <li class="features__item reveal">
+          <span class="features__num" aria-hidden="true">02</span>
+          <h3 class="features__name">うるおいとツヤ</h3>
+          <p class="features__desc">うるおいとツヤを与え、うねりを抑えてまとまりやすく。午後までしなやかに。</p>
+        </li>
+        <li class="features__item reveal">
+          <span class="features__num" aria-hidden="true">03</span>
+          <h3 class="features__name">色移りゼロ</h3>
+          <p class="features__desc">染めないから、枕もタオルも汚さない。面倒な置き時間も、ゼロ。</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ⑥ 成分・処方へのこだわり（透明性）
+       “世界観だけでなく中身で納得させる”パート。明るい背景でクリーンに。
+       薬機法メモ：成分の特徴は語ってOK。ただし「だから白髪に効く」とは結びつけない。
+  ============================================================ -->
+  <section id="ingredients" class="section section--light ingredients">
+    <div class="section__inner">
+      <p class="eyebrow reveal">中身で、応える</p>
+      <h2 class="section__title reveal">オールインワンでも、<br>パサつかず、ツヤが出る理由。</h2>
+      <p class="section__lead reveal">
+        理由は、処方そのものにあります。うるおいを守るマイルドな洗浄成分に、
+        植物由来のうるおい・ツヤ成分や補修成分を“濃縮”配合。洗うと同時に髪になじみ、
+        キューティクルを整えるから、コンディショナーがなくても、まとまってツヤめく髪へ。
+      </p>
+
+      <!-- なぜ1本で叶うのか：3つの理由（参考①の“仕組みで納得させる”）
+           薬機法メモ：「栄養がキューティクル内に入る」等は使わず、
+           「髪になじむ／キューティクルを整える／ツヤを引き出す」に置き換えています。 -->
+      <ul class="reasons">
+        <li class="reason reveal">
+          <span class="reason__num" aria-hidden="true">01</span>
+          <h3 class="reason__name">うるおいを守って洗う</h3>
+          <p class="reason__desc">アミノ酸系のマイルドな洗浄成分。必要なうるおいまで奪わないから、洗い上がりがつっぱらず、パサつきにくい。</p>
+        </li>
+        <li class="reason reveal">
+          <span class="reason__num" aria-hidden="true">02</span>
+          <h3 class="reason__name">美容成分を“濃縮”配合</h3>
+          <p class="reason__desc">加水分解ケラチン・シルクや植物オイルなど、補修・保湿・ツヤ成分をたっぷり。洗いながら、髪になじみます。</p>
+        </li>
+        <li class="reason reveal">
+          <span class="reason__num" aria-hidden="true">03</span>
+          <h3 class="reason__name">キューティクルを、なめらかに</h3>
+          <p class="reason__desc">髪の表面を整えることで、光をきれいに返してツヤを引き出します。だから、1本でもまとまる。</p>
+        </li>
+      </ul>
+
+      <!-- 成分グループ（4つ）：上の理由を支える“中身” -->
+      <p class="ingredients__subhead reveal">その処方の、中身。</p>
+      <div class="ingredients__cols">
+        <div class="ingredients__col reveal">
+          <h3 class="ingredients__col-name">洗浄ベース</h3>
+          <p class="ingredients__col-desc">アミノ酸系洗浄成分。頭皮にマイルドで、うるおいを守って洗います。</p>
+        </div>
+        <div class="ingredients__col reveal">
+          <h3 class="ingredients__col-name">補修・ツヤ</h3>
+          <p class="ingredients__col-desc">加水分解ケラチン・シルク・ヘマチン。髪を補修・保護し、ハリとツヤを与えます。</p>
+        </div>
+        <div class="ingredients__col reveal">
+          <h3 class="ingredients__col-name">保湿</h3>
+          <p class="ingredients__col-desc">ヒアルロン酸・パンテノール。うるおいを抱え込み、なめらかな指通りに。</p>
+        </div>
+        <div class="ingredients__col reveal">
+          <h3 class="ingredients__col-name">頭皮ケア</h3>
+          <p class="ingredients__col-desc">ローズマリー葉エキスなどの植物エキスで、頭皮をすこやかに保ちます。</p>
+        </div>
+      </div>
+
+      <!-- 全成分の開示（参考①：透明性で後押し）
+           <details>＝クリックで開閉できる標準パーツ（JavaScript不要）。 -->
+      <details class="disclose reveal">
+        <summary class="disclose__summary">全成分を見る（仮の処方）</summary>
+        <div class="disclose__body">
+          <p class="disclose__ingredients">
+            水、ココイルグルタミン酸Na、コカミドプロピルベタイン、ラウロイルメチルアラニンNa、グリセリン、加水分解ケラチン（羊毛）、加水分解シルク、ヘマチン、ヒアルロン酸Na、パンテノール、アルガニアスピノサ核油、ホホバ種子油、ローズマリー葉エキス、センブリエキス、BG、クエン酸、エタノール、フェノキシエタノール、香料
+          </p>
+          <p class="disclose__note">※ 仮の処方イメージです。実際の商品化時に、薬機法にもとづく薬事確認のうえ確定します。</p>
+        </div>
+      </details>
+
+      <!-- 5つのフリー（無添加） -->
+      <ul class="ingredients__free reveal" aria-label="5つの無添加">
+        <li>シリコンフリー</li>
+        <li>サルフェートフリー</li>
+        <li>鉱物油フリー</li>
+        <li>パラベンフリー</li>
+        <li>合成着色料フリー</li>
+      </ul>
+      <p class="ingredients__note reveal">弱酸性・微香性／クルエルティフリー／国内製造・詰め替え対応。</p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ⑦ 使い方（3ステップ）
+       「置き換えるだけ」を視覚化。順番のある手順なので ol（番号つきリスト）。
+  ============================================================ -->
+  <section id="howto" class="section section--dark howto">
+    <div class="section__inner">
+      <p class="eyebrow reveal">使い方は、いつもどおり</p>
+      <h2 class="section__title reveal">置き換えるだけ。<br>特別な手間は、いりません。</h2>
+
+      <ol class="howto__steps">
+        <li class="howto__step reveal">
+          <span class="howto__step-num" aria-hidden="true">1</span>
+          <h3 class="howto__step-name">なじませる</h3>
+          <p class="howto__step-desc">髪と頭皮をぬらし、適量を手にとってなじませます。</p>
+        </li>
+        <li class="howto__step reveal">
+          <span class="howto__step-num" aria-hidden="true">2</span>
+          <h3 class="howto__step-name">やさしく洗う</h3>
+          <p class="howto__step-desc">指の腹で、頭皮をマッサージするようにやさしく洗います。</p>
+        </li>
+        <li class="howto__step reveal">
+          <span class="howto__step-num" aria-hidden="true">3</span>
+          <h3 class="howto__step-name">しっかり流す</h3>
+          <p class="howto__step-desc">ぬるま湯で、すすぎ残しのないように流して完了です。</p>
+        </li>
+      </ol>
+
+      <p class="section__bridge reveal">置き時間ゼロ。コンディショナーいらずの、オールインワン。</p>
+
+      <!-- もっと活かすコツ（参考①：効果的な洗い方）
+           基本は3ステップのまま。詳しい洗い方は“読みたい人だけ”開ける形にして、
+           「特別な手間はいらない」というブランドの約束と両立させています。 -->
+      <details class="disclose reveal">
+        <summary class="disclose__summary">もっと活かすコツ（任意）</summary>
+        <div class="disclose__body">
+          <ul class="disclose__tips">
+            <li>お湯はぬるめ（38℃くらい）。熱すぎる湯は、乾燥やパサつきのもとに。</li>
+            <li>泡を頭皮にのせたら、こすらず指の腹でやさしく。少し置くと髪になじみます。</li>
+            <li>すすぎは念入りに。耳のうしろ・襟足まで、残さず流しましょう。</li>
+            <li>タオルでやさしく水気をとり、早めに根元から乾かすと、まとまりが続きます。</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ⑧ ラインナップ（3商品）＋ CTA
+       「基本は1本。もっと整えたい人に+α」を見せて、アップセル導線に。
+       商品写真は未確定のため、差し替え用プレースホルダーにしています。
+  ============================================================ -->
+  <section id="lineup" class="section section--light lineup">
+    <div class="section__inner">
+      <p class="eyebrow reveal">ラインナップ</p>
+      <h2 class="section__title reveal">基本は、1本。<br>もっと整えたい人に、+α。</h2>
+
+      <div class="lineup__grid">
+        <!-- ヒーロー商品（主役なので強調） -->
+        <article class="lineup__card lineup__card--hero reveal">
+          <div class="lineup__media" aria-hidden="true"><span>商品画像</span></div>
+          <p class="lineup__tag">HERO</p>
+          <h3 class="lineup__name">素 -SU- シャンプー</h3>
+          <p class="lineup__role">毎日の主役・オールインワン</p>
+          <p class="lineup__price">¥3,800<span class="lineup__price-sub">税込／約1ヶ月分</span></p>
+        </article>
+
+        <article class="lineup__card reveal">
+          <div class="lineup__media" aria-hidden="true"><span>商品画像</span></div>
+          <p class="lineup__tag lineup__tag--plus">+α</p>
+          <h3 class="lineup__name">スカルプエッセンス</h3>
+          <p class="lineup__role">頭皮美容液・塗って流さない</p>
+          <p class="lineup__price">¥4,200<span class="lineup__price-sub">税込</span></p>
+        </article>
+
+        <article class="lineup__card reveal">
+          <div class="lineup__media" aria-hidden="true"><span>商品画像</span></div>
+          <p class="lineup__tag lineup__tag--plus">+α</p>
+          <h3 class="lineup__name">ウィークリーマスク</h3>
+          <p class="lineup__role">週1の集中トリートメント</p>
+          <p class="lineup__price">¥4,200<span class="lineup__price-sub">税込</span></p>
+        </article>
+      </div>
+
+      <div class="lineup__cta reveal">
+        <a href="#purchase" class="btn btn--primary">
+          まずは2週間、試す
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ⑨ 開発ストーリー（存在理由で共感を深める）
+       なぜ作ったか。暗い背景で、静かに語りかけるトーンに。
+  ============================================================ -->
+  <section id="brand-story" class="section section--dark brandstory">
+    <div class="section__inner">
+      <p class="eyebrow reveal">なぜ、つくったか</p>
+
+      <!-- 開発者の言葉（blockquote＝引用。意味的にも正しいタグ） -->
+      <blockquote class="brandstory__quote reveal">
+        「染めなきゃ」という思い込みを、いったん手放してほしかった。
+        素のままの髪が、一番きれいに見える。その状態を毎日つくることが、素 -SU- の役割です。
+      </blockquote>
+      <p class="brandstory__sign reveal">── 素 -SU- 開発担当</p>
+
+      <p class="brandstory__body reveal">
+        白髪は、隠すべき欠点ではありません。世界ではいま、グレイヘアを“活かす”という選択が広がっています。
+        その新しい当たり前を、日本の毎日に、ちょうどいいかたちで。
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ⑩ お客様の声（社会的証明）
+       仮の声。ビフォーアフター写真や動画はここに差し込めます。
+       薬機法メモ：感想は「気持ち・ツヤ」の範囲に。最後に個人の感想である旨を明記。
+  ============================================================ -->
+  <section id="voices" class="section section--light voices">
+    <div class="section__inner">
+      <p class="eyebrow reveal">お客様の声</p>
+      <h2 class="section__title reveal">「染めなくていい」と、思えた。</h2>
+
+      <div class="voices__grid">
+        <figure class="voices__card reveal">
+          <blockquote class="voices__text">白髪を見つけるたびに憂うつでしたが、肩の力が抜けました。ツヤが出て、むしろ若々しいと言われます。</blockquote>
+          <figcaption class="voices__by">45歳・会社員</figcaption>
+        </figure>
+        <figure class="voices__card reveal">
+          <blockquote class="voices__text">美容室通いの予約から解放されたのが何より。朝のまとまりがよくて、毎日が少し軽くなりました。</blockquote>
+          <figcaption class="voices__by">43歳・自営業</figcaption>
+        </figure>
+        <figure class="voices__card reveal">
+          <blockquote class="voices__text">香りが上品で、家族にも好評。1本で済むので、洗面台もすっきりしました。</blockquote>
+          <figcaption class="voices__by">48歳・会社員</figcaption>
+        </figure>
+      </div>
+
+      <p class="voices__disclaimer reveal">※ 個人の感想であり、効果・効能を保証するものではありません。</p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ⑪ FAQ（よくある質問）｜ 開閉式（JavaScript不要）
+       <details>/<summary> はブラウザ標準の開閉パーツ。クリックで開閉できます。
+       購入直前の不安をここでつぶしてから、次の最終CTAへ送ります。
+  ============================================================ -->
+  <section id="faq" class="section section--light faq">
+    <div class="section__inner">
+      <p class="eyebrow reveal">よくある質問</p>
+      <h2 class="section__title reveal">買う前の、その不安に。</h2>
+
+      <div class="faq__list">
+        <details class="faq__item reveal">
+          <summary class="faq__q">染めないと、白髪は目立ちませんか？</summary>
+          <div class="faq__a">ツヤとまとまりが出ると、髪全体が清潔で洗練された印象になり、白髪も自然になじみます。隠すのではなく“活かす”という考え方です。</div>
+        </details>
+        <details class="faq__item reveal">
+          <summary class="faq__q">うねりやパサつきにも使えますか？</summary>
+          <div class="faq__a">うるおいとツヤを与えて整えることで、まとまりやすい髪へ導きます。40代特有の髪の変化に寄り添う設計です。</div>
+        </details>
+        <details class="faq__item reveal">
+          <summary class="faq__q">オールインワン1本で、物足りなくないですか？</summary>
+          <div class="faq__a">基本は1本で完結します。さらに整えたい方には、頭皮美容液（スカルプエッセンス）と週1のウィークリーマスクをご用意しています。</div>
+        </details>
+        <details class="faq__item reveal">
+          <summary class="faq__q">男性も使えますか？</summary>
+          <div class="faq__a">はい。男女問わずお使いいただけるユニセックス設計です。香りも中性的なベルガモット＆ウッディにしています。</div>
+        </details>
+        <details class="faq__item reveal">
+          <summary class="faq__q">定期便のしばりはありますか？</summary>
+          <div class="faq__a">回数のしばりはありません。次回お届けの変更・休止・解約は、いつでも手続きいただけます。</div>
+        </details>
+        <details class="faq__item reveal">
+          <summary class="faq__q">合わなかったら返金できますか？</summary>
+          <div class="faq__a">初回のお届けに限り、30日間の返金保証をご用意しています。安心してお試しください。</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ⑫ 最終CTA（クロージング）｜ 申込みの最終地点
+       ヘッダー・ヒーロー・スマホ追従CTAのリンク先（#purchase）です。
+       本番では「まずは2週間、試す」のリンク先を、申込みフォーム/カートのURLに差し替えてください。
+  ============================================================ -->
+  <section id="purchase" class="section section--dark closing">
+    <div class="closing__inner">
+      <p class="eyebrow reveal">染める前に、活かすを。</p>
+      <h2 class="closing__title reveal">今日から、<br>「染めなきゃ」を手放す。</h2>
+      <p class="closing__lead reveal">
+        いつものシャンプーを置き換えるだけ。<br>
+        まずは2週間、素 -SU- のある毎日を試してみてください。
+      </p>
+
+      <div class="closing__offer reveal">
+        <p class="closing__price">
+          <span class="closing__price-label">定期便 初回</span>
+          ¥1,900
+          <span class="closing__price-strike">通常 ¥3,800</span>
+        </p>
+        <!-- ↓ 本番ではこの href を申込みフォーム/カートのURLに差し替え -->
+        <a href="#purchase" class="btn btn--primary btn--lg">
+          まずは2週間、試す
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+        <ul class="closing__assure">
+          <li>30日間返金保証</li>
+          <li>定期しばりなし</li>
+          <li>送料無料</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ⑬ フッター
+       会社情報・薬機法表記・各種規約。リンクはダミー（# ）です。
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__logo">素 -SU-</p>
+      <p class="site-footer__tag">「隠す」から、「活かす」へ。</p>
+
+      <nav class="site-footer__nav" aria-label="フッターナビ">
+        <a href="#">会社概要</a>
+        <a href="#">特定商取引法に基づく表記</a>
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">お問い合わせ</a>
+      </nav>
+
+      <p class="site-footer__legal">
+        ※ 本品は化粧品です。効果の感じ方には個人差があります。表示内容は、医薬品的な効能効果を示すものではありません。
+      </p>
+      <p class="site-footer__copy">© 2026 素 -SU-（架空の商品・デザイン課題用に制作）</p>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       スマホ専用：画面下に追従するCTAバー
+       （指が届く位置にボタンを固定＝申込み率アップ）
+       CSSで「スマホのときだけ表示」にしています
+  ============================================================ -->
+  <div class="sticky-cta" id="stickyCta">
+    <a href="#purchase" class="btn btn--primary btn--block">まずは2週間、試す</a>
+  </div>
+
+
+  <!-- 自分のJavaScriptファイルを読み込み（defer＝HTMLを読み終えてから実行） -->
+  <script src="script.js" defer></script>
+</body>
+</html>
