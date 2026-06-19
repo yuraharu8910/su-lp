@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!-- lang="ja" ＝ このページは日本語、とブラウザに伝える設定です -->
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <!-- スマホで正しい幅で表示するための必須設定（レスポンシブの土台） -->
@@ -14,9 +13,7 @@
   <!-- Google Fonts を読み込み（見出し＝Noto Serif JP / 本文＝Noto Sans JP） -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Noto+Serif+JP:wght@500;600&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
 
   <!-- 自分のCSSファイルを読み込み（見た目の設定はすべて style.css に書いてあります） -->
   <link rel="stylesheet" href="style.css">
@@ -47,7 +44,8 @@
          playsinline = スマホで全画面化させず、その場で再生
          poster    = 動画読み込み前に表示する静止画（images/ の画像）
          ※ videos/hero.mp4 を本番の動画に差し替えるだけでOKです -->
-    <video class="hero__video" autoplay muted loop playsinline poster="images/hero-poster.jpg">
+    <video class="hero__video" autoplay muted loop playsinline
+           poster="images/hero-poster.jpg">
       <source src="videos/hero.mp4" type="video/mp4">
     </video>
 
@@ -71,20 +69,11 @@
       <!-- CTA（行動を促すボタン）＋ 安心材料（返金保証）を横に添える -->
       <div class="hero__cta-group">
         <a href="#purchase" class="btn btn--primary">
-          素髪の美しさを、初回半額で始める
+          まずは2週間、試す
           <span class="btn__arrow" aria-hidden="true">→</span>
         </a>
         <span class="hero__guarantee">30日間返金保証つき</span>
       </div>
-
-      <!-- S-1：オファー情報を常設（最大の購入動機をファーストビューで見せる）
-           価格＝初回¥1,900 / 通常¥3,800の取り消し線 / 50%OFF / 送料無料 -->
-      <p class="hero__offer">
-        <span class="hero__offer-label">定期便 初回</span>
-        <span class="hero__offer-price">¥1,900</span>
-        <span class="hero__offer-regular">通常¥3,800</span>
-        <span class="hero__offer-badges">50%OFF・送料無料</span>
-      </p>
 
       <!-- 安心バッジ（購入前の不安をその場でつぶす要素） -->
       <ul class="hero__badges">
@@ -117,23 +106,13 @@
         「また予約か」という小さなため息。いつのまにか、時間も気持ちもすり減っている。
       </p>
 
-      <!-- B-11：共感を1段だけ深掘り。
-           “心のすり減り”を言語化しつつ、最後は自己肯定で受け止める（恐怖・罪悪感・「染める」否定はしない）。 -->
-      <p class="problem__lead2 reveal">
-        予約をとって、時間をつくって、また塗り重ねる。その繰り返しに、ふと小さな疲れを感じることがある。
-        <em>それは、手を抜きたいからではありません。本当は、もっと自分らしく、軽やかでいたいだけ。</em>
-      </p>
-
       <!-- 自己診断グリッド（参考②：こんなお悩みありませんか？）
            具体的な悩みを並べ、読者に“自分のことだ”と感じてもらうパート。 -->
       <p class="problem__check-lead reveal">こんなこと、ありませんか？</p>
       <ul class="problem__checks">
-        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>鏡を見るたび、増えていく白髪に焦る
-        </li>
-        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>また美容室の予約か…と、気が重い
-        </li>
-        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>でも、まだ「染める」と決めたくない
-        </li>
+        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>鏡を見るたび、増えていく白髪に焦る</li>
+        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>また美容室の予約か…と、気が重い</li>
+        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>でも、まだ「染める」と決めたくない</li>
         <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>隠さなくても、きれいでいたい</li>
       </ul>
 
@@ -151,23 +130,20 @@
            SVG＝図形を描くためのタグ。viewBox で描画範囲を決め、その中に円や線を置きます。 -->
       <figure class="loop reveal">
         <figcaption class="loop__cap">染める・隠すを、ただ繰り返す。</figcaption>
-        <svg class="loop__svg" viewBox="0 0 560 470" xmlns="http://www.w3.org/2000/svg" role="img"
-          aria-label="白髪がまた伸びる、染める・隠す、すぐ元通り、を繰り返す終わらないループの図">
+        <svg class="loop__svg" viewBox="0 0 560 470" xmlns="http://www.w3.org/2000/svg"
+             role="img" aria-label="白髪がまた伸びる、染める・隠す、すぐ元通り、を繰り返す終わらないループの図">
           <!-- defs：矢印の先端マークの定義（再利用できる部品） -->
           <defs>
-            <marker id="loopArrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7"
-              orient="auto-start-reverse">
-              <path d="M0,0 L10,5 L0,10 z" fill="#C2A98C" />
+            <marker id="loopArrow" viewBox="0 0 10 10" refX="7" refY="5"
+                    markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#C2A98C"/>
             </marker>
           </defs>
 
           <!-- 円周にそった3本の矢印（時計回りにぐるぐる回る様子） -->
-          <path d="M 370 94 A 180 180 0 0 1 460 250" fill="none" stroke="#C2A98C" stroke-width="2"
-            marker-end="url(#loopArrow)" />
-          <path d="M 370 406 A 180 180 0 0 1 190 406" fill="none" stroke="#C2A98C" stroke-width="2"
-            marker-end="url(#loopArrow)" />
-          <path d="M 100 250 A 180 180 0 0 1 190 94" fill="none" stroke="#C2A98C" stroke-width="2"
-            marker-end="url(#loopArrow)" />
+          <path d="M 370 94 A 180 180 0 0 1 460 250" fill="none" stroke="#C2A98C" stroke-width="2" marker-end="url(#loopArrow)"/>
+          <path d="M 370 406 A 180 180 0 0 1 190 406" fill="none" stroke="#C2A98C" stroke-width="2" marker-end="url(#loopArrow)"/>
+          <path d="M 100 250 A 180 180 0 0 1 190 94"  fill="none" stroke="#C2A98C" stroke-width="2" marker-end="url(#loopArrow)"/>
 
           <!-- 中央のラベル -->
           <text x="280" y="236" text-anchor="middle" class="loop__center">終わらない</text>
@@ -175,17 +151,17 @@
 
           <!-- 3つのノード（円＋テキスト） -->
           <g>
-            <circle cx="280" cy="70" r="62" fill="#FFFFFF" stroke="#C2A98C" stroke-width="1.5" />
+            <circle cx="280" cy="70" r="62" fill="#FFFFFF" stroke="#C2A98C" stroke-width="1.5"/>
             <text x="280" y="64" text-anchor="middle" class="loop__node">白髪が</text>
             <text x="280" y="88" text-anchor="middle" class="loop__node">また伸びる</text>
           </g>
           <g>
-            <circle cx="436" cy="340" r="62" fill="#FFFFFF" stroke="#C2A98C" stroke-width="1.5" />
+            <circle cx="436" cy="340" r="62" fill="#FFFFFF" stroke="#C2A98C" stroke-width="1.5"/>
             <text x="436" y="334" text-anchor="middle" class="loop__node">染める・</text>
             <text x="436" y="358" text-anchor="middle" class="loop__node">隠す</text>
           </g>
           <g>
-            <circle cx="124" cy="340" r="62" fill="#FFFFFF" stroke="#C2A98C" stroke-width="1.5" />
+            <circle cx="124" cy="340" r="62" fill="#FFFFFF" stroke="#C2A98C" stroke-width="1.5"/>
             <text x="124" y="334" text-anchor="middle" class="loop__node">パサつき</text>
             <text x="124" y="358" text-anchor="middle" class="loop__node">・うねり</text>
           </g>
@@ -259,88 +235,7 @@
 
 
   <!-- ============================================================
-       ④ 開発ストーリー（存在理由で共感を深める）
-       なぜ作ったか。暗い背景で、静かに語りかけるトーンに。
-  ============================================================ -->
-  <section id="brand-story" class="section section--dark brandstory">
-    <div class="section__inner">
-      <p class="eyebrow reveal">なぜ、つくったか</p>
-
-      <!-- 開発者の言葉（blockquote＝引用。意味的にも正しいタグ） -->
-      <blockquote class="brandstory__quote reveal">
-        「染めなきゃ」という思い込みを、いったん手放してほしかった。
-        素のままの髪が、一番きれいに見える。その状態を毎日つくることが、素 -SU- の役割です。
-      </blockquote>
-      <p class="brandstory__sign reveal">── 素 -SU- 開発担当</p>
-
-      <p class="brandstory__body reveal">
-        白髪は、隠すべき欠点ではありません。世界ではいま、グレイヘアを“活かす”という選択が広がっています。
-        その新しい当たり前を、日本の毎日に、ちょうどいいかたちで。
-      </p>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       ⑤ 商品紹介（A-5）｜コンセプト直後で“何の商品か”を即提示
-       画像・商品名・初回価格・3つの特長・CTA をまとめた「商品の名刺」。
-       薬機法メモ：効能は「うるおい・ツヤ・整える・見せる」の範囲に限定。
-  ============================================================ -->
-  <section id="product" class="section section--light product">
-    <div class="section__inner product__inner">
-      <!-- 商品画像（差し替え用プレースホルダー） -->
-      <img src="images/shampoo.png" alt="シャンプー" srcset="">
-      <!-- 商品情報 -->
-      <div class="product__body">
-        <p class="eyebrow reveal">これが、素 -SU-。</p>
-        <h2 class="product__name reveal">素 -SU- シャンプー<small>（オールインワン）</small></h2>
-        <p class="product__catch reveal">
-          染めずに、白髪世代の髪を“ツヤと抜け感”で美しく。<br>
-          洗うだけで完結する、毎日のミニマルケアです。
-        </p>
-
-        <!-- 価格（初回を主役に・通常は取り消し線） -->
-        <p class="product__price reveal">
-          <span class="product__price-init">定期便 初回 <strong>¥1,900</strong></span>
-          <span class="product__price-reg">通常 ¥3,800</span>
-          <span class="product__price-sub">税込／約1ヶ月分・50%OFF・送料無料</span>
-        </p>
-
-        <!-- 3つの特長（要点だけ。詳細は後続のFeatures/成分で） -->
-        <ul class="product__points reveal">
-          <li><span aria-hidden="true">✓</span>洗う・うるおす・整えるを1本で</li>
-          <li><span aria-hidden="true">✓</span>うるおいとツヤで、まとまる髪へ</li>
-          <li><span aria-hidden="true">✓</span>染めないから、色移りゼロ</li>
-        </ul>
-
-        <!-- CTA -->
-        <div class="product__cta reveal">
-          <a href="#purchase" class="btn btn--primary">
-            素髪の美しさを、初回半額で始める
-            <span class="btn__arrow" aria-hidden="true">→</span>
-          </a>
-          <span class="product__cta-note">30日間返金保証・定期しばりなし</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       ⑥ 早期の社会的証明（A-6）｜代表的な声を1つだけ前倒し
-       ※ 後半の「お客様の声」は残しつつ、警戒心の強い段階で“安心”を先出し。
-       薬機法メモ：感想は気持ち・ツヤの範囲。個人の感想である旨を明記。
-  ============================================================ -->
-  <section class="miniproof">
-    <div class="miniproof__inner reveal">
-      <p class="miniproof__quote">「染めなきゃ」と思い込んでいた肩の力が、すっと抜けました。ツヤが出て、むしろ若々しいと言われます。</p>
-      <p class="miniproof__by">— 45歳・会社員<span>※個人の感想です</span></p>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       ⑦ 科学で語る（信頼づくり）
+       ④ 科学で語る（信頼づくり）
        「40代の髪に何が起きているか」を“知識の提供”として語り、信頼感を出す。
        薬機法メモ：ここは教育パート。商品の約束は「整える・ツヤ・うるおい」に限定し、
                    「防ぐ・治す」などの医薬品的表現は使いません。
@@ -359,7 +254,8 @@
            いまは仮で hero.mp4 を表示。本番では videos/science.mp4 などに差し替えてください。
            （動画は figure＝図版、figcaption＝そのキャプション、で意味づけしています） -->
       <figure class="science__video reveal">
-        <video class="science__video-el" controls playsinline muted poster="images/hero-poster.jpg">
+        <video class="science__video-el" controls playsinline muted
+               poster="images/hero-poster.jpg">
           <source src="videos/hero.mp4" type="video/mp4">
           お使いのブラウザは動画の表示に対応していません。
         </video>
@@ -396,7 +292,7 @@
 
 
   <!-- ============================================================
-       ⑧ 商品特長（3つの価値）
+       ⑤ 商品特長（3つの価値）
        素 -SU- が毎日もたらす価値を、3つに絞って提示。暗い背景で“主役”の見せ場に。
   ============================================================ -->
   <section id="features" class="section section--dark features">
@@ -426,57 +322,7 @@
 
 
   <!-- ============================================================
-       ⑨ ビフォーアフター（A-7）｜“見た目の変化”を写真で見せる枠
-       ※ 架空商品のため画像は差し替え用プレースホルダー。
-          画像が用意できない場合は、このセクションごと削除してください。
-       薬機法メモ：比較軸は「ツヤ・指通り・まとまり」など質感に限定。
-                   「白髪が減る／改善する」等は不可。あくまで見た目の印象。
-  ============================================================ -->
-  <section id="beforeafter" class="section section--light beforeafter">
-    <div class="section__inner">
-      <p class="eyebrow reveal">使う前と、使ったあと</p>
-      <h2 class="section__title reveal">変わるのは、髪の“質感”。</h2>
-      <p class="section__lead reveal">
-        染めるのではなく、整える。毎日のケアで、ツヤ・指通り・まとまりの印象がどう変わるかを見てください。
-      </p>
-
-      <div class="beforeafter__grid">
-        <figure class="beforeafter__item reveal">
-          <img src="images/before.png" alt="ビフォー" srcset="">
-          <figcaption class="beforeafter__cap"><span class="beforeafter__stage">使用前</span>パサつき・広がりが気になる状態</figcaption>
-        </figure>
-        <figure class="beforeafter__item reveal">
-          <img src="images/after-1.png" alt="アフター１" srcset="">
-          <figcaption class="beforeafter__cap"><span class="beforeafter__stage">2週間後</span>指通りがなめらかに、まとまりやすく
-          </figcaption>
-        </figure>
-        <figure class="beforeafter__item reveal">
-          <img src="images/after-2.png" alt="アフター２" srcset="">
-          <figcaption class="beforeafter__cap"><span class="beforeafter__stage">4週間後</span>光を返すツヤで、洗練された印象に</figcaption>
-        </figure>
-      </div>
-      <p class="beforeafter__note reveal">※ 写真はイメージです。感じ方には個人差があり、効果・効能を保証するものではありません。</p>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       ⑩ 中間CTA（A-8）｜長尺LPの途中で“次の一歩”を置く
-  ============================================================ -->
-  <section class="midcta">
-    <div class="midcta__inner reveal">
-      <p class="midcta__copy">染める前に、活かすという選択を。</p>
-      <a href="#purchase" class="btn btn--primary">
-        初回¥1,900で始める
-        <span class="btn__arrow" aria-hidden="true">→</span>
-      </a>
-      <p class="midcta__note">定期便 初回50%OFF／送料無料／いつでも休止・解約OK</p>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       ⑪ 成分・処方へのこだわり（透明性）
+       ⑥ 成分・処方へのこだわり（透明性）
        “世界観だけでなく中身で納得させる”パート。明るい背景でクリーンに。
        薬機法メモ：成分の特徴は語ってOK。ただし「だから白髪に効く」とは結びつけない。
   ============================================================ -->
@@ -558,7 +404,7 @@
 
 
   <!-- ============================================================
-       ⑫ 使い方（3ステップ）
+       ⑦ 使い方（3ステップ）
        「置き換えるだけ」を視覚化。順番のある手順なので ol（番号つきリスト）。
   ============================================================ -->
   <section id="howto" class="section section--dark howto">
@@ -605,7 +451,7 @@
 
 
   <!-- ============================================================
-       ⑬ ラインナップ（3商品）＋ CTA
+       ⑧ ラインナップ（3商品）＋ CTA
        「基本は1本。もっと整えたい人に+α」を見せて、アップセル導線に。
        商品写真は未確定のため、差し替え用プレースホルダーにしています。
   ============================================================ -->
@@ -617,47 +463,65 @@
       <div class="lineup__grid">
         <!-- ヒーロー商品（主役なので強調） -->
         <article class="lineup__card lineup__card--hero reveal">
-          <img src="images/shampoo.png" alt="シャンプー">
+          <div class="lineup__media" aria-hidden="true"><span>商品画像</span></div>
           <p class="lineup__tag">HERO</p>
           <h3 class="lineup__name">素 -SU- シャンプー</h3>
           <p class="lineup__role">毎日の主役・オールインワン</p>
-          <!-- S-4：初回価格を主役に、通常価格は取り消し線で従に。価格アンカリング対策 -->
-          <p class="lineup__price lineup__price--hero">
-            <span class="lineup__price-init">初回 ¥1,900</span>
-            <span class="lineup__price-reg">通常 ¥3,800</span>
-            <span class="lineup__price-sub">税込／約1ヶ月分・定期便初回</span>
-          </p>
-          <p class="lineup__start">まずは、この1本から。</p>
-          <!-- カード内CTA：ヒーローは塗りボタン（主役）。すべて #purchase フォームへ -->
-          <a href="#purchase" class="btn btn--primary btn--block lineup__card-btn">初回¥1,900で始める</a>
+          <p class="lineup__price">¥3,800<span class="lineup__price-sub">税込／約1ヶ月分</span></p>
         </article>
 
         <article class="lineup__card reveal">
-          <img src="images/essence.png" alt="エッセンス" srcset="">
+          <div class="lineup__media" aria-hidden="true"><span>商品画像</span></div>
           <p class="lineup__tag lineup__tag--plus">+α</p>
           <h3 class="lineup__name">スカルプエッセンス</h3>
           <p class="lineup__role">頭皮美容液・塗って流さない</p>
           <p class="lineup__price">¥4,200<span class="lineup__price-sub">税込</span></p>
-          <!-- +αはゴーストボタン（従）。主役の塗りボタンより一段控えめに -->
-          <a href="#purchase" class="btn btn--ghost btn--block lineup__card-btn">申し込む</a>
         </article>
 
         <article class="lineup__card reveal">
-          <img src="images/mask.png" alt="マスク" srcset="">
+          <div class="lineup__media" aria-hidden="true"><span>商品画像</span></div>
           <p class="lineup__tag lineup__tag--plus">+α</p>
           <h3 class="lineup__name">ウィークリーマスク</h3>
           <p class="lineup__role">週1の集中トリートメント</p>
           <p class="lineup__price">¥4,200<span class="lineup__price-sub">税込</span></p>
-          <!-- +αはゴーストボタン（従） -->
-          <a href="#purchase" class="btn btn--ghost btn--block lineup__card-btn">申し込む</a>
         </article>
+      </div>
+
+      <div class="lineup__cta reveal">
+        <a href="#purchase" class="btn btn--primary">
+          まずは2週間、試す
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
   </section>
 
 
   <!-- ============================================================
-       ⑭ お客様の声（社会的証明）
+       ⑨ 開発ストーリー（存在理由で共感を深める）
+       なぜ作ったか。暗い背景で、静かに語りかけるトーンに。
+  ============================================================ -->
+  <section id="brand-story" class="section section--dark brandstory">
+    <div class="section__inner">
+      <p class="eyebrow reveal">なぜ、つくったか</p>
+
+      <!-- 開発者の言葉（blockquote＝引用。意味的にも正しいタグ） -->
+      <blockquote class="brandstory__quote reveal">
+        「染めなきゃ」という思い込みを、いったん手放してほしかった。
+        素のままの髪が、一番きれいに見える。その状態を毎日つくることが、素 -SU- の役割です。
+      </blockquote>
+      <p class="brandstory__sign reveal">── 素 -SU- 開発担当</p>
+
+      <p class="brandstory__body reveal">
+        白髪は、隠すべき欠点ではありません。世界ではいま、グレイヘアを“活かす”という選択が広がっています。
+        その新しい当たり前を、日本の毎日に、ちょうどいいかたちで。
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ⑩ お客様の声（社会的証明）
        仮の声。ビフォーアフター写真や動画はここに差し込めます。
        薬機法メモ：感想は「気持ち・ツヤ」の範囲に。最後に個人の感想である旨を明記。
   ============================================================ -->
@@ -687,22 +551,7 @@
 
 
   <!-- ============================================================
-       ⑮ 中間CTA（A-8）｜長尺LPの途中で“次の一歩”を置く
-  ============================================================ -->
-  <section class="midcta">
-    <div class="midcta__inner reveal">
-      <p class="midcta__copy">あなたの「素」を、今日から。</p>
-      <a href="#purchase" class="btn btn--primary">
-        初回¥1,900で始める
-        <span class="btn__arrow" aria-hidden="true">→</span>
-      </a>
-      <p class="midcta__note">定期便 初回50%OFF／送料無料／いつでも休止・解約OK</p>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       ⑯ FAQ（よくある質問）｜ 開閉式（JavaScript不要）
+       ⑪ FAQ（よくある質問）｜ 開閉式（JavaScript不要）
        <details>/<summary> はブラウザ標準の開閉パーツ。クリックで開閉できます。
        購入直前の不安をここでつぶしてから、次の最終CTAへ送ります。
   ============================================================ -->
@@ -742,9 +591,9 @@
 
 
   <!-- ============================================================
-       ⑰ 最終CTA（クロージング）｜ 申込みの最終地点
+       ⑫ 最終CTA（クロージング）｜ 申込みの最終地点
        ヘッダー・ヒーロー・スマホ追従CTAのリンク先（#purchase）です。
-       本番では「素髪の美しさを、初回半額で始める」のリンク先を、申込みフォーム/カートのURLに差し替えてください。
+       本番では「まずは2週間、試す」のリンク先を、申込みフォーム/カートのURLに差し替えてください。
   ============================================================ -->
   <section id="purchase" class="section section--dark closing">
     <div class="closing__inner">
@@ -752,7 +601,7 @@
       <h2 class="closing__title reveal">今日から、<br>「染めなきゃ」を手放す。</h2>
       <p class="closing__lead reveal">
         いつものシャンプーを置き換えるだけ。<br>
-        初回半額で、素 -SU- のある毎日を始めてみてください。
+        まずは2週間、素 -SU- のある毎日を試してみてください。
       </p>
 
       <div class="closing__offer reveal">
@@ -761,64 +610,11 @@
           ¥1,900
           <span class="closing__price-strike">通常 ¥3,800</span>
         </p>
-
-        <!-- S-3：定期便メリット（単発ではなく定期を選ぶ理由を明示）
-             ②2回目以降10%OFF=¥3,420 は企画書の定期価格と一致 -->
-        <ul class="closing__benefits">
-          <li><span class="closing__benefits-mark" aria-hidden="true">✓</span>初回 <strong>50%OFF</strong>（¥1,900）</li>
-          <li><span class="closing__benefits-mark" aria-hidden="true">✓</span>2回目以降も <strong>10%OFF</strong>（¥3,420）
-          </li>
-          <li><span class="closing__benefits-mark" aria-hidden="true">✓</span>送料無料</li>
-          <li><span class="closing__benefits-mark" aria-hidden="true">✓</span>いつでも休止・解約OK</li>
-        </ul>
-
-        <!-- B-10：申込みフォーム（このLP内で完結する“最終地点”）
-             ・以前はボタンが href="#purchase" で自分自身を指す空リンクでした。
-             ・ここに実フォームを置き、各CTA（#purchase）の着地点を「入力開始」に。
-             ※ 本番では <form action="…"> に申込み先URLを設定するか、
-               script.js の fetch() で実際のカート/申込みAPIへ送ってください。
-               いまは送信先が無いため、JavaScriptで受け止めて確認文を表示します。 -->
-        <form class="order-form" id="orderForm" novalidate>
-          <!-- プラン選択（ラジオ：定期便 or 単品） -->
-          <fieldset class="order-form__plans">
-            <legend class="order-form__legend">プランを選ぶ</legend>
-            <label class="order-form__plan">
-              <input type="radio" name="plan" value="subscription" checked>
-              <span class="order-form__plan-body">
-                <span class="order-form__plan-name">定期便 初回 ¥1,900</span>
-                <span class="order-form__plan-note">2回目以降 ¥3,420／送料無料・いつでも休止／解約OK</span>
-              </span>
-            </label>
-            <label class="order-form__plan">
-              <input type="radio" name="plan" value="single">
-              <span class="order-form__plan-body">
-                <span class="order-form__plan-name">単品 ¥3,800</span>
-                <span class="order-form__plan-note">まずは1本だけ／送料無料</span>
-              </span>
-            </label>
-          </fieldset>
-
-          <!-- お名前 -->
-          <div class="order-form__field">
-            <label for="of-name">お名前</label>
-            <input type="text" id="of-name" name="name" autocomplete="name" placeholder="山田 結衣子">
-          </div>
-          <!-- メールアドレス -->
-          <div class="order-form__field">
-            <label for="of-email">メールアドレス</label>
-            <input type="email" id="of-email" name="email" autocomplete="email" placeholder="you@example.com">
-          </div>
-
-          <!-- 送信ボタン（type="submit" でフォーム送信。JSが受け止めます） -->
-          <button type="submit" class="btn btn--primary btn--lg btn--block">
-            この内容で申し込む
-            <span class="btn__arrow" aria-hidden="true">→</span>
-          </button>
-
-          <!-- 送信結果メッセージ（JavaScriptがここに表示。aria-liveで読み上げにも対応） -->
-          <p class="order-form__result" id="orderResult" role="status" aria-live="polite"></p>
-          <p class="order-form__hint">※ これはデモ用フォームです。実際の申込みシステムには未接続です。</p>
-        </form>
+        <!-- ↓ 本番ではこの href を申込みフォーム/カートのURLに差し替え -->
+        <a href="#purchase" class="btn btn--primary btn--lg">
+          まずは2週間、試す
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
         <ul class="closing__assure">
           <li>30日間返金保証</li>
           <li>定期しばりなし</li>
@@ -830,7 +626,7 @@
 
 
   <!-- ============================================================
-       ⑱ フッター
+       ⑬ フッター
        会社情報・薬機法表記・各種規約。リンクはダミー（# ）です。
   ============================================================ -->
   <footer class="site-footer">
@@ -859,12 +655,11 @@
        CSSで「スマホのときだけ表示」にしています
   ============================================================ -->
   <div class="sticky-cta" id="stickyCta">
-    <a href="#purchase" class="btn btn--primary btn--block">初回¥1,900で始める</a>
+    <a href="#purchase" class="btn btn--primary btn--block">まずは2週間、試す</a>
   </div>
 
 
   <!-- 自分のJavaScriptファイルを読み込み（defer＝HTMLを読み終えてから実行） -->
   <script src="script.js" defer></script>
 </body>
-
 </html>
