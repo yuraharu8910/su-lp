@@ -108,3 +108,88 @@ if (orderForm) {
     orderForm.reset(); // 入力欄を初期化（プランは初期値=定期便に戻ります）
   });
 }
+
+
+/* -----------------------------------------------------------------
+   5. SP専用：画面下固定CTAバーの表示制御
+   ・FV（ヒーローセクション）を抜けたら .is-visible を付けて下からスライドイン
+   ・購入フォームセクション（#purchase）が画面に入ったら引っ込める
+     （フォームが見えているのにCTAを出し続けると邪魔になるため）
+----------------------------------------------------------------- */
+const spStickyCta = document.getElementById("stickyCta");
+const heroBanner  = document.querySelector(".hero"); // ヒーローセクション
+
+function updateSpStickyCta() {
+  // SPサイズ（769px未満）以外では何もしない
+  if (window.innerWidth >= 769) return;
+
+  // ヒーローセクションの底辺がどこにあるか調べる
+  let heroBottom = 0;
+  if (heroBanner) {
+    heroBottom = heroBanner.getBoundingClientRect().bottom;
+    // getBoundingClientRect().bottom ＝ ヒーロー下端とビューポート上端の距離
+    // マイナスになったら「ヒーローが画面の上に出た」＝スクロール済み
+  }
+
+  // 購入フォームが画面に入っているか確認
+  const purchaseSec = document.getElementById("purchase");
+  let purchaseInView = false;
+  if (purchaseSec) {
+    purchaseInView = purchaseSec.getBoundingClientRect().top < window.innerHeight * 0.85;
+  }
+
+  // ヒーローを抜けた かつ 購入フォームがまだ見えていない → 表示
+  if (heroBottom < 0 && !purchaseInView) {
+    spStickyCta.classList.add("is-visible");
+  } else {
+    spStickyCta.classList.remove("is-visible");
+  }
+}
+
+// stickyCta が存在するページだけ動かす
+if (spStickyCta) {
+  window.addEventListener("scroll", updateSpStickyCta, { passive: true });
+  window.addEventListener("resize", updateSpStickyCta, { passive: true });
+  updateSpStickyCta(); // 初回実行
+}
+
+
+/* -----------------------------------------------------------------
+   6. PC専用：右下固定CTAバーの表示制御
+   ・スクロールが300pxを超えたら .is-visible を付けて出す
+   ・購入フォームセクション（#purchase）の手前で引っ込める
+     （「申し込む」ボタンが画面内に見えているのに固定CTAを出し続けると邪魔なため）
+----------------------------------------------------------------- */
+const pcStickyCta = document.getElementById("pcStickyCta");
+const purchaseSection = document.getElementById("purchase"); // 購入フォームセクション
+
+function updatePcStickyCta() {
+  // PCサイズ（769px以上）以外では何もしない
+  if (window.innerWidth < 769) return;
+
+  const scrollY = window.scrollY;
+
+  // 購入フォームが画面に入っているかチェック
+  let purchaseInView = false;
+  if (purchaseSection) {
+    const rect = purchaseSection.getBoundingClientRect();
+    // フォームセクションが画面の下半分に入ってきたら「見えている」と判定
+    purchaseInView = rect.top < window.innerHeight * 0.8;
+  }
+
+  // 300px以上スクロール済み かつ 購入フォームが画面外 → 表示
+  if (scrollY > 300 && !purchaseInView) {
+    pcStickyCta.classList.add("is-visible");
+    pcStickyCta.removeAttribute("aria-hidden"); // スクリーンリーダーにも読ませる
+  } else {
+    pcStickyCta.classList.remove("is-visible");
+    pcStickyCta.setAttribute("aria-hidden", "true"); // 非表示時は読み上げ対象外
+  }
+}
+
+// pcStickyCta が存在するページだけ動かす（null チェック）
+if (pcStickyCta) {
+  window.addEventListener("scroll", updatePcStickyCta, { passive: true });
+  window.addEventListener("resize", updatePcStickyCta, { passive: true });
+  updatePcStickyCta(); // 初回実行
+}

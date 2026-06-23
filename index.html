@@ -29,8 +29,6 @@
        position は CSS で「画面に追従（fixed）」させています
   ============================================================ -->
   <header class="site-header">
-    <a href="#" class="logo" aria-label="素 -SU- ホーム">素 -SU-</a>
-    <a href="#purchase" class="header-cta">試してみる</a>
   </header>
 
 
@@ -47,11 +45,17 @@
          playsinline = スマホで全画面化させず、その場で再生
          poster    = 動画読み込み前に表示する静止画（images/ の画像）
          ※ videos/hero.mp4 を本番の動画に差し替えるだけでOKです -->
-    <video class="hero__video" autoplay muted loop playsinline poster="images/hero-poster.jpg">
+    <!-- PC用：横長(16:9) -->
+    <video class="hero__video hero__video--pc" autoplay muted loop playsinline preload="metadata"
+      poster="images/hero-poster.jpg" aria-hidden="true">
       <source src="videos/hero.mp4" type="video/mp4">
     </video>
 
-    <!-- 文字を読みやすくするための暗いグラデーション層 -->
+    <!-- スマホ用：縦長(9:16) -->
+    <video class="hero__video hero__video--sp" autoplay muted loop playsinline preload="metadata"
+      poster="images/hero-poster-mobile.jpg" aria-hidden="true">
+      <source src="videos/hero-mobile.mp4" type="video/mp4">
+    </video> <!-- 文字を読みやすくするための暗いグラデーション層 -->
     <div class="hero__overlay" aria-hidden="true"></div>
 
     <!-- ヒーローの中身（文字・ボタン） -->
@@ -359,8 +363,8 @@
            いまは仮で hero.mp4 を表示。本番では videos/science.mp4 などに差し替えてください。
            （動画は figure＝図版、figcaption＝そのキャプション、で意味づけしています） -->
       <figure class="science__video reveal">
-        <video class="science__video-el" controls playsinline muted poster="images/hero-poster.jpg">
-          <source src="videos/hero.mp4" type="video/mp4">
+        <video class="science__video-el" controls playsinline muted poster="images/science.jpg">
+          <source src="videos/science.mp4" type="video/mp4">
           お使いのブラウザは動画の表示に対応していません。
         </video>
         <figcaption class="science__video-cap">
@@ -617,7 +621,7 @@
       <div class="lineup__grid">
         <!-- ヒーロー商品（主役なので強調） -->
         <article class="lineup__card lineup__card--hero reveal">
-          <img src="images/shampoo.png" alt="シャンプー">
+          <img src="images/lineup-shampoo.png" alt="シャンプー">
           <p class="lineup__tag">HERO</p>
           <h3 class="lineup__name">素 -SU- シャンプー</h3>
           <p class="lineup__role">毎日の主役・オールインワン</p>
@@ -858,9 +862,38 @@
        （指が届く位置にボタンを固定＝申込み率アップ）
        CSSで「スマホのときだけ表示」にしています
   ============================================================ -->
+  <!-- スマホ固定CTAバー（480px以下のみ表示） -->
   <div class="sticky-cta" id="stickyCta">
-    <a href="#purchase" class="btn btn--primary btn--block">初回¥1,900で始める</a>
+    <button onclick="openModal()" class="sticky-cta-btn"
+      style="cursor:pointer; border:none; width:100%; background:none;">まず1本、試してみる →</button>
+    <p class="sticky-cta-note">30日間返金保証・回数縛りなし・送料無料</p>
   </div>
+<!-- ============================================================
+       PC専用：右下に追従する固定CTAバー
+       スマホでは非表示・PCサイズ（769px以上）のみ表示
+       スクロール量に応じてJS側で .is-visible クラスを付け外しします
+  ============================================================ -->
+<div class="pc-sticky-cta" id="pcStickyCta" aria-hidden="true">
+  <!-- 価格と定期便情報 -->
+  <div class="pc-sticky-cta__info">
+    <p class="pc-sticky-cta__price">
+      <span class="pc-sticky-cta__price-sub">初回</span>
+      <span class="pc-sticky-cta__price-main">¥1,900</span>
+      <span class="pc-sticky-cta__price-note">（定期便）</span>
+    </p>
+    <p class="pc-sticky-cta__badges">
+      <span>30日返金保証</span>
+      <span>縛りなし</span>
+      <span>送料無料</span>
+    </p>
+  </div>
+  <!-- CTAボタン（購入フォームセクションへスクロール） -->
+  <a href="#purchase" class="btn btn--primary pc-sticky-cta__btn" aria-label="申し込みフォームへ移動">
+    まず1本、試してみる
+    <span class="btn__arrow" aria-hidden="true">→</span>
+  </a>
+</div>
+
 
 
   <!-- 自分のJavaScriptファイルを読み込み（defer＝HTMLを読み終えてから実行） -->
