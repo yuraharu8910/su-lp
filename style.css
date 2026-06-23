@@ -526,11 +526,32 @@ button:focus-visible {
    このLPの中心メッセージ。暗い背景に戻して“見せ場”をつくります。
    隠す／染める を控えめに退け、「活かす」だけを強調＝ここが主役。
 ----------------------------------------------------------------- */
+/* 変更後 */
 .concept {
-  background: var(--color-ink);
-  /* 暗い背景に再反転（明→暗のリズム） */
+  background-image: url("images/science.jpg");
+  /* パララックス背景画像 */
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
   color: var(--color-offwhite);
   padding: clamp(90px, 15vw, 150px) var(--pad-x);
+  position: relative;
+  /* overlayの基準点 */
+}
+
+/* 暗いオーバーレイを重ねて文字を読みやすく */
+.concept::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(33, 28, 23, 0.75);
+  z-index: 0;
+}
+
+/* コンテンツをoverlay（::before）の上に出す */
+.concept .concept__inner {
+  position: relative;
+  z-index: 1;
 }
 
 .concept__inner {
@@ -873,11 +894,36 @@ button:focus-visible {
 }
 
 /* 暗いセクション（インク背景＋明るい文字） */
+/* 変更後 */
 .section--dark {
-  background: var(--color-ink);
+  background-image: url("images/science.jpg");
+  /* 背景画像 */
+  background-attachment: fixed;
+  /* ← これだけでパララックス完成 */
+  background-size: cover;
+  background-position: center;
   color: var(--color-offwhite);
 }
+.section--dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(33, 28, 23, 0.75);
+  /* Inkカラーを75%で重ねる */
+  z-index: 0;
+}
 
+/* コンテンツを overlay の上に出す */
+.section--dark {
+  position: relative;
+  /* ::before の基準点として必要 */
+}
+
+.section--dark .section__inner,
+.section--dark .closing__inner {
+  position: relative;
+  z-index: 1;
+}
 /* 共通：アイブロウ（小見出しの上の一言） */
 .eyebrow {
   font-size: 13px;
@@ -1682,7 +1728,7 @@ button:focus-visible {
 ----------------------------------------------------------------- */
 .reasons {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   /* スマホ：1列（PCで複数列に。min-width 側で指定） */
   gap: 18px;
   margin-bottom: 56px;
@@ -2042,11 +2088,23 @@ button:focus-visible {
   justify-content: center;
   margin-bottom: 14px;
   /* ↓ SP用：幅に上限をつけて中央に寄せる */
-  max-width: 220px;
+  max-width: 160px;
   margin-left: auto;
   margin-right: auto;
 }
-
+/* SP用：beforeafter の img を直接サイズ制御 */
+.beforeafter__item img {
+  width: 100%;
+  max-width: 260px;
+  /* ← ここで大きさを調整（お好みで変更可） */
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 14px;
+}
 .beforeafter__media span {
   font-size: 12px;
   letter-spacing: 0.1em;
