@@ -69,7 +69,7 @@
       <!-- サブコピー -->
       <p class="hero__subtitle">
         隠すか、染めるか。その二択は、もう終わりにしていい。<br>
-        白髪を生かして、ツヤと抜け感で“今のあなた”を一番きれいに。
+        
       </p>
 
       <!-- CTA（行動を促すボタン）＋ 安心材料（返金保証）を横に添える -->
@@ -90,13 +90,6 @@
         <span class="hero__offer-badges">50%OFF・送料無料</span>
       </p>
 
-      <!-- 安心バッジ（購入前の不安をその場でつぶす要素） -->
-      <ul class="hero__badges">
-        <li>5フリー処方</li>
-        <li>オールインワン1本</li>
-        <li>色移りゼロ</li>
-        <li>定期しばりなし</li>
-      </ul>
     </div>
 
     <!-- スクロール誘導（クリックで下のセクションへ。CSSで上下に揺れます） -->
@@ -363,7 +356,7 @@
            いまは仮で hero.mp4 を表示。本番では videos/science.mp4 などに差し替えてください。
            （動画は figure＝図版、figcaption＝そのキャプション、で意味づけしています） -->
       <figure class="science__video reveal">
-        <video class="science__video-el" controls playsinline muted poster="images/hero-poster.jpg">
+        <video class="science__video-el" controls playsinline muted poster="images/science.jpg">
           <source src="videos/science.mp4" type="video/mp4">
           お使いのブラウザは動画の表示に対応していません。
         </video>
@@ -377,17 +370,25 @@
         <li class="science__point reveal">
           <span class="science__point-num" aria-hidden="true">01</span>
           <h3 class="science__point-name">うねりが出やすく</h3>
-          <p class="science__point-desc">髪が素直に下りにくくなり、雨の日や午後に広がりやすくなります。</p>
+          <p class="science__point-desc">髪が素直に下りにくくなり、雨の日や午後に広がりやすくなります。<br>
+            顔の皮膚と同じように頭皮もたるむため、
+            頭皮がゆるみ、毛穴の形がわずかに変化。
+            そこから生える髪に、うねりやクセが出やすくなります。</p>
         </li>
         <li class="science__point reveal">
           <span class="science__point-num" aria-hidden="true">02</span>
           <h3 class="science__point-name">パサつきやすく</h3>
-          <p class="science__point-desc">うるおいを抱えにくくなり、手触りやまとまりが変わってきます。</p>
+          <p class="science__point-desc">うるおいを抱えにくくなり、手触りやまとまりが変わってきます。<br>
+            女性ホルモンには髪のツヤやうるおいを保つ働きがあります。
+            年齢と共にこれが減少。髪の水分保持力が低下し、乾燥しやすくなります。
+          </p>
         </li>
         <li class="science__point reveal">
           <span class="science__point-num" aria-hidden="true">03</span>
           <h3 class="science__point-name">ツヤが出にくく</h3>
-          <p class="science__point-desc">光をきれいに返しにくくなり、髪全体の印象が少し沈みがちに。</p>
+          <p class="science__point-desc">光をきれいに返しにくくなり、髪全体の印象が少し沈みがちに。<br>
+            若い頃に比べて髪自体が細く弱くなっているため、毎日のドライヤーの熱、紫外線、カラーや白髪染めなどのダメージが蓄積しやすくなります。
+          </p>
         </li>
       </ul>
 
@@ -621,7 +622,7 @@
       <div class="lineup__grid">
         <!-- ヒーロー商品（主役なので強調） -->
         <article class="lineup__card lineup__card--hero reveal">
-          <img src="images/shampoo.png" alt="シャンプー">
+          <img src="images/lineup-shampoo.png" alt="シャンプー">
           <p class="lineup__tag">HERO</p>
           <h3 class="lineup__name">素 -SU- シャンプー</h3>
           <p class="lineup__role">毎日の主役・オールインワン</p>
@@ -868,7 +869,31 @@
       style="cursor:pointer; border:none; width:100%; background:none;">まず1本、試してみる →</button>
     <p class="sticky-cta-note">30日間返金保証・回数縛りなし・送料無料</p>
   </div>
-
+  <!-- ============================================================
+       PC専用：右下に追従する固定CTAバー
+       スマホでは非表示・PCサイズ（769px以上）のみ表示
+       スクロール量に応じてJS側で .is-visible クラスを付け外しします
+  ============================================================ -->
+  <div class="pc-sticky-cta" id="pcStickyCta" aria-hidden="true">
+    <!-- 価格と定期便情報 -->
+    <div class="pc-sticky-cta__info">
+      <p class="pc-sticky-cta__price">
+        <span class="pc-sticky-cta__price-sub">初回</span>
+        <span class="pc-sticky-cta__price-main">¥1,900</span>
+        <span class="pc-sticky-cta__price-note">（定期便）</span>
+      </p>
+      <p class="pc-sticky-cta__badges">
+        <span>30日返金保証</span>
+        <span>縛りなし</span>
+        <span>送料無料</span>
+      </p>
+    </div>
+    <!-- CTAボタン（購入フォームセクションへスクロール） -->
+    <a href="#purchase" class="btn btn--primary pc-sticky-cta__btn" aria-label="申し込みフォームへ移動">
+      まず1本、試してみる
+      <span class="btn__arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
 
 
 

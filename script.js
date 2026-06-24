@@ -193,3 +193,28 @@ if (pcStickyCta) {
   window.addEventListener("resize", updatePcStickyCta, { passive: true });
   updatePcStickyCta(); // 初回実行
 }
+
+/* -----------------------------------------------------------------
+   7. パララックス背景（PC・SP・iOS全対応）
+   ::before 疑似要素はJSから直接操作できないため、
+   CSS変数を使ってセクションごとにずらし量を渡します。
+----------------------------------------------------------------- */
+const parallaxTargets = document.querySelectorAll(".section--dark, .concept");
+
+// CSS側に以下を追加してください（.section--dark::before と .concept::before に）：
+// transform: translateY(var(--parallax-y, 0px));
+
+function updateParallax() {
+  parallaxTargets.forEach(function (section) {
+    const rect = section.getBoundingClientRect();
+    const centerY = rect.top + rect.height / 2;
+    const progress = (centerY - window.innerHeight / 2) / window.innerHeight;
+    const shift = progress * 60; // 60px の範囲でずらす（大きいほど動きが強い）
+    section.style.setProperty("--parallax-y", shift + "px");
+  });
+}
+
+if (!prefersReducedMotion && parallaxTargets.length > 0) {
+  window.addEventListener("scroll", updateParallax, { passive: true });
+  updateParallax();
+}

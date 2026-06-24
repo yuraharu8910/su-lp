@@ -526,13 +526,33 @@ button:focus-visible {
    このLPの中心メッセージ。暗い背景に戻して“見せ場”をつくります。
    隠す／染める を控えめに退け、「活かす」だけを強調＝ここが主役。
 ----------------------------------------------------------------- */
+/* 変更後 */
 .concept {
-  background: var(--color-ink);
-  /* 暗い背景に再反転（明→暗のリズム） */
+  background-image: url("images/science.jpg");
+  /* パララックス背景画像 */
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
   color: var(--color-offwhite);
   padding: clamp(90px, 15vw, 150px) var(--pad-x);
+  position: relative;
+  /* overlayの基準点 */
 }
 
+/* 暗いオーバーレイを重ねて文字を読みやすく */
+.concept::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(33, 28, 23, 0.75);
+  z-index: 0;
+}
+
+/* コンテンツをoverlay（::before）の上に出す */
+.concept .concept__inner {
+  position: relative;
+  z-index: 1;
+}
 .concept__inner {
   max-width: 780px;
   margin: 0 auto;
@@ -659,7 +679,6 @@ button:focus-visible {
 /* -----------------------------------------------------------------
    10. スマホ用：画面下に追従するCTAバー（初期は非表示）
 ----------------------------------------------------------------- */
-/* 置き換え後 */
 .sticky-cta {
   display: flex;
   flex-direction: column;
@@ -677,12 +696,12 @@ button:focus-visible {
   backdrop-filter: blur(8px);
   border-top: 1px solid rgba(250, 247, 241, 0.12);
 
-  /* ↓ この2行が今回の追加ポイント */
+  /* FV中は画面外（下）に隠しておく。JSが .is-visible を付けるとスライドイン */
   transform: translateY(110%);
   transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ↓ このブロックも新規追加 */
+/* JSが付けるクラス → 画面内にスライドイン */
 .sticky-cta.is-visible {
   transform: translateY(0);
 }
@@ -693,7 +712,8 @@ button:focus-visible {
   letter-spacing: 0.05em;
   text-align: center;
 }
-        
+
+
 /* -----------------------------------------------------------------
    11. ページ読み込み時のふわっと表示（演出）
    .hero__inner の中の各要素を、少し遅らせて順に出す
@@ -873,11 +893,36 @@ button:focus-visible {
 }
 
 /* 暗いセクション（インク背景＋明るい文字） */
+/* 変更後 */
 .section--dark {
-  background: var(--color-ink);
+  background-image: url("images/science.jpg");
+  /* 背景画像 */
+  background-attachment: fixed;
+  /* ← これだけでパララックス完成 */
+  background-size: cover;
+  background-position: center;
   color: var(--color-offwhite);
 }
+.section--dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(33, 28, 23, 0.75);
+  /* Inkカラーを75%で重ねる */
+  z-index: 0;
+}
 
+/* コンテンツを overlay の上に出す */
+.section--dark {
+  position: relative;
+  /* ::before の基準点として必要 */
+}
+
+.section--dark .section__inner,
+.section--dark .closing__inner {
+  position: relative;
+  z-index: 1;
+}
 /* 共通：アイブロウ（小見出しの上の一言） */
 .eyebrow {
   font-size: 13px;
@@ -954,7 +999,7 @@ button:focus-visible {
 /* 3つの変化（横並び→スマホで縦積み。下のレスポンシブで切替） */
 .science__points {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   /* スマホ：1列（PCで複数列に。min-width 側で指定） */
   gap: 24px;
   margin-bottom: 52px;
@@ -990,7 +1035,7 @@ button:focus-visible {
 ----------------------------------------------------------------- */
 .features__grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   /* スマホ：1列（PCで複数列に。min-width 側で指定） */
   gap: 18px;
 }
@@ -1026,7 +1071,7 @@ button:focus-visible {
 ----------------------------------------------------------------- */
 .ingredients__cols {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   /* スマホ：1列（PCで複数列に。min-width 側で指定） */
   gap: 28px 36px;
   margin-bottom: 44px;
@@ -1078,7 +1123,7 @@ button:focus-visible {
 ----------------------------------------------------------------- */
 .howto__steps {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   /* スマホ：1列（PCで複数列に。min-width 側で指定） */
   gap: 20px;
   margin-bottom: 44px;
@@ -1139,6 +1184,23 @@ button:focus-visible {
   border: 1px solid rgba(33, 28, 23, 0.14);
   border-radius: 14px;
   background: #fff;
+}
+
+/* ラインナップ画像サイズ統一
+   全カードの img を正方形の枠に入れ、object-fit: contain で
+   画像を切らずに枠内に収める */
+.lineup__card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  /* 正方形を保つ */
+  object-fit: contain;
+  /* 画像を切らず、枠に収める */
+  object-position: center;
+  /* 中央に配置 */
+  background: var(--color-offwhite);
+  /* 余白部分の背景色 */
+  border-radius: 10px;
+  margin-bottom: 14px;
 }
 
 /* ヒーロー商品は枠と影で少し強調 */
@@ -1249,7 +1311,7 @@ button:focus-visible {
 
 .voices__grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   /* スマホ：1列（PCで複数列に。min-width 側で指定） */
   gap: 18px;
   margin-bottom: 28px;
@@ -1665,7 +1727,7 @@ button:focus-visible {
 ----------------------------------------------------------------- */
 .reasons {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   /* スマホ：1列（PCで複数列に。min-width 側で指定） */
   gap: 18px;
   margin-bottom: 56px;
@@ -2024,8 +2086,24 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   margin-bottom: 14px;
+  /* ↓ SP用：幅に上限をつけて中央に寄せる */
+  max-width: 160px;
+  margin-left: auto;
+  margin-right: auto;
 }
-
+/* SP用：beforeafter の img を直接サイズ制御 */
+.beforeafter__item img {
+  width: 100%;
+  max-width: 260px;
+  /* ← ここで大きさを調整（お好みで変更可） */
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 14px;
+}
 .beforeafter__media span {
   font-size: 12px;
   letter-spacing: 0.1em;
@@ -2287,4 +2365,120 @@ button:focus-visible {
   font-style: normal;
   font-family: var(--font-serif);
   color: var(--color-ink);
+}
+
+/* =================================================================
+   PC専用：右下固定CTAバー（.pc-sticky-cta）
+   ・スマホ（〜768px）では display:none で完全非表示
+   ・PCサイズ（769px〜）で display:flex に切り替え
+   ・初期状態は画面外（translateY で下に隠す）
+   ・JSが .is-visible クラスを付けると画面内にスライドイン
+================================================================= */
+
+/* ---------- ベース：スマホでは隠す ---------- */
+.pc-sticky-cta {
+  display: none;
+  /* スマホでは非表示 */
+}
+
+/* ---------- PCサイズ（769px〜）でのみ表示 ---------- */
+@media (min-width: 769px) {
+  .pc-sticky-cta {
+    display: flex;
+    /* 横並びレイアウト */
+    align-items: center;
+    gap: 24px;
+
+    /* 位置：右下に固定 */
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 300;
+
+    /* 見た目 */
+    background: rgba(33, 28, 23, 0.92);
+    /* Ink を半透明に */
+    backdrop-filter: blur(12px);
+    /* すりガラス効果 */
+    border: 1px solid rgba(194, 169, 140, 0.3);
+    /* Greige の細いボーダー */
+    border-radius: 16px;
+    padding: 16px 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+    /* アニメーション（初期状態：下に隠れている） */
+    transform: translateY(120%);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+      opacity 0.4s ease;
+    /* ↑ cubic-bezier はばねのような動き（少しバウンドする感じ） */
+  }
+
+  /* JSが付けるクラス → 画面内にスライドイン */
+  .pc-sticky-cta.is-visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* ---------- 左側：価格・バッジエリア ---------- */
+  .pc-sticky-cta__info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  /* 価格行 */
+  .pc-sticky-cta__price {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin: 0;
+  }
+
+  .pc-sticky-cta__price-sub {
+    font-size: 11px;
+    color: rgba(250, 247, 241, 0.6);
+    /* Off-White を薄く */
+    letter-spacing: 0.05em;
+  }
+
+  .pc-sticky-cta__price-main {
+    font-size: 22px;
+    font-weight: 700;
+    font-family: var(--font-serif);
+    color: var(--color-greige);
+    /* Greige でアクセント */
+    letter-spacing: -0.02em;
+  }
+
+  .pc-sticky-cta__price-note {
+    font-size: 11px;
+    color: rgba(250, 247, 241, 0.6);
+  }
+
+  /* バッジ（3つのピル型テキスト） */
+  .pc-sticky-cta__badges {
+    display: flex;
+    gap: 6px;
+    margin: 0;
+  }
+
+  .pc-sticky-cta__badges span {
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: rgba(250, 247, 241, 0.75);
+    background: rgba(250, 247, 241, 0.08);
+    border: 1px solid rgba(250, 247, 241, 0.15);
+    border-radius: 100px;
+    padding: 2px 8px;
+  }
+
+  /* ---------- 右側：CTAボタン ---------- */
+  .pc-sticky-cta__btn {
+    /* btn--primary のスタイルをベースに、少しコンパクトに */
+    white-space: nowrap;
+    padding: 14px 24px;
+    font-size: 13px;
+    border-radius: 100px;
+  }
 }

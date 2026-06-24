@@ -528,7 +528,7 @@ button:focus-visible {
 ----------------------------------------------------------------- */
 /* 変更後 */
 .concept {
-  background-image: url("images/science.jpg");
+  background-image: url("images/sp-section-dark.png");
   /* パララックス背景画像 */
   background-attachment: fixed;
   background-size: cover;
@@ -762,6 +762,8 @@ button:focus-visible {
 ----------------------------------------------------------------- */
 @media (min-width: 769px) {
 
+  
+
   /* 左右の余白を、PC用の広い値に */
   :root {
     --pad-x: 80px;
@@ -896,7 +898,7 @@ button:focus-visible {
 /* 暗いセクション（インク背景＋明るい文字） */
 /* 変更後 */
 .section--dark {
-  background-image: url("images/science.jpg");
+  background-image: url("images/sp-section-dark.png");
   /* 背景画像 */
   background-attachment: fixed;
   /* ← これだけでパララックス完成 */
@@ -904,6 +906,7 @@ button:focus-visible {
   background-position: center;
   color: var(--color-offwhite);
 }
+
 .section--dark::before {
   content: "";
   position: absolute;
@@ -924,6 +927,7 @@ button:focus-visible {
   position: relative;
   z-index: 1;
 }
+
 /* 共通：アイブロウ（小見出しの上の一言） */
 .eyebrow {
   font-size: 13px;
@@ -2092,6 +2096,7 @@ button:focus-visible {
   margin-left: auto;
   margin-right: auto;
 }
+
 /* SP用：beforeafter の img を直接サイズ制御 */
 .beforeafter__item img {
   width: 100%;
@@ -2105,6 +2110,7 @@ button:focus-visible {
   margin-right: auto;
   margin-bottom: 14px;
 }
+
 .beforeafter__media span {
   font-size: 12px;
   letter-spacing: 0.1em;
@@ -2482,4 +2488,12 @@ button:focus-visible {
     font-size: 13px;
     border-radius: 100px;
   }
+    /* PCだけ CSS の fixed パララックスを使う */
+    .concept,
+    .section--dark {
+      background-attachment: fixed;
+      background-position: center;
+      background-image: url("images/section--dark.png");
+      /* ← PC用画像 */
+    }
 }
