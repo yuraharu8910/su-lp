@@ -551,7 +551,7 @@ button:focus-visible {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(33, 28, 23, 0.88); /* 75%→88%に変更：動画を暗くして文字を読みやすく */
+  background: rgba(33, 28, 23, 0.75); /* 75%→88%に変更：動画を暗くして文字を読みやすく */
   z-index: 1;                     /* 動画(0)の上、テキスト(2)の下 */
 }
 
@@ -933,7 +933,7 @@ button:focus-visible {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(33, 28, 23, 0.88); /* Inkカラー75%→88%に変更 */
+  background: rgba(33, 28, 23, 0.75); /* Inkカラー75%→88%に変更 */
   z-index: 1;                /* 動画(0)の上、テキスト(2)の下 */
 }
 
