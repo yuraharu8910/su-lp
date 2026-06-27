@@ -168,3 +168,20 @@ if (!prefersReducedMotion && parallaxTargets.length > 0) {
   window.addEventListener("scroll", updateParallax, { passive: true });
   updateParallax();
 }
+
+/* -----------------------------------------------------------------
+   8. スマホCTAボタン：タップで購入フォームへスムーズスクロール
+   onclick="..." をHTMLから外し、ここで処理を受け持つ
+----------------------------------------------------------------- */
+const stickyCtaBtn = document.getElementById("stickyCtaBtn");
+
+if (stickyCtaBtn) {
+  // "click" はスマホのタップでも発火する（touchstart より互換性が高い）
+  stickyCtaBtn.addEventListener("click", function () {
+    const purchase = document.getElementById("purchase");
+    if (purchase) {
+      // smoothでふわっとスクロール（ブラウザ標準機能）
+      purchase.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+}

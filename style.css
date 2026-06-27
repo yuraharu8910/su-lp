@@ -721,6 +721,13 @@ button:focus-visible {
   text-align: center;
 }
 
+/* スマホ固定CTAのボタン（インラインスタイルから移動） */
+.sticky-cta-btn {
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  background: none;
+}
 
 /* -----------------------------------------------------------------
    11. ページ読み込み時のふわっと表示（演出）

@@ -6,7 +6,38 @@
   <meta charset="UTF-8">
   <!-- スマホで正しい幅で表示するための必須設定（レスポンシブの土台） -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ========== ファビコン ========== -->
+  <!-- ブラウザのタブに出るアイコン。32×32px の PNG が最低限。 -->
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <!-- iPhoneのホーム画面に追加したときのアイコン（180×180px） -->
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
+  <!-- ========== OGP（SNSシェア用）========== -->
+  <!-- og:url は本番の実URLに差し替えること -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/">
+  <meta property="og:title" content="素 -SU- ｜ 染めなくても、美しい。40代からの染めない白髪ケア">
+  <meta property="og:description" content="隠すか、染めるか。その二択は、もう終わり。白髪を生かして、ツヤと抜け感で今のあなたを一番きれいに見せる、毎日のミニマルケア。">
+  <!-- og:image は 1200×630px 推奨（SNSのサムネイルになる画像） -->
+  <meta property="og:image" content="https://example.com/images/og-image.jpg">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="素 -SU-">
+
+  <!-- X（旧Twitter）カード -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="素 -SU- ｜ 染めなくても、美しい。40代からの染めない白髪ケア">
+  <meta name="twitter:description" content="隠すか、染めるか。その二択は、もう終わり。白髪を生かして、ツヤと抜け感で今のあなたを一番きれいに見せる、毎日のミニマルケア。">
+  <meta name="twitter:image" content="https://example.com/images/og-image.jpg">
+
+  <!-- ========== canonical URL ========== -->
+  <!-- 同じページが複数のURLでアクセスできるとき、検索エンジンに"正規のURL"を教える設定 -->
+  <!-- 例：https://example.com/ と https://example.com/index.html は別URLとして扱われる -->
+  <link rel="canonical" href="https://example.com/">
+
+  <!-- ========== robots（検索エンジンへの指示）========== -->
+  <!-- index：検索結果に載せてOK、follow：リンクを辿ってOK。本番では必ず設定。 -->
+  <meta name="robots" content="index, follow">
   <!-- 検索結果やSNSシェア時に出るタイトル・説明文 -->
   <title>素 -SU- ｜ 染めなくても、美しい。40代からの染めない白髪ケア</title>
   <meta name="description" content="隠すか、染めるか。その二択は、もう終わり。白髪を生かして、ツヤと抜け感で“今のあなた”を一番きれいに見せる、毎日のミニマルケア。">
@@ -23,13 +54,6 @@
 </head>
 
 <body>
-
-  <!-- ============================================================
-       ヘッダー：ロゴ ＋ 右上の小さなCTAリンク
-       position は CSS で「画面に追従（fixed）」させています
-  ============================================================ -->
-  <header class="site-header">
-  </header>
 
 
   <!-- ============================================================
@@ -198,11 +222,10 @@
   ============================================================ -->
   <section id="concept" class="concept">
 
-  <!-- SP用背景動画（PCではCSSで非表示） -->
-  <video class="concept__video" autoplay muted loop playsinline
-         poster="images/sp-section-dark.png">
-    <source src="videos/bg-dark.mp4" type="video/mp4">
-  </video>
+    <!-- SP用背景動画（PCではCSSで非表示） -->
+    <video class="concept__video" autoplay muted loop playsinline poster="images/sp-section-dark.png">
+      <source src="videos/bg-dark.mp4" type="video/mp4">
+    </video>
     <div class="concept__inner">
 
       <!-- アイブロウ（このセクションの主題ラベル） -->
@@ -256,7 +279,7 @@
        なぜ作ったか。暗い背景で、静かに語りかけるトーンに。
   ============================================================ -->
   <section id="brand-story" class="section section--dark brandstory">
-  <!-- brand-storyはInkカラー無地背景（動画なし） -->
+    <!-- brand-storyはInkカラー無地背景（動画なし） -->
 
     <div class="section__inner">
       <p class="eyebrow reveal">なぜ、つくったか</p>
@@ -284,8 +307,7 @@
   <section id="product" class="section section--light product">
     <div class="section__inner product__inner">
       <!-- 商品画像（差し替え用プレースホルダー） -->
-      <img src="images/shampoo.png" alt="シャンプー" srcset="">
-      <!-- 商品情報 -->
+      <img src="images/shampoo.png" alt="素 -SU- シャンプー（オールインワン）200ml"> <!-- 商品情報 -->
       <div class="product__body">
         <p class="eyebrow reveal">これが、素 -SU-。</p>
         <h2 class="product__name reveal">素 -SU- シャンプー<small>（オールインワン）</small></h2>
@@ -403,11 +425,10 @@
        素 -SU- が毎日もたらす価値を、3つに絞って提示。暗い背景で“主役”の見せ場に。
   ============================================================ -->
   <section id="features" class="section section--dark features">
-  <!-- SP用背景動画（PCではCSSで非表示） -->
-  <video class="section-dark__video" autoplay muted loop playsinline
-         poster="images/sp-section-dark.png">
-    <source src="videos/bg-dark.mp4" type="video/mp4">
-  </video>
+    <!-- SP用背景動画（PCではCSSで非表示） -->
+    <video class="section-dark__video" autoplay muted loop playsinline poster="images/sp-section-dark.png">
+      <source src="videos/bg-dark.mp4" type="video/mp4">
+    </video>
 
     <div class="section__inner">
       <p class="eyebrow reveal">素 -SU- の、3つの価値</p>
@@ -451,16 +472,16 @@
 
       <div class="beforeafter__grid">
         <figure class="beforeafter__item reveal">
-          <img src="images/before.png" alt="ビフォー" srcset="">
+          <img src="images/before.png" alt="ビフォー">
           <figcaption class="beforeafter__cap"><span class="beforeafter__stage">使用前</span>パサつき・広がりが気になる状態</figcaption>
         </figure>
         <figure class="beforeafter__item reveal">
-          <img src="images/after-1.png" alt="アフター１" srcset="">
+          <img src="images/before.png" alt="使用前：パサつきと広がりが気になる白髪まじりの髪">
           <figcaption class="beforeafter__cap"><span class="beforeafter__stage">2週間後</span>指通りがなめらかに、まとまりやすく
           </figcaption>
         </figure>
         <figure class="beforeafter__item reveal">
-          <img src="images/after-2.png" alt="アフター２" srcset="">
+          <img src="images/after-2.png" alt="アフター２">
           <figcaption class="beforeafter__cap"><span class="beforeafter__stage">4週間後</span>光を返すツヤで、洗練された印象に</figcaption>
         </figure>
       </div>
@@ -571,11 +592,10 @@
        「置き換えるだけ」を視覚化。順番のある手順なので ol（番号つきリスト）。
   ============================================================ -->
   <section id="howto" class="section section--dark howto">
-  <!-- SP用背景動画（PCではCSSで非表示） -->
-  <video class="section-dark__video" autoplay muted loop playsinline
-         poster="images/sp-section-dark.png">
-    <source src="videos/bg-dark.mp4" type="video/mp4">
-  </video>
+    <!-- SP用背景動画（PCではCSSで非表示） -->
+    <video class="section-dark__video" autoplay muted loop playsinline poster="images/sp-section-dark.png">
+      <source src="videos/bg-dark.mp4" type="video/mp4">
+    </video>
 
     <div class="section__inner">
       <p class="eyebrow reveal">使い方は、いつもどおり</p>
@@ -648,7 +668,7 @@
         </article>
 
         <article class="lineup__card reveal">
-          <img src="images/essence.png" alt="エッセンス" srcset="">
+          <img src="images/essence.png" alt="素 -SU- スカルプエッセンス">
           <p class="lineup__tag lineup__tag--plus">+α</p>
           <h3 class="lineup__name">スカルプエッセンス</h3>
           <p class="lineup__role">頭皮美容液・塗って流さない</p>
@@ -658,7 +678,7 @@
         </article>
 
         <article class="lineup__card reveal">
-          <img src="images/mask.png" alt="マスク" srcset="">
+          <img src="images/mask.png" alt="素 -SU- ウィークリーマスク">
           <p class="lineup__tag lineup__tag--plus">+α</p>
           <h3 class="lineup__name">ウィークリーマスク</h3>
           <p class="lineup__role">週1の集中トリートメント</p>
@@ -762,11 +782,10 @@
        本番では「素髪の美しさを、初回半額で始める」のリンク先を、申込みフォーム/カートのURLに差し替えてください。
   ============================================================ -->
   <section id="purchase" class="section section--dark closing">
-  <!-- SP用背景動画（PCではCSSで非表示） -->
-  <video class="section-dark__video" autoplay muted loop playsinline
-         poster="images/sp-section-dark.png">
-    <source src="videos/bg-dark.mp4" type="video/mp4">
-  </video>
+    <!-- SP用背景動画（PCではCSSで非表示） -->
+    <video class="section-dark__video" autoplay muted loop playsinline poster="images/sp-section-dark.png">
+      <source src="videos/bg-dark.mp4" type="video/mp4">
+    </video>
 
     <div class="closing__inner">
       <p class="eyebrow reveal">染める前に、活かすを。</p>
@@ -881,8 +900,8 @@
   ============================================================ -->
   <!-- スマホ固定CTAバー（480px以下のみ表示） -->
   <div class="sticky-cta" id="stickyCta">
-    <button onclick="openModal()" class="sticky-cta-btn"
-      style="cursor:pointer; border:none; width:100%; background:none;">まず1本、試してみる →</button>
+    <!-- onclick を削除し、href="#purchase" のリンクに変える -->
+    <a href="#purchase" class="sticky-cta-btn" id="stickyCtaBtn">まず1本、試してみる →</a>
     <p class="sticky-cta-note">30日間返金保証・回数縛りなし・送料無料</p>
   </div>
   <!-- ============================================================
