@@ -496,6 +496,7 @@ button:focus-visible {
   height: auto;
 }
 
+
 /* SVG内の文字（ノード名・中央ラベル）の見た目 */
 .loop__node {
   font-family: var(--font-sans);
@@ -2675,3 +2676,4 @@ button:focus-visible {
   position: relative;
   z-index: 2;
 }
+
