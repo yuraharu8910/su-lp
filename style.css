@@ -727,6 +727,7 @@ button:focus-visible {
   border: none;
   width: 100%;
   background: none;
+  text-align: center;
 }
 
 /* -----------------------------------------------------------------
