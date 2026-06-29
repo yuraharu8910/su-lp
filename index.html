@@ -138,14 +138,30 @@
       <!-- 自己診断グリッド（参考②：こんなお悩みありませんか？）
            具体的な悩みを並べ、読者に“自分のことだ”と感じてもらうパート。 -->
       <p class="problem__check-lead reveal">こんなこと、ありませんか？</p>
-      <ul class="problem__checks">
-        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>鏡を見るたび、増えていく白髪に焦る
+      <!-- problem__checks--carousel を追加 -->
+      <ul class="problem__checks problem__checks--carousel"> <!-- ① 鏡で白髪を確認 -->
+        <li class="problem__check reveal">
+          <img src="images/worry-01.jpg" alt="鏡で白髪を気にする女性" class="problem__check-img">
+          <span class="problem__check-text">鏡を見るたび、増えていく白髪に焦る</span>
         </li>
-        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>また美容室の予約か…と、気が重い
+
+        <!-- ② スマホで美容室を予約 -->
+        <li class="problem__check reveal">
+          <img src="images/worry-02.jpg" alt="スマホを見て悩む女性" class="problem__check-img">
+          <span class="problem__check-text">また美容室の予約か…と、気が重い</span>
         </li>
-        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>でも、まだ「染める」と決めたくない
+
+        <!-- ③ 染めることを拒否 -->
+        <li class="problem__check reveal">
+          <img src="images/worry-03.jpg" alt="染めることを躊躇する女性" class="problem__check-img">
+          <span class="problem__check-text">でも、まだ「染める」と決めたくない</span>
         </li>
-        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>隠さなくても、きれいでいたい</li>
+
+        <!-- ④ 自然体でいたい -->
+        <li class="problem__check reveal">
+          <img src="images/worry-04.jpg" alt="自然体で美しくいたい女性" class="problem__check-img">
+          <span class="problem__check-text">隠さなくても、きれいでいたい</span>
+        </li>
       </ul>
 
       <!-- 信頼の数字（参考①②）：実在の調査データで“悩みの事実”を裏づける。

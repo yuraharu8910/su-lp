@@ -2677,3 +2677,234 @@ button:focus-visible {
   z-index: 2;
 }
 
+/* ================================================
+   ラインナップ：ヒーローカードのCTAボタンを強調
+   btn--primaryに枠線を加えて、+αのゴーストボタンより目立たせる
+   ================================================ */
+.lineup__card--hero .btn--primary {
+  border: 2px solid var(--color-ink);
+  /* インク色の枠線を追加 */
+}
+/* ================================================
+   SP FV下部：ストーリーエリアの背景動画
+   ================================================ */
+
+/* PC では非表示 */
+.hero__video--story-sp {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hero__video--story-sp {
+    display: block;
+    position: absolute;       /* hero__inner--story の中に配置 */
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top; /* 上部から表示 */
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* テキストを動画の上に乗せる */
+  .hero__inner--story {
+    position: relative;       /* 子要素のabsoluteの基準にする */
+  }
+
+  .hero__inner--story p,
+  .hero__inner--story em {
+    position: relative;
+    z-index: 1;               /* テキストを動画より前面に */
+  }
+}
+
+/* ================================================
+   使い方：ステップ番号を太く目立たせる
+   ================================================ */
+.howto__step-num {
+  width: 60px;
+  /* 52px → 少し大きく */
+  height: 60px;
+  border: 2px solid var(--color-greige);
+  /* 1px → 2px で枠線を太く */
+  font-size: 26px;
+  /* 22px → 26px */
+  font-weight: 600;
+  /* 太字を追加 */
+}
+
+/* ================================================
+   こんなことありませんか：画像カード型レイアウト
+   上に画像・下にテキスト、SP縦並び・PC横並び
+   ================================================ */
+
+/* リスト全体：SP は縦1列、PC は横4列 */
+.problem__checks {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* SP：1列 */
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+/* カード本体：縦並びのフレックス */
+.problem__check {
+  display: flex;
+  flex-direction: column;
+  /* 上：画像、下：テキスト */
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  /* 画像が角まで届くようにpadding除去 */
+  background: #fff;
+  border: 1px solid rgba(33, 28, 23, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  /* 画像の角をカードに合わせて丸く */
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* 上部の画像 */
+.problem__check-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  /* 正方形を維持 */
+  object-fit: cover;
+  object-position: center top;
+  /* 顔が上にあるので上基準でトリミング */
+  display: block;
+}
+
+/* 下部のテキスト */
+.problem__check-text {
+  display: block;
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+
+/* 既存のチェックボックスとアイコンは非表示 */
+.problem__check-box,
+.problem__check-icon {
+  display: none;
+}
+
+/* PC（769px以上）：4列横並び */
+@media (min-width: 769px) {
+  .problem__checks {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+}
+
+/* ================================================
+   こんなことありませんか：横並びレイアウト（試験用）
+   左に画像・右にテキスト
+   ================================================ */
+.problem__checks--horizontal {
+  grid-template-columns: 1fr; /* SP：縦1列のまま */
+}
+
+.problem__checks--horizontal .problem__check {
+  flex-direction: row;        /* 縦→横に変更 */
+  align-items: center;
+}
+
+.problem__checks--horizontal .problem__check-img {
+  width: 100px;               /* 左側の画像サイズ固定 */
+  height: 100px;
+  flex: none;                 /* 画像が縮まないように */
+  border-radius: 0;           /* カード左側の角だけ丸く */
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.problem__checks--horizontal .problem__check-text {
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
+/* PC（769px以上）：横並びレイアウトは2列に */
+@media (min-width: 769px) {
+  .problem__checks--horizontal {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ================================================
+   こんなことありませんか：横スクロールカルーセル
+   SP：横にスワイプして1枚ずつ見る
+   PC：4枚横並び（通常表示）
+   ================================================ */
+.problem__checks--carousel {
+  display: flex;
+  /* gridからflexに変更 */
+  flex-direction: row;
+  overflow-x: auto;
+  /* 横スクロールを有効に */
+  scroll-snap-type: x mandatory;
+  /* 1枚ずつピタッと止まる */
+  gap: 16px;
+  padding-bottom: 16px;
+  /* スクロールバー分の余白 */
+  -webkit-overflow-scrolling: touch;
+  /* iOS慣性スクロール */
+  scrollbar-width: none;
+  /* スクロールバーを非表示（Firefox） */
+  margin-bottom: 56px;
+}
+
+/* スクロールバーを非表示（Chrome・Safari） */
+.problem__checks--carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* カード1枚のサイズ：SPで画面の80%幅 */
+.problem__checks--carousel .problem__check {
+  flex: 0 0 80vw;
+  /* 縮まない・80%幅で固定 */
+  scroll-snap-align: start;
+  /* スナップ位置：カード左端 */
+  max-width: 280px;
+}
+
+/* PC（769px以上）：スクロールなし・4列並び */
+@media (min-width: 769px) {
+  .problem__checks--carousel {
+    overflow-x: visible;
+    scroll-snap-type: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .problem__checks--carousel .problem__check {
+    flex: none;
+    width: auto;
+    max-width: none;
+  }
+}
+
+/* ================================================
+   こんなことありませんか：PC カードサイズを拡大
+   ================================================ */
+@media (min-width: 769px) {
+  .problem__checks--carousel .problem__check {
+    max-width: none;
+    /* 280px制限を解除 */
+  }
+
+  .problem__checks--carousel .problem__check-img {
+    aspect-ratio: 3 / 4;
+    /* PCでは少し縦長に（参考サイトに近い比率） */
+  }
+
+  .problem__checks--carousel .problem__check-text {
+    font-size: 15px;
+    /* PCではテキストも少し大きく */
+    padding: 16px 18px;
+  }
+}
