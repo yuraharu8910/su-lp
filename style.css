@@ -1129,6 +1129,7 @@ button:focus-visible {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-top: 24px;
   margin-bottom: 16px;
 }
 
@@ -2907,4 +2908,22 @@ button:focus-visible {
     /* PCではテキストも少し大きく */
     padding: 16px 18px;
   }
+}
+
+/* -----------------------------------------------------------------
+   ⑤-追記 商品紹介セクション：商品画像を角丸にする
+   .product__media(点線プレースホルダー用)とは別クラスなので
+   既存スタイルへの影響なし
+----------------------------------------------------------------- */
+.product__photo {
+  width: 100%;
+  /* 親要素いっぱいに広げる */
+  height: auto;
+  /* 縦横比を保ったまま高さを自動調整 */
+  display: block;
+  /* imgの下にできる謎の余白を消す */
+  border-radius: 12px;
+  /* ここが角丸の数値。お好みで調整可 */
+  object-fit: cover;
+  /* 画像の比率が枠と違っても切り抜いて綺麗に収める */
 }
