@@ -760,7 +760,9 @@
           </p>
           <p class="lineup__start">まずは、この1本から。</p>
           <!-- カード内CTA：ヒーローは塗りボタン（主役）。すべて #purchase フォームへ -->
-          <a href="#purchase" class="btn btn--primary btn--block lineup__card-btn">初回¥1,900で始める</a>
+          <!-- シャンプーのボタン -->
+          <a href="#purchase" class="btn btn--primary btn--block lineup__card-btn"
+            data-product="shampoo-sub">初回¥1,900で始める</a>
         </article>
 
         <article class="lineup__card reveal">
@@ -770,7 +772,8 @@
           <p class="lineup__role">頭皮美容液・塗って流さない</p>
           <p class="lineup__price">¥4,200<span class="lineup__price-sub">税込</span></p>
           <!-- +αはゴーストボタン（従）。主役の塗りボタンより一段控えめに -->
-          <a href="#purchase" class="btn btn--ghost btn--block lineup__card-btn">申し込む</a>
+          <!-- スカルプエッセンスのボタン -->
+          <a href="#purchase" class="btn btn--ghost btn--block lineup__card-btn" data-product="essence">申し込む</a>
         </article>
 
         <article class="lineup__card reveal">
@@ -780,7 +783,8 @@
           <p class="lineup__role">週1の集中トリートメント</p>
           <p class="lineup__price">¥4,200<span class="lineup__price-sub">税込</span></p>
           <!-- +αはゴーストボタン（従） -->
-          <a href="#purchase" class="btn btn--ghost btn--block lineup__card-btn">申し込む</a>
+          <!-- ウィークリーマスクのボタン -->
+          <a href="#purchase" class="btn btn--ghost btn--block lineup__card-btn" data-product="mask">申し込む</a>
         </article>
       </div>
     </div>
@@ -916,20 +920,41 @@
                いまは送信先が無いため、JavaScriptで受け止めて確認文を表示します。 -->
         <form class="order-form" id="orderForm" novalidate>
           <!-- プラン選択（ラジオ：定期便 or 単品） -->
+          <!-- 変更後：4商品ぶんの選択肢に -->
+          <!-- 変更後 -->
           <fieldset class="order-form__plans">
-            <legend class="order-form__legend">プランを選ぶ</legend>
+            <legend class="order-form__legend">商品を選ぶ（複数選択可）</legend>
+
+            <!-- ここの2つだけは name="shampoo-plan" で揃えることで、
+       同じグループ＝どちらか一方しか選べない、という関係になります -->
             <label class="order-form__plan">
-              <input type="radio" name="plan" value="subscription" checked>
+              <input type="radio" name="shampoo-plan" value="shampoo-sub" checked>
               <span class="order-form__plan-body">
-                <span class="order-form__plan-name">定期便 初回 ¥1,900</span>
+                <span class="order-form__plan-name">シャンプー（定期便）初回 ¥1,900</span>
                 <span class="order-form__plan-note">2回目以降 ¥3,420／送料無料・いつでも休止／解約OK</span>
               </span>
             </label>
             <label class="order-form__plan">
-              <input type="radio" name="plan" value="single">
+              <input type="radio" name="shampoo-plan" value="shampoo-single">
               <span class="order-form__plan-body">
-                <span class="order-form__plan-name">単品 ¥3,800</span>
+                <span class="order-form__plan-name">シャンプー（単品）¥3,800</span>
                 <span class="order-form__plan-note">まずは1本だけ／送料無料</span>
+              </span>
+            </label>
+
+            <!-- ここから下の2つは type="checkbox" ＝ それぞれ独立してON/OFFできる -->
+            <label class="order-form__plan">
+              <input type="checkbox" name="addon" value="essence" id="of-addon-essence">
+              <span class="order-form__plan-body">
+                <span class="order-form__plan-name">スカルプエッセンス ¥4,200</span>
+                <span class="order-form__plan-note">頭皮美容液・塗って流さないタイプ／送料無料</span>
+              </span>
+            </label>
+            <label class="order-form__plan">
+              <input type="checkbox" name="addon" value="mask" id="of-addon-mask">
+              <span class="order-form__plan-body">
+                <span class="order-form__plan-name">ウィークリーマスク ¥4,200</span>
+                <span class="order-form__plan-note">週1の集中トリートメント／送料無料</span>
               </span>
             </label>
           </fieldset>

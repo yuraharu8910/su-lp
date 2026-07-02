@@ -51,16 +51,25 @@ if (!prefersReducedMotion && "IntersectionObserver" in window) {
 
 /* -----------------------------------------------------------------
    4. 申込みフォーム
+   シャンプー（定期便 or 単品、どちらか1つ）＋ エッセンス・マスク（複数選択可）
+   を組み合わせて、選ばれた商品名をまとめて表示します。
 ----------------------------------------------------------------- */
 const orderForm = document.querySelector("#orderForm");
 const orderResult = document.querySelector("#orderResult");
 
+// 商品ごとの「表示用の名前」を、あらかじめ辞書（オブジェクト）にまとめておきます
+const productLabels = {
+  "shampoo-sub": "シャンプー（定期便）初回¥1,900",
+  "shampoo-single": "シャンプー（単品）¥3,800",
+  "essence": "スカルプエッセンス ¥4,200",
+  "mask": "ウィークリーマスク ¥4,200"
+};
+
 if (orderForm) {
   orderForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    const name  = orderForm.querySelector("#of-name").value.trim();
+    const name = orderForm.querySelector("#of-name").value.trim();
     const email = orderForm.querySelector("#of-email").value.trim();
-    const plan  = orderForm.querySelector('input[name="plan"]:checked').value;
 
     if (!name || !email) {
       orderResult.textContent = "お名前とメールアドレスをご入力ください。";
@@ -73,8 +82,25 @@ if (orderForm) {
       orderResult.className = "order-form__result is-error";
       return;
     }
-    const planLabel = plan === "subscription" ? "定期便 初回¥1,900" : "単品 ¥3,800";
-    orderResult.textContent = name + "様、「" + planLabel + "」のお申し込みを受け付けました（デモ）。";
+
+    // シャンプーは必ずどちらか1つ選ばれている（ラジオボタンなので）
+    const shampooPlan = orderForm.querySelector('input[name="shampoo-plan"]:checked').value;
+
+    // エッセンス／マスクは、チェックが入っているものだけを配列として取り出す
+    // querySelectorAll は「該当する要素すべて」を取ってくる仕組みです
+    const checkedAddons = orderForm.querySelectorAll('input[name="addon"]:checked');
+    const addonValues = Array.from(checkedAddons).map(function (el) {
+      return el.value;
+    });
+
+    // シャンプー＋エッセンス／マスクを1つの配列にまとめて、表示名に変換
+    const selectedValues = [shampooPlan].concat(addonValues); // 例：["shampoo-sub", "essence", "mask"]
+    const selectedLabels = selectedValues.map(function (value) {
+      return productLabels[value];
+    });
+    const summaryText = selectedLabels.join("／"); // 「／」区切りでつなげる
+
+    orderResult.textContent = name + "様、「" + summaryText + "」のお申し込みを受け付けました（デモ）。";
     orderResult.className = "order-form__result is-success";
     orderForm.reset();
   });
@@ -91,8 +117,8 @@ function updateSpStickyCta() {
   if (window.innerWidth >= 769) return;
 
   // 1枚目を優先、なければ.hero全体を使う
-  const firstPanel = document.querySelector(".hero__inner--first") 
-                   || document.querySelector(".hero");
+  const firstPanel = document.querySelector(".hero__inner--first")
+    || document.querySelector(".hero");
   let triggerBottom = 0;
   if (firstPanel) {
     triggerBottom = firstPanel.getBoundingClientRect().bottom;
@@ -228,3 +254,39 @@ if (countEls.length > 0) {
     countEls.forEach(function (el) { countIO.observe(el); });
   }
 }
+
+
+/* -----------------------------------------------------------------
+   11. ラインナップのボタンから来たら、対応する商品を自動選択
+   data-product属性の値によって、
+   ・シャンプー（shampoo-sub / shampoo-single）→ ラジオボタンを選択
+   ・エッセンス／マスク（essence / mask）      → チェックボックスをON
+   と挙動を分けています。
+----------------------------------------------------------------- */
+const productLinkBtns = document.querySelectorAll("[data-product]");
+
+productLinkBtns.forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    const productValue = btn.dataset.product; // 例："essence"
+
+    if (productValue === "shampoo-sub" || productValue === "shampoo-single") {
+      // シャンプーの場合：ラジオボタンを探して選択する
+      const targetRadio = document.querySelector(
+        'input[name="shampoo-plan"][value="' + productValue + '"]'
+      );
+      if (targetRadio) {
+        targetRadio.checked = true;
+      }
+    } else {
+      // エッセンス／マスクの場合：チェックボックスをONにする
+      // （すでにONだったものをもう一度押しても問題ないよう、trueで固定しています）
+      const targetCheckbox = document.querySelector(
+        'input[name="addon"][value="' + productValue + '"]'
+      );
+      if (targetCheckbox) {
+        targetCheckbox.checked = true;
+      }
+    }
+    // href="#purchase" によるスクロールはブラウザ標準の動きに任せます
+  });
+});
