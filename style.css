@@ -2191,9 +2191,10 @@ button:focus-visible {
   transition: border-color 0.2s, background 0.2s;
 }
 
-.order-form__plan input {
-  margin-top: 3px;
-  accent-color: var(--color-greige);
+.order-form__plan input[type="radio"]:focus-visible,
+.order-form__plan input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--color-greige);
+  /* 青 → ブランドカラーの枠に変更 */
 }
 
 .order-form__plan-name {
@@ -2881,3 +2882,63 @@ button:focus-visible {
   /* 画像の比率が枠と違っても切り抜いて綺麗に収める */
 }
 
+/* -----------------------------------------------------------------
+   注文フォーム：ラジオボタン（シャンプー2つ）と
+   チェックボックス（スカルプエッセンス／ウィークリーマスク）の
+   見た目を完全に統一する。
+
+   ポイント：
+   両方とも appearance: none でブラウザ標準の見た目を一度リセットしてから、
+   同じ width / height / border で丸を描き直しているので、
+   OSやブラウザが違っても必ず同じサイズになります。
+   （↔ 逆に片方だけサイズ指定すると、今回のようにズレます）
+----------------------------------------------------------------- */
+.order-form__plan input[type="radio"],
+.order-form__plan input[type="checkbox"] {
+  /* ブラウザ標準の見た目を消して、白紙の状態にする */
+  appearance: none;
+  -webkit-appearance: none;
+  /* Safariにも効かせるためのおまじない */
+
+  margin: 3px 0 0 0;
+
+  /* ここのサイズを2つとも同じ数値にすることが、揃えるための一番のポイント */
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  /* 正円にする */
+  border: 1.5px solid rgba(250, 247, 241, 0.5);
+  background: transparent;
+
+  cursor: pointer;
+  flex-shrink: 0;
+  /* 横並びの中で丸が潰れて楕円にならないように固定 */
+  position: relative;
+  /* 中のドットを配置するための基準位置 */
+  transition: border-color 0.2s, background 0.2s;
+
+  /* 標準の青いフォーカスリング（キーボード操作時に出る青枠）を、
+     ブランドカラーに寄せた控えめなものに変更 */
+  outline-offset: 2px;
+}
+
+/* チェック（選択）されたとき：外側の枠線の色を変える */
+.order-form__plan input[type="radio"]:checked,
+.order-form__plan input[type="checkbox"]:checked {
+  border-color: var(--color-greige);
+}
+
+/* チェック（選択）されたとき：中に小さい丸ドットを追加で描く */
+.order-form__plan input[type="radio"]:checked::after,
+.order-form__plan input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-greige);
+  transform: translate(-50%, -50%);
+  /* 丸の中心にぴったり配置するテクニック */
+}
