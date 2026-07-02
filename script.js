@@ -185,3 +185,46 @@ if (stickyCtaBtn) {
     }
   });
 }
+
+/* -----------------------------------------------------------------
+   10. 統計数値のカウントアップアニメーション
+   .js-countup クラスがついた要素が画面に入ったら、
+   0 → data-target属性の数値まで、じわっと増えていくようにします。
+----------------------------------------------------------------- */
+const countEls = document.querySelectorAll(".js-countup");
+
+if (countEls.length > 0) {
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    // 「動きを減らす」設定の人・非対応ブラウザには、最初から完成した数字だけ表示
+    countEls.forEach(function (el) {
+      const decimals = el.dataset.decimals ? Number(el.dataset.decimals) : 0;
+      el.textContent = parseFloat(el.dataset.target).toFixed(decimals);
+    });
+  } else {
+    const countIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseFloat(el.dataset.target);           // 目標の数値（例：74.8）
+        const decimals = el.dataset.decimals ? Number(el.dataset.decimals) : 0;
+        const duration = 1200; // アニメーションの長さ（ミリ秒）＝1.2秒
+        const startTime = performance.now();
+
+        function tick(now) {
+          const progress = Math.min((now - startTime) / duration, 1); // 0〜1で進捗を表す
+          const eased = 1 - Math.pow(1 - progress, 3); // 後半ゆっくり止まる「easeOut」という動き方
+          el.textContent = (target * eased).toFixed(decimals);
+          if (progress < 1) {
+            requestAnimationFrame(tick); // 次の描画フレームでもう一度実行（＝アニメーションのループ）
+          } else {
+            el.textContent = target.toFixed(decimals); // 最後は目標値でぴったり止める（誤差防止）
+          }
+        }
+        requestAnimationFrame(tick);
+        countIO.unobserve(el); // 一度動いたら監視をやめる（何度も再生させない）
+      });
+    }, { threshold: 0.5 }); // 要素の50%が見えたら発火
+
+    countEls.forEach(function (el) { countIO.observe(el); });
+  }
+}

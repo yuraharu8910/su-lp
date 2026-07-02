@@ -80,49 +80,6 @@ button:focus-visible {
 }
 
 
-/* -----------------------------------------------------------------
-   3. ヘッダー（画面上部に追従）
------------------------------------------------------------------ */
-.site-header {
-  position: fixed;
-  /* スクロールしても上部に固定 */
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 22px var(--pad-x);
-  transition: background 0.3s, backdrop-filter 0.3s, padding 0.3s;
-}
-
-
-.logo {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 17px;
-  letter-spacing: 0.08em;
-  color: var(--color-offwhite);
-}
-
-.header-cta {
-  /* スマホでは画面下の追従CTAに役割を任せるため、ここでは隠します。
-     PCでは min-width 側で display:inline-block に戻して表示します。 */
-  display: none;
-  font-size: 13px;
-  letter-spacing: 0.04em;
-  padding: 8px 18px;
-  border: 1px solid rgba(250, 247, 241, 0.5);
-  /* 細い枠線のゴーストボタン */
-  border-radius: 6px;
-  transition: background 0.25s, color 0.25s;
-}
-
-.header-cta:hover {
-  background: var(--color-offwhite);
-  color: var(--color-ink);
-}
 
 
 /* -----------------------------------------------------------------
@@ -785,10 +742,6 @@ button:focus-visible {
     --pad-x: 80px;
   }
 
-  /* ヘッダー右上のCTAを表示（スマホでは隠していた要素） */
-  .header-cta {
-    display: inline-block;
-  }
 
   /* ヒーロー：スマホで空けた追従CTA用の下余白を解除＋サブコピーを少し大きく */
   .hero {
@@ -2927,3 +2880,4 @@ button:focus-visible {
   object-fit: cover;
   /* 画像の比率が枠と違っても切り抜いて綺麗に収める */
 }
+
