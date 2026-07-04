@@ -228,41 +228,7 @@ const checkCarousel = document.querySelector(".problem__checks--carousel");
 
 if (checkCarousel && !prefersReducedMotion) {
   let autoSlideTimer = null;         // setIntervalのIDを入れておく箱（止めるときに使う）
-  const AUTO_SLIDE_INTERVAL = 5500;  // 何ミリ秒ごとに次のカードへ進むか（5.5秒。前は3.5秒でした）
-  const SLIDE_DURATION = 1400;       // 1回のスクロール移動にかける時間（1.4秒。ゆっくりめの設定）
-
-  // 指定した位置まで、指定した時間をかけてゆっくりスクロールする関数。
-  // ブラウザ標準の scrollTo({behavior:"smooth"}) は速度を自分で調整できず
-  // （ブラウザによって速い/遅いがバラバラ）、今回は「ゆっくり感」を安定して
-  // 出したいので、10番の「カウントアップアニメーション」と同じ仕組み
-  // （requestAnimationFrameで少しずつ動かす）を使って自作しています。
-  function animateScrollTo(element, targetLeft, duration) {
-    const startLeft = element.scrollLeft;       // 今の位置
-    const distance = targetLeft - startLeft;    // 動かす距離
-    const startTime = performance.now();
-
-    // CSSの scroll-snap-type（スクロール位置をカードの区切りに自動で
-    // ピタッと戻す機能）が、この1コマずつのscrollLeft変更と衝突して、
-    // 「動かない」「カクつく」原因になっていました。
-    // アニメーション中だけ一時的にオフにし、終わったら元に戻すことで、
-    // 自動スライド中はなめらかに、手動でスワイプする時は今まで通り
-    // ピタッと止まる、という両方の動きを両立させます。
-    const originalSnapType = element.style.scrollSnapType;
-    element.style.scrollSnapType = "none";
-
-    function tick(now) {
-      const progress = Math.min((now - startTime) / duration, 1); // 0〜1で進み具合
-      const eased = 1 - Math.pow(1 - progress, 3); // 後半ゆっくり止まる「easeOut」という動き方
-      element.scrollLeft = startLeft + distance * eased;
-      if (progress < 1) {
-        requestAnimationFrame(tick); // 完了していなければ、次のフレームでも続ける
-      } else {
-        // アニメーション完了：scroll-snapを元の設定に戻す
-        element.style.scrollSnapType = originalSnapType;
-      }
-    }
-    requestAnimationFrame(tick);
-  }
+  const AUTO_SLIDE_INTERVAL = 3500;  // 何ミリ秒ごとに次のカードへ進むか（3.5秒）
 
   // カードを1枚分、右へスクロールする関数
   function scrollToNextCard() {
@@ -279,16 +245,15 @@ if (checkCarousel && !prefersReducedMotion) {
     // scrollLeft：今どれだけ右にスクロールしているか
     // scrollWidth：中身全体の横幅／clientWidth：見えている枠（窓）の横幅
     // 「窓の右端」が「中身の右端」に近づいていたら、右端まで来たと判断します
-    // （-8は「ほぼ端まで来ていればOK」とするための余裕分です）
     const isNearEnd =
-      checkCarousel.scrollLeft + checkCarousel.clientWidth >= checkCarousel.scrollWidth - 8;
+      checkCarousel.scrollLeft + checkCarousel.clientWidth >= checkCarousel.scrollWidth - 4;
 
     if (isNearEnd) {
-      // 右端まで来ていたら、最初にゆっくり戻る（ループ再生）
-      animateScrollTo(checkCarousel, 0, SLIDE_DURATION);
+      // 右端まで来ていたら、最初にふわっと戻る（ループ再生）
+      checkCarousel.scrollTo({ left: 0, behavior: "smooth" });
     } else {
-      // まだ続きがあれば、カード1枚分だけゆっくり右にスクロール
-      animateScrollTo(checkCarousel, checkCarousel.scrollLeft + step, SLIDE_DURATION);
+      // まだ続きがあれば、カード1枚分だけ右にスクロール
+      checkCarousel.scrollBy({ left: step, behavior: "smooth" });
     }
   }
 
