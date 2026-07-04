@@ -156,7 +156,7 @@ button:focus-visible {
   font-family: var(--font-serif);
   font-weight: 600;
   font-size: clamp(32px, 5.2vw, 46px);
-  line-height: 1.25;
+  line-height: 1.5;
   color: var(--color-offwhite);
   margin-bottom: 16px;
 }
