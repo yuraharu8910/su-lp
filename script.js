@@ -228,7 +228,7 @@ const checkCarousel = document.querySelector(".problem__checks--carousel");
 
 if (checkCarousel && !prefersReducedMotion) {
   let autoSlideTimer = null;         // setIntervalのIDを入れておく箱（止めるときに使う）
-  const AUTO_SLIDE_INTERVAL = 5500;  // 何ミリ秒ごとに次のカードへ進むか（5.5秒。前は3.5秒でした）
+  const AUTO_SLIDE_INTERVAL = 4000;  // 何ミリ秒ごとに次のカードへ進むか（5.5秒。前は3.5秒でした）
   const SLIDE_DURATION = 1400;       // 1回のスクロール移動にかける時間（1.4秒。ゆっくりめの設定）
 
   // 指定した位置まで、指定した時間をかけてゆっくりスクロールする関数。
