@@ -486,11 +486,14 @@ button:focus-visible {
 ----------------------------------------------------------------- */
 /* 変更後 */
 .concept {
-  background-image: none;         /* SPは動画で背景管理するので削除 */
+  background-image: none;
+  /* SPは動画で背景管理するので削除 */
   color: var(--color-offwhite);
   padding: clamp(90px, 15vw, 150px) var(--pad-x);
-  position: relative;             /* 動画・オーバーレイの基準点 */
-  overflow: hidden;               /* 動画のはみ出しを隠す */
+  position: relative;
+  /* 動画・オーバーレイの基準点 */
+  overflow: hidden;
+  /* 動画のはみ出しを隠す */
 }
 
 /* SP用：conceptの背景動画 */
@@ -499,9 +502,11 @@ button:focus-visible {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;              /* 縦横比を保ちながら全体を埋める */
+  object-fit: cover;
+  /* 縦横比を保ちながら全体を埋める */
   z-index: 0;
-  pointer-events: none;           /* 動画タップで反応しない */
+  pointer-events: none;
+  /* 動画タップで反応しない */
 }
 
 /* 暗いオーバーレイを重ねて文字を読みやすく */
@@ -509,14 +514,17 @@ button:focus-visible {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(33, 28, 23, 0.75); /* 75%→88%に変更：動画を暗くして文字を読みやすく */
-  z-index: 1;                     /* 動画(0)の上、テキスト(2)の下 */
+  background: rgba(33, 28, 23, 0.75);
+  /* 75%→88%に変更：動画を暗くして文字を読みやすく */
+  z-index: 1;
+  /* 動画(0)の上、テキスト(2)の下 */
 }
 
 /* コンテンツをoverlay（::before）の上に出す */
 .concept .concept__inner {
   position: relative;
-  z-index: 2;                     /* 最前面 */
+  z-index: 2;
+  /* 最前面 */
 }
 
 .concept__inner {
@@ -735,7 +743,7 @@ button:focus-visible {
 ----------------------------------------------------------------- */
 @media (min-width: 769px) {
 
-  
+
 
   /* 左右の余白を、PC用の広い値に */
   :root {
@@ -866,17 +874,21 @@ button:focus-visible {
 
 /* brand-storyは動画なし・Inkカラー無地背景 */
 .brandstory {
-  background-color: var(--color-ink); /* #211C17 の深い黒 */
+  background-color: var(--color-ink);
+  /* #211C17 の深い黒 */
 }
 
 /* 暗いセクション（インク背景＋明るい文字） */
 /* SP：動画背景 ／ PC：fixed パララックス（メディアクエリで上書き） */
 
 .section--dark {
-  background-image: none;    /* SPは動画で背景管理するので削除 */
+  background-image: none;
+  /* SPは動画で背景管理するので削除 */
   color: var(--color-offwhite);
-  position: relative;        /* 動画・オーバーレイの基準点 */
-  overflow: hidden;          /* 動画のはみ出しを隠す */
+  position: relative;
+  /* 動画・オーバーレイの基準点 */
+  overflow: hidden;
+  /* 動画のはみ出しを隠す */
 }
 
 /* SP用：背景動画 */
@@ -885,9 +897,12 @@ button:focus-visible {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;         /* 縦横比を保ちながら全体を埋める */
-  z-index: 0;                /* オーバーレイ・テキストより後ろ */
-  pointer-events: none;      /* 動画タップで反応しない */
+  object-fit: cover;
+  /* 縦横比を保ちながら全体を埋める */
+  z-index: 0;
+  /* オーバーレイ・テキストより後ろ */
+  pointer-events: none;
+  /* 動画タップで反応しない */
 }
 
 /* 暗いオーバーレイ */
@@ -895,15 +910,18 @@ button:focus-visible {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(33, 28, 23, 0.75); /* Inkカラー75%→88%に変更 */
-  z-index: 1;                /* 動画(0)の上、テキスト(2)の下 */
+  background: rgba(33, 28, 23, 0.75);
+  /* Inkカラー75%→88%に変更 */
+  z-index: 1;
+  /* 動画(0)の上、テキスト(2)の下 */
 }
 
 /* テキストを最前面に */
 .section--dark .section__inner,
 .section--dark .closing__inner {
   position: relative;
-  z-index: 2;                /* オーバーレイ(1)の上 */
+  z-index: 2;
+  /* オーバーレイ(1)の上 */
 }
 
 /* 共通：アイブロウ（小見出しの上の一言） */
@@ -2468,34 +2486,39 @@ button:focus-visible {
     font-size: 13px;
     border-radius: 100px;
   }
-    /* PCだけ CSS の fixed パララックスを使う */
-    .concept {
-      background-image: url("images/sp-section-dark.png"); /* PC用画像 */
-      background-attachment: fixed;
-      background-size: cover;
-      background-position: center;
-      overflow: visible;
-    }
 
-    /* PCではconceptの動画を非表示 */
-    .concept__video {
-      display: none;
-    }
+  /* PCだけ CSS の fixed パララックスを使う */
+  .concept {
+    background-image: url("images/sp-section-dark.png");
+    /* PC用画像 */
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    overflow: visible;
+  }
 
-    /* PC用：section--darkは画像パララックスに戻す */
-    .section--dark {
-      background-image: url("images/sp-section-dark.png"); /* conceptと同じ画像に統一 */
-      background-attachment: fixed;
-      background-size: cover;
-      background-position: center;
-      overflow: visible; /* PCははみ出し制御不要 */
-    }
+  /* PCではconceptの動画を非表示 */
+  .concept__video {
+    display: none;
+  }
 
-    /* PCでは動画を非表示 */
-    .section-dark__video {
-      display: none;
-    }
+  /* PC用：section--darkは画像パララックスに戻す */
+  .section--dark {
+    background-image: url("images/sp-section-dark.png");
+    /* conceptと同じ画像に統一 */
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    overflow: visible;
+    /* PCははみ出し制御不要 */
+  }
+
+  /* PCでは動画を非表示 */
+  .section-dark__video {
+    display: none;
+  }
 }
+
 /* =================================================================
    FV動画固定＋テキストスクロール演出
    ================================================================= */
@@ -2504,11 +2527,13 @@ button:focus-visible {
 .hero {
   overflow: visible;
 }
+
 .hero__video {
   position: fixed !important;
   z-index: 0;
   pointer-events: none;
 }
+
 .hero__overlay {
   position: fixed !important;
   z-index: 1;
@@ -2527,7 +2552,8 @@ button:focus-visible {
 ------------------------------------------------------------------ */
 .hero__divider {
   border: none;
-  border-top: 1px solid rgba(194, 169, 140, 0.35); /* Greigeで細い区切り線 */
+  border-top: 1px solid rgba(194, 169, 140, 0.35);
+  /* Greigeで細い区切り線 */
   margin: 40px 0;
 }
 
@@ -2603,7 +2629,8 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 var(--pad-x) 90px; /* 下部にSP固定CTAの余白 */
+  padding: 0 var(--pad-x) 90px;
+  /* 下部にSP固定CTAの余白 */
   max-width: var(--maxw-text);
 }
 
@@ -2640,6 +2667,7 @@ button:focus-visible {
   border: 2px solid var(--color-ink);
   /* インク色の枠線を追加 */
 }
+
 /* ================================================
    SP FV下部：ストーリーエリアの背景動画
    ================================================ */
@@ -2652,25 +2680,29 @@ button:focus-visible {
 @media (max-width: 768px) {
   .hero__video--story-sp {
     display: block;
-    position: absolute;       /* hero__inner--story の中に配置 */
+    position: absolute;
+    /* hero__inner--story の中に配置 */
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top; /* 上部から表示 */
+    object-position: center top;
+    /* 上部から表示 */
     z-index: 0;
     pointer-events: none;
   }
 
   /* テキストを動画の上に乗せる */
   .hero__inner--story {
-    position: relative;       /* 子要素のabsoluteの基準にする */
+    position: relative;
+    /* 子要素のabsoluteの基準にする */
   }
 
   .hero__inner--story p,
   .hero__inner--story em {
     position: relative;
-    z-index: 1;               /* テキストを動画より前面に */
+    z-index: 1;
+    /* テキストを動画より前面に */
   }
 }
 
@@ -2760,19 +2792,24 @@ button:focus-visible {
    左に画像・右にテキスト
    ================================================ */
 .problem__checks--horizontal {
-  grid-template-columns: 1fr; /* SP：縦1列のまま */
+  grid-template-columns: 1fr;
+  /* SP：縦1列のまま */
 }
 
 .problem__checks--horizontal .problem__check {
-  flex-direction: row;        /* 縦→横に変更 */
+  flex-direction: row;
+  /* 縦→横に変更 */
   align-items: center;
 }
 
 .problem__checks--horizontal .problem__check-img {
-  width: 100px;               /* 左側の画像サイズ固定 */
+  width: 100px;
+  /* 左側の画像サイズ固定 */
   height: 100px;
-  flex: none;                 /* 画像が縮まないように */
-  border-radius: 0;           /* カード左側の角だけ丸く */
+  flex: none;
+  /* 画像が縮まないように */
+  border-radius: 0;
+  /* カード左側の角だけ丸く */
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
 }
@@ -2950,16 +2987,25 @@ button:focus-visible {
      こちらは .is-active という別のクラス名で管理しています。
    ================================================================ */
 .js-quote-reveal .quote-line {
-  display: block;               /* 1文ずつ改行して表示する */
+  display: block;
+  /* 1文ずつ改行して表示する */
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
 /* 1文目・2文目・3文目…の順に、少しずつ遅らせて表示 */
-.js-quote-reveal.is-active .quote-line:nth-child(1) { transition-delay: 0.1s; }
-.js-quote-reveal.is-active .quote-line:nth-child(2) { transition-delay: 0.5s; }
-.js-quote-reveal.is-active .quote-line:nth-child(3) { transition-delay: 0.9s; }
+.js-quote-reveal.is-active .quote-line:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.js-quote-reveal.is-active .quote-line:nth-child(2) {
+  transition-delay: 0.5s;
+}
+
+.js-quote-reveal.is-active .quote-line:nth-child(3) {
+  transition-delay: 0.9s;
+}
 
 .js-quote-reveal.is-active .quote-line {
   opacity: 1;
