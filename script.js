@@ -283,7 +283,26 @@ if (checkCarousel && !prefersReducedMotion) {
     setTimeout(startAutoSlide, 2000);
   });
 
-  startAutoSlide(); // ページ読み込み後、自動再生をスタート
+  // カードが画面に表示されてから、自動再生をスタートさせる。
+  // すでに「3. スクロールで要素をふわっと表示」で使っているのと同じ
+  // IntersectionObserver（要素が画面内に入ったことを検知する仕組み）を使います。
+  // threshold: 0.3 は「カードが30%くらい画面に入ったら」という意味です。
+  if ("IntersectionObserver" in window) {
+    const carouselIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          startAutoSlide();
+          carouselIO.unobserve(entry.target); // 一度スタートしたら、もう監視しなくてよいので外す
+        }
+      });
+    }, { threshold: 0.3 });
+
+    carouselIO.observe(checkCarousel);
+  } else {
+    // IntersectionObserverに対応していない古いブラウザ向けの保険：
+    // 画面位置を判定できないので、ページ読み込み完了時にスタートします。
+    window.addEventListener("load", startAutoSlide);
+  }
 }
 
 /* -----------------------------------------------------------------
