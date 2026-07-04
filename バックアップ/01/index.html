@@ -1,15 +1,50 @@
 <!DOCTYPE html>
-<!-- lang="ja" ＝ このページは日本語、とブラウザに伝える設定です -->
+
 <html lang="ja">
 
 <head>
   <meta charset="UTF-8">
   <!-- スマホで正しい幅で表示するための必須設定（レスポンシブの土台） -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ========== ファビコン ========== -->
+  <!-- ブラウザのタブに出るアイコン。32×32px の PNG が最低限。 -->
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <!-- iPhoneのホーム画面に追加したときのアイコン（180×180px） -->
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
+  <!-- ========== OGP（SNSシェア用）========== -->
+  <!-- og:url は本番の実URLに差し替えること -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yuraharu8910.github.io/su-lp/">
+  <meta property="og:title" content="素 -SU- ｜ 染めなくても、美しい。40代からの染めない白髪ケア">
+  <meta property="og:description"
+    content="素 -SU- は、40代からの染めない白髪ケアシャンプー。隠すか、染めるかの二択に疲れた方へ。うるおいとツヤで、白髪ごと美しく整えるオールインワンケア。初回50%OFF・30日間返金保証つき。">
+  <!-- og:image は 1200×630px 推奨（SNSのサムネイルになる画像） -->
+  <meta property="og:image" content="https://yuraharu8910.github.io/su-lp/images/og-image.jpg">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="素 -SU-">
+
+  <!-- X（旧Twitter）カード -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="素 -SU- ｜ 染めなくても、美しい。40代からの染めない白髪ケア">
+  <meta name="twitter:description"
+    content="素 -SU- は、40代からの染めない白髪ケアシャンプー。隠すか、染めるかの二択に疲れた方へ。うるおいとツヤで、白髪ごと美しく整えるオールインワンケア。初回50%OFF・30日間返金保証つき。">
+  <meta name="twitter:image" content="https://yuraharu8910.github.io/su-lp/images/og-image.jpg">
+
+  <!-- ========== canonical URL ========== -->
+  <!-- 同じページが複数のURLでアクセスできるとき、検索エンジンに"正規のURL"を教える設定 -->
+  <!-- 例：https://yuraharu8910.github.io/su-lp/ と https://yuraharu8910.github.io/su-lp/index.html は別URLとして扱われる -->
+  <link rel="canonical" href="https://yuraharu8910.github.io/su-lp/">
+
+  <!-- ========== robots（検索エンジンへの指示）========== -->
+  <!-- index：検索結果に載せてOK、follow：リンクを辿ってOK。本番では必ず設定。 -->
+  <meta name="robots" content="index, follow">
   <!-- 検索結果やSNSシェア時に出るタイトル・説明文 -->
   <title>素 -SU- ｜ 染めなくても、美しい。40代からの染めない白髪ケア</title>
-  <meta name="description" content="隠すか、染めるか。その二択は、もう終わり。白髪を生かして、ツヤと抜け感で“今のあなた”を一番きれいに見せる、毎日のミニマルケア。">
+  <!-- 修正案（約108文字） -->
+  <meta name="description"
+    content="素 -SU- は、40代からの染めない白髪ケアシャンプー。隠すか、染めるかの二択に疲れた方へ。うるおいとツヤで、白髪ごと美しく整えるオールインワンケア。初回50%OFF・30日間返金保証つき。">
 
   <!-- Google Fonts を読み込み（見出し＝Noto Serif JP / 本文＝Noto Sans JP） -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,16 +55,82 @@
 
   <!-- 自分のCSSファイルを読み込み（見た目の設定はすべて style.css に書いてあります） -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- </head> の直前あたりに追加 -->
+  <noscript>
+    <style>
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    </style>
+  </noscript>
+
+  <!-- ========== 構造化データ（FAQ）==========
+       GoogleにFAQの内容を伝えるための埋め込みデータ。
+       画面には表示されませんが、検索結果でQ&Aがそのまま出る可能性があります。
+       中身は #faq セクションの質問・回答と完全に一致させています
+       （ズレがあるとGoogleに評価されないので、FAQ本文を直したらここも一緒に直してください）。
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "染めないと、白髪は目立ちませんか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ツヤとまとまりが出ると、髪全体が清潔で洗練された印象になり、白髪も自然になじみます。隠すのではなく“活かす”という考え方です。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "うねりやパサつきにも使えますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "うるおいとツヤを与えて整えることで、まとまりやすい髪へ導きます。40代特有の髪の変化に寄り添う設計です。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "オールインワン1本で、物足りなくないですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "基本は1本で完結します。さらに整えたい方には、頭皮美容液（スカルプエッセンス）と週1のウィークリーマスクをご用意しています。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "男性も使えますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。男女問わずお使いいただけるユニセックス設計です。香りも中性的なベルガモット＆ウッディにしています。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "定期便のしばりはありますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "回数のしばりはありません。次回お届けの変更・休止・解約は、いつでも手続きいただけます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "合わなかったら返金できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "初回のお届けに限り、30日間の返金保証をご用意しています。安心してお試しください。"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
-
-  <!-- ============================================================
-       ヘッダー：ロゴ ＋ 右上の小さなCTAリンク
-       position は CSS で「画面に追従（fixed）」させています
-  ============================================================ -->
-  <header class="site-header">
-  </header>
 
 
   <!-- ============================================================
@@ -58,21 +159,13 @@
     </video> <!-- 文字を読みやすくするための暗いグラデーション層 -->
     <div class="hero__overlay" aria-hidden="true"></div>
 
-    <!-- ヒーローの中身（文字・ボタン） -->
-    <div class="hero__inner">
-      <!-- アイブロウ（見出しの上の小さな一言） -->
+    <!-- ① 1枚目：キャッチコピー＋CTA（画面1枚分） -->
+    <div class="hero__inner hero__inner--first">
       <p class="hero__eyebrow">40代からの、染めない白髪ケア</p>
-
-      <!-- メイン見出し（h1＝ページで最も重要な見出し） -->
       <h1 class="hero__title">染めなくても、美しい。</h1>
-
-      <!-- サブコピー -->
       <p class="hero__subtitle">
-        隠すか、染めるか。その二択は、もう終わりにしていい。<br>
-        
+        隠すか、染めるか。その二択は、もう終わりにしていい。
       </p>
-
-      <!-- CTA（行動を促すボタン）＋ 安心材料（返金保証）を横に添える -->
       <div class="hero__cta-group">
         <a href="#purchase" class="btn btn--primary">
           素髪の美しさを、初回半額で始める
@@ -80,23 +173,34 @@
         </a>
         <span class="hero__guarantee">30日間返金保証つき</span>
       </div>
-
-      <!-- S-1：オファー情報を常設（最大の購入動機をファーストビューで見せる）
-           価格＝初回¥1,900 / 通常¥3,800の取り消し線 / 50%OFF / 送料無料 -->
       <p class="hero__offer">
         <span class="hero__offer-label">定期便 初回</span>
         <span class="hero__offer-price">¥1,900</span>
         <span class="hero__offer-regular">通常¥3,800</span>
         <span class="hero__offer-badges">50%OFF・送料無料</span>
       </p>
-
     </div>
 
-    <!-- スクロール誘導（クリックで下のセクションへ。CSSで上下に揺れます） -->
-    <a href="#story" class="hero__scroll" aria-label="下へスクロール">
+    <!-- scroll誘導 -->
+    <a href="#story-text" class="hero__scroll" aria-label="下へスクロール">
       <span>scroll</span>
       <span class="hero__scroll-line" aria-hidden="true"></span>
     </a>
+
+    <!-- ② 2枚目：ストーリーテキスト（画面1枚分・動画の上を流れる） -->
+    <div class="hero__inner hero__inner--story" id="story-text">
+      <p class="hero__story-eyebrow">ある朝の、鏡の前で</p>
+      <p class="hero__story-title">また、染めなきゃ。</p>
+      <p class="hero__story-lead">
+        鏡で白髪を見つけるたび、頭をよぎるのは"きれいになる楽しみ"より、<br>
+        「また予約か」という小さなため息。いつのまにか、時間も気持ちもすり減っている。
+      </p>
+      <p class="hero__story-lead">
+        予約をとって、時間をつくって、また塗り重ねる。その繰り返しに、ふと小さな疲れを感じることがある。<br>
+        <em>それは、手を抜きたいからではありません。本当は、もっと自分らしく、軽やかでいたいだけ。</em>
+      </p>
+    </div>
+
   </section>
 
 
@@ -107,38 +211,43 @@
   ============================================================ -->
   <section id="story" class="problem">
     <div class="problem__inner">
-      <p class="problem__eyebrow reveal">ある朝の、鏡の前で</p>
-      <h2 class="problem__title reveal">また、染めなきゃ。</h2>
-      <p class="problem__lead reveal">
-        鏡で白髪を見つけるたび、頭をよぎるのは“きれいになる楽しみ”より、
-        「また予約か」という小さなため息。いつのまにか、時間も気持ちもすり減っている。
-      </p>
-
-      <!-- B-11：共感を1段だけ深掘り。
-           “心のすり減り”を言語化しつつ、最後は自己肯定で受け止める（恐怖・罪悪感・「染める」否定はしない）。 -->
-      <p class="problem__lead2 reveal">
-        予約をとって、時間をつくって、また塗り重ねる。その繰り返しに、ふと小さな疲れを感じることがある。
-        <em>それは、手を抜きたいからではありません。本当は、もっと自分らしく、軽やかでいたいだけ。</em>
-      </p>
 
       <!-- 自己診断グリッド（参考②：こんなお悩みありませんか？）
            具体的な悩みを並べ、読者に“自分のことだ”と感じてもらうパート。 -->
       <p class="problem__check-lead reveal">こんなこと、ありませんか？</p>
-      <ul class="problem__checks">
-        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>鏡を見るたび、増えていく白髪に焦る
+      <!-- problem__checks--carousel を追加 -->
+      <ul class="problem__checks problem__checks--carousel"> <!-- ① 鏡で白髪を確認 -->
+        <li class="problem__check reveal">
+          <img src="images/worry-01.jpg" alt="鏡で白髪を気にする女性" class="problem__check-img">
+          <span class="problem__check-text">鏡を見るたび、増えていく白髪に焦る</span>
         </li>
-        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>また美容室の予約か…と、気が重い
+
+        <!-- ② スマホで美容室を予約 -->
+        <li class="problem__check reveal">
+          <img src="images/worry-02.jpg" alt="スマホを見て悩む女性" class="problem__check-img">
+          <span class="problem__check-text">また美容室の予約か…と、気が重い</span>
         </li>
-        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>でも、まだ「染める」と決めたくない
+
+        <!-- ③ 染めることを拒否 -->
+        <li class="problem__check reveal">
+          <img src="images/worry-03.jpg" alt="染めることを躊躇する女性" class="problem__check-img">
+          <span class="problem__check-text">でも、まだ「染める」と決めたくない</span>
         </li>
-        <li class="problem__check reveal"><span class="problem__check-box" aria-hidden="true"></span>隠さなくても、きれいでいたい</li>
+
+        <!-- ④ 自然体でいたい -->
+        <li class="problem__check reveal">
+          <img src="images/worry-04.jpg" alt="自然体で美しくいたい女性" class="problem__check-img">
+          <span class="problem__check-text">隠さなくても、きれいでいたい</span>
+        </li>
       </ul>
 
       <!-- 信頼の数字（参考①②）：実在の調査データで“悩みの事実”を裏づける。
            ※架空商品なので自社実績は載せず、出典のある市場データを使用しています。 -->
       <div class="problem__stat reveal">
         <p class="problem__stat-lead">気にしているのは、あなただけではありません。</p>
-        <p class="problem__stat-num">約7割<small>（72.7%）</small></p>
+        <p class="problem__stat-num">約7割<small>（<span class="js-countup" data-target="72.7"
+              data-decimals="1">0</span>%）</small>
+        </p>
         <p class="problem__stat-desc">白髪のある30〜40代女性が、白髪の“見た目への影響”を気にしている。</p>
         <p class="problem__stat-src">※ 株式会社ウィルミナ「おさぼり白髪の実態調査」（2026年）／白髪がある30〜40代女性 694名</p>
       </div>
@@ -208,11 +317,9 @@
   ============================================================ -->
   <section id="concept" class="concept">
 
-  <!-- SP用背景動画（PCではCSSで非表示） -->
-  <video class="concept__video" autoplay muted loop playsinline
-         poster="images/sp-section-dark.png">
-    <source src="videos/bg-dark.mp4" type="video/mp4">
-  </video>
+    <!-- SP用背景動画（PCではCSSで非表示） -->
+    <!-- After：静止画に変更。class名はそのまま残すのでCSSはノータッチでOK -->
+    <img src="images/sp-section-dark.png" class="concept__video" alt="" aria-hidden="true">
     <div class="concept__inner">
 
       <!-- アイブロウ（このセクションの主題ラベル） -->
@@ -252,7 +359,8 @@
       <!-- 市場データ（参考①②）：ブランドの主張＝「活かす＝美しい」を、出典付きの“好感度”で裏づけ。
            ※02は“問題”の裏づけ、ここは“活かすは素敵だと多くが思っている”という主張の裏づけ。 -->
       <div class="concept__stat reveal">
-        <p class="concept__stat-num">74.8<span>%</span></p>
+        <p class="concept__stat-num"><span class="js-countup" data-target="74.8"
+            data-decimals="1">0</span><span>%</span></p>
         <p class="concept__stat-desc">の人が「グレイヘアは素敵だと思う」と回答。</p>
         <p class="concept__stat-src">※ ホーユー「グレイヘアに関する意識・実態調査」（2022年）</p>
       </div>
@@ -266,7 +374,7 @@
        なぜ作ったか。暗い背景で、静かに語りかけるトーンに。
   ============================================================ -->
   <section id="brand-story" class="section section--dark brandstory">
-  <!-- brand-storyはInkカラー無地背景（動画なし） -->
+    <!-- brand-storyはInkカラー無地背景（動画なし） -->
 
     <div class="section__inner">
       <p class="eyebrow reveal">なぜ、つくったか</p>
@@ -294,8 +402,7 @@
   <section id="product" class="section section--light product">
     <div class="section__inner product__inner">
       <!-- 商品画像（差し替え用プレースホルダー） -->
-      <img src="images/shampoo.png" alt="シャンプー" srcset="">
-      <!-- 商品情報 -->
+      <img src="images/shampoo.png" alt="素 -SU- シャンプー（オールインワン）500ml" class="product__photo"> <!-- 商品情報 -->
       <div class="product__body">
         <p class="eyebrow reveal">これが、素 -SU-。</p>
         <h2 class="product__name reveal">素 -SU- シャンプー<small>（オールインワン）</small></h2>
@@ -369,7 +476,7 @@
           お使いのブラウザは動画の表示に対応していません。
         </video>
         <figcaption class="science__video-cap">
-          ※ 解説動画（差し替え用）：40代の髪に起きる変化を、やさしく解説
+          ※ 解説動画：40代の髪に起きる変化を、やさしく解説
         </figcaption>
       </figure>
 
@@ -379,8 +486,8 @@
           <span class="science__point-num" aria-hidden="true">01</span>
           <h3 class="science__point-name">うねりが出やすく</h3>
           <p class="science__point-desc">髪が素直に下りにくくなり、雨の日や午後に広がりやすくなります。<br>
-            顔の皮膚と同じように頭皮もたるむため、
-            頭皮がゆるみ、毛穴の形がわずかに変化。
+            顔の皮膚と同じように頭皮もたるみ、
+            毛穴の形がわずかに変化。
             そこから生える髪に、うねりやクセが出やすくなります。</p>
         </li>
         <li class="science__point reveal">
@@ -413,11 +520,9 @@
        素 -SU- が毎日もたらす価値を、3つに絞って提示。暗い背景で“主役”の見せ場に。
   ============================================================ -->
   <section id="features" class="section section--dark features">
-  <!-- SP用背景動画（PCではCSSで非表示） -->
-  <video class="section-dark__video" autoplay muted loop playsinline
-         poster="images/sp-section-dark.png">
-    <source src="videos/bg-dark.mp4" type="video/mp4">
-  </video>
+    <!-- SP用背景動画（PCではCSSで非表示） -->
+    <!-- After -->
+    <img src="images/sp-section-dark.png" class="section-dark__video" alt="" aria-hidden="true">
 
     <div class="section__inner">
       <p class="eyebrow reveal">素 -SU- の、3つの価値</p>
@@ -461,16 +566,16 @@
 
       <div class="beforeafter__grid">
         <figure class="beforeafter__item reveal">
-          <img src="images/before.png" alt="ビフォー" srcset="">
+          <img src="images/before.png" alt="使用前：パサつき・広がりが気になる状態">
           <figcaption class="beforeafter__cap"><span class="beforeafter__stage">使用前</span>パサつき・広がりが気になる状態</figcaption>
         </figure>
         <figure class="beforeafter__item reveal">
-          <img src="images/after-1.png" alt="アフター１" srcset="">
+          <img src="images/after-1.png" alt="2週間後：指通りがなめらかになった状態">
           <figcaption class="beforeafter__cap"><span class="beforeafter__stage">2週間後</span>指通りがなめらかに、まとまりやすく
           </figcaption>
         </figure>
         <figure class="beforeafter__item reveal">
-          <img src="images/after-2.png" alt="アフター２" srcset="">
+          <img src="images/after-2.png" alt="4週間後：光を返すツヤで、洗練された印象の髪">
           <figcaption class="beforeafter__cap"><span class="beforeafter__stage">4週間後</span>光を返すツヤで、洗練された印象に</figcaption>
         </figure>
       </div>
@@ -581,11 +686,9 @@
        「置き換えるだけ」を視覚化。順番のある手順なので ol（番号つきリスト）。
   ============================================================ -->
   <section id="howto" class="section section--dark howto">
-  <!-- SP用背景動画（PCではCSSで非表示） -->
-  <video class="section-dark__video" autoplay muted loop playsinline
-         poster="images/sp-section-dark.png">
-    <source src="videos/bg-dark.mp4" type="video/mp4">
-  </video>
+    <!-- SP用背景動画（PCではCSSで非表示） -->
+    <!-- After -->
+    <img src="images/sp-section-dark.png" class="section-dark__video" alt="" aria-hidden="true">
 
     <div class="section__inner">
       <p class="eyebrow reveal">使い方は、いつもどおり</p>
@@ -642,7 +745,7 @@
       <div class="lineup__grid">
         <!-- ヒーロー商品（主役なので強調） -->
         <article class="lineup__card lineup__card--hero reveal">
-          <img src="images/lineup-shampoo.png" alt="シャンプー">
+          <img src="images/lineup-shampoo.png" alt="素 -SU- シャンプー">
           <p class="lineup__tag">HERO</p>
           <h3 class="lineup__name">素 -SU- シャンプー</h3>
           <p class="lineup__role">毎日の主役・オールインワン</p>
@@ -654,27 +757,31 @@
           </p>
           <p class="lineup__start">まずは、この1本から。</p>
           <!-- カード内CTA：ヒーローは塗りボタン（主役）。すべて #purchase フォームへ -->
-          <a href="#purchase" class="btn btn--primary btn--block lineup__card-btn">初回¥1,900で始める</a>
+          <!-- シャンプーのボタン -->
+          <a href="#purchase" class="btn btn--primary btn--block lineup__card-btn"
+            data-product="shampoo-sub">初回¥1,900で始める</a>
         </article>
 
         <article class="lineup__card reveal">
-          <img src="images/essence.png" alt="エッセンス" srcset="">
+          <img src="images/essence.png" alt="素 -SU- スカルプエッセンス">
           <p class="lineup__tag lineup__tag--plus">+α</p>
           <h3 class="lineup__name">スカルプエッセンス</h3>
           <p class="lineup__role">頭皮美容液・塗って流さない</p>
           <p class="lineup__price">¥4,200<span class="lineup__price-sub">税込</span></p>
           <!-- +αはゴーストボタン（従）。主役の塗りボタンより一段控えめに -->
-          <a href="#purchase" class="btn btn--ghost btn--block lineup__card-btn">申し込む</a>
+          <!-- スカルプエッセンスのボタン -->
+          <a href="#purchase" class="btn btn--ghost btn--block lineup__card-btn" data-product="essence">申し込む</a>
         </article>
 
         <article class="lineup__card reveal">
-          <img src="images/mask.png" alt="マスク" srcset="">
+          <img src="images/mask.png" alt="素 -SU- ウィークリーマスク">
           <p class="lineup__tag lineup__tag--plus">+α</p>
           <h3 class="lineup__name">ウィークリーマスク</h3>
           <p class="lineup__role">週1の集中トリートメント</p>
           <p class="lineup__price">¥4,200<span class="lineup__price-sub">税込</span></p>
           <!-- +αはゴーストボタン（従） -->
-          <a href="#purchase" class="btn btn--ghost btn--block lineup__card-btn">申し込む</a>
+          <!-- ウィークリーマスクのボタン -->
+          <a href="#purchase" class="btn btn--ghost btn--block lineup__card-btn" data-product="mask">申し込む</a>
         </article>
       </div>
     </div>
@@ -772,11 +879,9 @@
        本番では「素髪の美しさを、初回半額で始める」のリンク先を、申込みフォーム/カートのURLに差し替えてください。
   ============================================================ -->
   <section id="purchase" class="section section--dark closing">
-  <!-- SP用背景動画（PCではCSSで非表示） -->
-  <video class="section-dark__video" autoplay muted loop playsinline
-         poster="images/sp-section-dark.png">
-    <source src="videos/bg-dark.mp4" type="video/mp4">
-  </video>
+    <!-- SP用背景動画（PCではCSSで非表示） -->
+    <!-- After -->
+    <img src="images/sp-section-dark.png" class="section-dark__video" alt="" aria-hidden="true">
 
     <div class="closing__inner">
       <p class="eyebrow reveal">染める前に、活かすを。</p>
@@ -811,20 +916,41 @@
                いまは送信先が無いため、JavaScriptで受け止めて確認文を表示します。 -->
         <form class="order-form" id="orderForm" novalidate>
           <!-- プラン選択（ラジオ：定期便 or 単品） -->
+          <!-- 変更後：4商品ぶんの選択肢に -->
+          <!-- 変更後 -->
           <fieldset class="order-form__plans">
-            <legend class="order-form__legend">プランを選ぶ</legend>
+            <legend class="order-form__legend">商品を選ぶ（複数選択可）</legend>
+
+            <!-- ここの2つだけは name="shampoo-plan" で揃えることで、
+       同じグループ＝どちらか一方しか選べない、という関係になります -->
             <label class="order-form__plan">
-              <input type="radio" name="plan" value="subscription" checked>
+              <input type="radio" name="shampoo-plan" value="shampoo-sub" checked>
               <span class="order-form__plan-body">
-                <span class="order-form__plan-name">定期便 初回 ¥1,900</span>
+                <span class="order-form__plan-name">シャンプー（定期便）初回 ¥1,900</span>
                 <span class="order-form__plan-note">2回目以降 ¥3,420／送料無料・いつでも休止／解約OK</span>
               </span>
             </label>
             <label class="order-form__plan">
-              <input type="radio" name="plan" value="single">
+              <input type="radio" name="shampoo-plan" value="shampoo-single">
               <span class="order-form__plan-body">
-                <span class="order-form__plan-name">単品 ¥3,800</span>
+                <span class="order-form__plan-name">シャンプー（単品）¥3,800</span>
                 <span class="order-form__plan-note">まずは1本だけ／送料無料</span>
+              </span>
+            </label>
+
+            <!-- ここから下の2つは type="checkbox" ＝ それぞれ独立してON/OFFできる -->
+            <label class="order-form__plan">
+              <input type="checkbox" name="addon" value="essence" id="of-addon-essence">
+              <span class="order-form__plan-body">
+                <span class="order-form__plan-name">スカルプエッセンス ¥4,200</span>
+                <span class="order-form__plan-note">頭皮美容液・塗って流さないタイプ／送料無料</span>
+              </span>
+            </label>
+            <label class="order-form__plan">
+              <input type="checkbox" name="addon" value="mask" id="of-addon-mask">
+              <span class="order-form__plan-body">
+                <span class="order-form__plan-name">ウィークリーマスク ¥4,200</span>
+                <span class="order-form__plan-note">週1の集中トリートメント／送料無料</span>
               </span>
             </label>
           </fieldset>
@@ -891,8 +1017,8 @@
   ============================================================ -->
   <!-- スマホ固定CTAバー（480px以下のみ表示） -->
   <div class="sticky-cta" id="stickyCta">
-    <button onclick="openModal()" class="sticky-cta-btn"
-      style="cursor:pointer; border:none; width:100%; background:none;">まず1本、試してみる →</button>
+    <!-- onclick を削除し、href="#purchase" のリンクに変える -->
+    <a href="#purchase" class="sticky-cta-btn" id="stickyCtaBtn">まず1本、試してみる →</a>
     <p class="sticky-cta-note">30日間返金保証・回数縛りなし・送料無料</p>
   </div>
   <!-- ============================================================

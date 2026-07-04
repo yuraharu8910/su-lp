@@ -2826,21 +2826,30 @@ button:focus-visible {
   max-width: 280px;
 }
 
-/* PC（769px以上）：グリッドにはせず、SPと同じ「横スライド」を維持。
-   カード幅は、ラインナップカード（.lineup__card 実測 約300px）に
-   合わせて300pxに統一し、LP内の他カードとサイズ感のバランスを取る。
-   overflow-x / scroll-snap-type は上のベース設定（PC/SP共通）を
-   そのまま使うので、ここでは上書きしません。 */
+/* PC（769px以上）：スクロールなし・4列並び */
 @media (min-width: 769px) {
   .problem__checks--carousel {
-    gap: 24px;
-    /* PCはカードが大きくなる分、隙間も少し広げる */
+    overflow-x: visible;
+    scroll-snap-type: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
   }
 
   .problem__checks--carousel .problem__check {
-    flex: 0 0 300px;
-    /* 縮まない・幅300px固定（ラインナップカードと同等） */
-    max-width: 300px;
+    flex: none;
+    width: auto;
+    max-width: none;
+  }
+}
+
+/* ================================================
+   こんなことありませんか：PC カードサイズを拡大
+   ================================================ */
+@media (min-width: 769px) {
+  .problem__checks--carousel .problem__check {
+    max-width: none;
+    /* 280px制限を解除 */
   }
 
   .problem__checks--carousel .problem__check-img {
