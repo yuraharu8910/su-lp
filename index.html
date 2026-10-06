@@ -128,9 +128,35 @@
     ]
   }
   </script>
+  <!-- ========== Google Tag Manager（計測タグの司令塔）==========
+       GA4・Clarityなどの計測タグは、すべてこのGTM経由で配信します。
+       タグの追加・変更はGTMの管理画面で行うので、ここを編集する必要はありません。
+       コンテナID：GTM-P7PJH436 -->
+  <script>
+    (function (w, d, s, l, i) {
+      // dataLayer＝GTMへデータを渡すための配列。なければ空で用意する
+      w[l] = w[l] || [];
+      // 「GTMの読み込みを開始した」という記録を最初に入れる
+      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      // GTM本体を非同期（ページの表示を止めない形）で読み込む
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P7PJH436');
+  </script>
+  <!-- End Google Tag Manager -->
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript)
+       JavaScriptが無効な環境向けの予備。画面には表示されません。
+       <body> の直後に置くのがGTMの決まりです。 -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P7PJH436" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
 
   <!-- ============================================================
@@ -167,7 +193,7 @@
         隠すか、染めるか。その二択は、もう終わりにしていい。
       </p>
       <div class="hero__cta-group">
-        <a href="#purchase" class="btn btn--primary">
+        <a href="#purchase" data-cta="hero" class="btn btn--primary">
           素髪の美しさを、初回半額で始める
           <span class="btn__arrow" aria-hidden="true">→</span>
         </a>
@@ -429,7 +455,7 @@
 
         <!-- CTA -->
         <div class="product__cta reveal">
-          <a href="#purchase" class="btn btn--primary">
+          <a href="#purchase" data-cta="product" class="btn btn--primary">
             素髪の美しさを、初回半額で始める
             <span class="btn__arrow" aria-hidden="true">→</span>
           </a>
@@ -600,7 +626,7 @@
         <span class="quote-line">染める前に、</span>
         <span class="quote-line">活かすという選択を。</span>
       </p>
-      <a href="#purchase" class="btn btn--primary">
+      <a href="#purchase" data-cta="midcta_1" class="btn btn--primary">
         初回¥1,900で始める
         <span class="btn__arrow" aria-hidden="true">→</span>
       </a>
@@ -780,7 +806,7 @@
           <p class="lineup__price">¥4,200<span class="lineup__price-sub">税込</span></p>
           <!-- +αはゴーストボタン（従）。主役の塗りボタンより一段控えめに -->
           <!-- スカルプエッセンスのボタン -->
-          <a href="#purchase" class="btn btn--ghost btn--block lineup__card-btn" data-product="essence">申し込む</a>
+          <a href="#purchase" data-cta="lineup_essence" class="btn btn--ghost btn--block lineup__card-btn" data-product="essence">申し込む</a>
         </article>
 
         <article class="lineup__card reveal">
@@ -791,7 +817,7 @@
           <p class="lineup__price">¥4,200<span class="lineup__price-sub">税込</span></p>
           <!-- +αはゴーストボタン（従） -->
           <!-- ウィークリーマスクのボタン -->
-          <a href="#purchase" class="btn btn--ghost btn--block lineup__card-btn" data-product="mask">申し込む</a>
+          <a href="#purchase" data-cta="lineup_mask" class="btn btn--ghost btn--block lineup__card-btn" data-product="mask">申し込む</a>
         </article>
       </div>
     </div>
@@ -838,7 +864,7 @@
         <span class="quote-line">あなたの「素」を、</span>
         <span class="quote-line">今日から。</span>
       </p>
-      <a href="#purchase" class="btn btn--primary">
+      <a href="#purchase" data-cta="midcta_2" class="btn btn--primary">
         初回¥1,900で始める
         <span class="btn__arrow" aria-hidden="true">→</span>
       </a>
@@ -1037,7 +1063,7 @@
   <!-- スマホ固定CTAバー（480px以下のみ表示） -->
   <div class="sticky-cta" id="stickyCta">
     <!-- onclick を削除し、href="#purchase" のリンクに変える -->
-    <a href="#purchase" class="sticky-cta-btn" id="stickyCtaBtn">まず1本、試してみる →</a>
+    <a href="#purchase" data-cta="sticky_sp" class="sticky-cta-btn" id="stickyCtaBtn">まず1本、試してみる →</a>
     <p class="sticky-cta-note">30日間返金保証・回数縛りなし・送料無料</p>
   </div>
   <!-- ============================================================
@@ -1060,7 +1086,7 @@
       </p>
     </div>
     <!-- CTAボタン（購入フォームセクションへスクロール） -->
-    <a href="#purchase" class="btn btn--primary pc-sticky-cta__btn" aria-label="申し込みフォームへ移動">
+    <a href="#purchase" data-cta="sticky_pc" class="btn btn--primary pc-sticky-cta__btn" aria-label="申し込みフォームへ移動">
       まず1本、試してみる
       <span class="btn__arrow" aria-hidden="true">→</span>
     </a>

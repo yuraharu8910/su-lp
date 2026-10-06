@@ -102,6 +102,19 @@ if (orderForm) {
 
     orderResult.textContent = name + "様、「" + summaryText + "」のお申し込みを受け付けました（デモ）。";
     orderResult.className = "order-form__result is-success";
+
+    // ---- 計測：申込み完了をGTMへ知らせる ----
+    // dataLayer＝GTMへデータを渡すための配列（index.htmlのGTMコードが用意します）。
+    // ここに { event: "order_submit" } を入れると、GTM側で「申込み完了」として拾えます。
+    // 入力チェックを通過した"成功時だけ"送るので、エラー時はカウントされません。
+    // ※お名前・メールアドレスなどの個人情報は、計測には絶対に送りません。
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "order_submit",              // GTMのトリガーで使うイベント名
+      order_plan: shampooPlan,            // 例："shampoo-sub"（定期便）／"shampoo-single"（単品）
+      order_addons: addonValues.join(",") // 例："essence,mask"（追加なしなら空文字）
+    });
+
     orderForm.reset();
   });
 }
